@@ -1,13 +1,15 @@
-let symmetry = 32;
+let symmetry = 100;
 
 let symangle = 360 / symmetry;
 
 let frame = 0;
 
 let x, y;
+let cnv;
 
 function setup() {
-  createCanvas(750, 750);
+  cnv = createCanvas(1080, 1080);
+  cnv.mouseClicked(clickOnSave);
   angleMode(DEGREES);
   colorMode(HSL);
   x = width / 2;
@@ -56,4 +58,8 @@ function draw() {
       pop();
     }
   }
+}
+
+function clickOnSave() {
+  saveCanvas();
 }

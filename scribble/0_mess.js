@@ -1,10 +1,14 @@
 let section;
+let cnv;
 
 function setup() {
-  createCanvas(750, 750);
+  cnv = createCanvas(1080, 1080);
+  cnv.mouseClicked(clickOnSave);
   section = width / 4;
-  fill(color("#ffffff40"));
-  background(0);
+  colorMode(HSL);
+  fill(color(45, 45, 75, 0.2));
+  background(45, 45, 75);
+  frameRate(12);
 }
 
 let z = 0;
@@ -17,4 +21,8 @@ function draw() {
       circle(x, y, nooice * section * 2);
     }
   }
+}
+
+function clickOnSave() {
+  saveCanvas();
 }

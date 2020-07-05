@@ -1,8 +1,10 @@
 let section;
 let gap;
+let cnv;
 
 function setup() {
-  createCanvas(750, 750);
+  cnv = createCanvas(1080, 1080);
+  cnv.mouseClicked(clickOnSave);
   section = width / 8;
   gap = width / 16;
   noStroke();
@@ -21,4 +23,8 @@ function draw() {
       circle(x, y, nooice * gap);
     }
   }
+}
+
+function clickOnSave() {
+  saveCanvas();
 }

@@ -1,5 +1,12 @@
+let cnv;
+
 function setup() {
-  createCanvas(750, 750);
+  cnv = createCanvas(1080, 1080);
+  cnv.mouseClicked(clickOnSave);
 }
 
 function draw() {}
+
+function clickOnSave() {
+  saveCanvas();
+}
