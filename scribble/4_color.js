@@ -17,13 +17,6 @@ let cnv;
 function setup() {
   cnv = createCanvas(1080, 1080);
   cnv.mouseClicked(clickOnSave);
-  palette = [
-    color("#5C4B51"),
-    color("#8CBEB2"),
-    color("#F2EBBF"),
-    color("#F3B562"),
-    color("#F06060"),
-  ];
 
   section = width / 8;
   gap = width / 16;
