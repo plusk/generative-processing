@@ -58,5 +58,5 @@ function draw() {
 }
 
 function clickOnSave() {
-  saveCanvas();
+  // saveCanvas();
 }

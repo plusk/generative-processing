@@ -10,25 +10,33 @@ let maxr = 7.5;
 
 let bigrad = 0;
 
-let palette;
 let bigcolor;
 let cnv;
+
+let palettes;
+let palette;
+let colors;
+let colors_stroke;
+let colors_bg;
+
+function preload() {
+  palettes = loadJSON("../palettes.json");
+}
 
 function setup() {
   cnv = createCanvas(1080, 1080);
   cnv.mouseClicked(clickOnSave);
-  palette = [
-    color("#5C4B51"),
-    color("#8CBEB2"),
-    color("#F2EBBF"),
-    color("#F3B562"),
-    color("#F06060"),
-  ];
+
+  palette = palettes["parchment"];
+  colors = palette["colors"];
+  colors_bg = palette["bg"];
+  colors_stroke = palette["stroke"];
+
+  background(colors_bg);
+  stroke(colors_stroke);
 
   section = width / 8;
   gap = width / 16;
-  colorMode(HSL);
-  background(45, 45, 75);
   bigrad = width > height ? (height - section) / 2 : (width - section) / 2;
   for (let c = 0; c < scribblecount; c++) {
     const ang = random(TWO_PI);
@@ -38,11 +46,11 @@ function setup() {
       rad * sin(ang),
       random(maxr),
       random(1),
-      random(palette),
+      random(colors),
     ]);
   }
   strokeWeight(3);
-  bigcolor = random(palette);
+  bigcolor = random(colors);
 }
 
 const SPEED = 5; // higher = fewer circles
@@ -78,5 +86,5 @@ function draw() {
 }
 
 function clickOnSave() {
-  saveCanvas();
+  // saveCanvas();
 }

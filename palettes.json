@@ -1,7 +1,90 @@
 {
   "parchment": {
-    "background": "#dccea3",
-    "stroke": "000000",
+    "bg": "#dccea3",
+    "colors": ["#00000040", "#00000080", "#000000c0", "#000000"]
+  },
+  "retro": {
+    "bg": "#dccea3",
     "colors": ["#5C4B51", "#8CBEB2", "#F2EBBF", "#F3B562", "#F06060"]
+  },
+  "warm": {
+    "bg": "#dccea3",
+    "colors": ["#264653", "#2a9d8f", "#e9c46a", "#f4a261", "#e76f51"]
+  },
+  "caro": {
+    "bg": "#dccea3",
+    "colors": ["#7DB37B", "#BFD192", "#F5E49E", "#F7C6A3", "#F4A28B"]
+  },
+  "yazmin": {
+    "bg": "#dccea3",
+    "colors": ["#BF3952", "#0F4045", "#BF9A78", "#4C6F69", "#D95B5B"]
+  },
+  "sydney": {
+    "bg": "#dccea3",
+    "colors": ["#F7665D", "#F7826B", "#F7A571", "#78F7C2", "#BFF7B0"]
+  },
+  "seb": {
+    "bg": "#dccea3",
+    "colors": ["#FEB89F", "#F5D1C3", "#F7F3F0", "#C4D7D1", "#5F9595"]
+  },
+  "tanco": {
+    "bg": "#dccea3",
+    "colors": ["#355070", "#6D597A", "#B56576", "#E56B6F", "#EAAC8B"]
+  },
+  "marcela": {
+    "bg": "#dccea3",
+    "colors": ["#49521C", "#C6B486", "#DDB46F", "#CE6A41", "#71342F"]
+  },
+  "newblack": {
+    "bg": "#000000",
+    "colors": ["#C48100", "#FFAD00", "#FFC235", "#FFFABC"]
+  },
+  "redrange": {
+    "bg": "#FF530D",
+    "colors": ["#2B3A42", "#3F5765", "#BDD4DE", "#EFEFEF"]
+  },
+  "yeblu": {
+    "bg": "#FEB41C",
+    "colors": ["#24221F", "#363F45", "#4B5F6D", "#5E7C88"]
+  },
+  "burnt": {
+    "bg": "#FF6138",
+    "colors": ["#FFFF9D", "#BEEB9F", "#79BD8F", "#00A388"]
+  },
+  "redcent": {
+    "bg": "#DC3522",
+    "colors": ["#D9CB9E", "#374140", "#2A2C2B", "#1E1E20"]
+  },
+  "blorange": {
+    "bg": "#dccea3",
+    "colors": ["#023B47", "#295E52", "#F2E085", "#FCAB55", "#EE7F38"]
+  },
+  "blurred": {
+    "bg": "#dccea3",
+    "colors": ["#F7604F", "#734A45", "#AB8268", "#FFDBC4", "#6FB9BF"]
+  },
+  "gublue": {
+    "bg": "#dccea3",
+    "colors": ["#EFC164", "#F3835D", "#F35955", "#286275", "#00434C"]
+  },
+  "symmeblu": {
+    "bg": "#dccea3",
+    "colors": ["#405952", "#9C9B7A", "#FFD393", "#FF974F", "#F54F29"]
+  },
+  "pastella": {
+    "bg": "#444444",
+    "colors": ["#A8E6CF", "#DCEDC1", "#FFD3B6", "#FFAAA5", "#FF8B94"]
+  },
+  "termos": {
+    "bg": "#dccea3",
+    "colors": ["#4C6472", "#57A4B1", "#B0D894", "#FADE89", "#F95355"]
+  },
+  "vintage": {
+    "bg": "#dccea3",
+    "colors": ["#0A7B83", "#2AA876", "#FFD265", "#F19C65", "#CE4D45"]
+  },
+  "darklear": {
+    "bg": "#dccea3",
+    "colors": ["#A82221", "#DB5E31", "#EDA23E", "#F2CB67", "#BFB840"]
   }
 }

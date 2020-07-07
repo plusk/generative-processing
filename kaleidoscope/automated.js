@@ -1,25 +1,48 @@
-let symmetry = 100;
+let symmetry = 64;
 
 let symangle = 360 / symmetry;
 
 let frame = 0;
-
 let x, y;
+
 let cnv;
+let palettes;
+let palette;
+let colors;
+let colors_stroke;
+let colors_bg;
+
+const PALETTE_NAME = "parchment";
+
+function preload() {
+  palettes = loadJSON("palettes.json");
+}
 
 function setup() {
   cnv = createCanvas(1080, 1080);
   cnv.mouseClicked(clickOnSave);
+
+  palette = palettes[PALETTE_NAME];
+  // const keys = Object.keys(palettes);
+  // palette = palettes[keys[(keys.length * Math.random()) << 0]];
+
+  colors = palette["colors"];
+  colors_bg = palette["bg"];
+  colors_stroke = palette["stroke"];
+
+  background(colors_bg);
   angleMode(DEGREES);
-  colorMode(HSL);
+
+  strokeWeight(3);
   x = width / 2;
   y = height / 2;
 }
 
-const STEP = 2;
+const STEP = 1.5;
 
 let angle = 0;
-let anglestep = 30;
+let anglestep = 1;
+let anglesign = 1;
 
 function draw() {
   translate(width / 2, height / 2);
@@ -31,16 +54,17 @@ function draw() {
 
     let noised = noise(x, y) - 0.5;
 
-    angle += noised * anglestep;
+    anglestep = random(2);
+    if (angle > 180 || angle < 0) anglesign *= -1;
+    angle += anglestep * anglesign + noised * 2;
+    console.log(angle);
 
     x += cos(angle) * STEP;
     y += sin(angle) * STEP;
 
-    stroke((frame - 75) % 360, frame + 25, 75, 0.75);
-
     for (let i = 0; i < symmetry; i++) {
+      stroke(colors[i % colors.length]);
       rotate(symangle);
-      strokeWeight(1);
       line(
         startx - width / 2,
         starty - height / 2,
@@ -61,5 +85,5 @@ function draw() {
 }
 
 function clickOnSave() {
-  saveCanvas();
+  //saveCanvas();
 }
