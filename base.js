@@ -20,10 +20,10 @@ function setup() {
   // palette = palettes[keys[(keys.length * Math.random()) << 0]];
   colors = palette["colors"];
   colors_bg = palette["bg"];
-  colors_stroke = palette["stroke"];
 
   background(colors_bg);
-  stroke(colors_stroke);
+  strokeWeight(2);
+  fill(colors_bg);
 }
 
 function draw() {
