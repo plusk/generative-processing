@@ -27,13 +27,11 @@ function setup() {
   cnv = createCanvas(1080, 1080);
   cnv.mouseClicked(clickOnSave);
 
-  palette = palettes["parchment"];
+  palette = palettes["retro"];
   colors = palette["colors"];
   colors_bg = palette["bg"];
-  colors_stroke = palette["stroke"];
 
   background(colors_bg);
-  stroke(colors_stroke);
 
   section = width / 8;
   gap = width / 16;

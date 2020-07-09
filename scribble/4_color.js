@@ -4,7 +4,7 @@ let z = 0;
 let xoff = 0;
 let yoff = 0;
 
-let scribblecount = 64;
+let scribblecount = 50;
 let coords = [];
 let maxr = 7.5;
 
@@ -23,7 +23,7 @@ function setup() {
   cnv = createCanvas(1080, 1080);
   cnv.mouseClicked(clickOnSave);
 
-  palette = palettes["parchment"];
+  palette = palettes["symmeblu"];
 
   colors = palette["colors"];
 
@@ -35,9 +35,10 @@ function setup() {
   for (let c = 0; c < scribblecount; c++) {
     const ang = random(TWO_PI);
     const rad = bigrad * sqrt(random());
-    coords.push([rad * cos(ang), rad * sin(ang), random(maxr), random(colors)]);
+    const col = color(random(colors));
+    col.setAlpha(random() + random() + random());
+    coords.push([rad * cos(ang), rad * sin(ang), random(maxr), col]);
   }
-  strokeWeight(3);
   bigcolor = random(colors);
 }
 
@@ -57,7 +58,9 @@ function draw() {
     const r = coord[2];
     const nooice = noise(0.005 * x, 0.005 * y, 0.5 * z);
     stroke(coord[3]);
-    fill(color(45, 45, 75, OPACITY_FILL));
+    const filler = color(palette["bg"]);
+    filler.setAlpha(OPACITY_FILL * 1);
+    fill(filler);
     xoff = random(-gap / 4, gap / 4);
     yoff = random(-gap / 4, gap / 4);
     const raddy = r * nooice * (gap - z * SPEED);
@@ -73,5 +76,5 @@ function draw() {
 }
 
 function clickOnSave() {
-  // saveCanvas();
+  saveCanvas();
 }
