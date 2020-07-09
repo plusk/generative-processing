@@ -7,12 +7,14 @@ let colors_bg;
 
 const PALETTE_NAME = "parchment";
 
+const STROKE_WEIGHT = 2;
+
 function preload() {
   palettes = loadJSON("palettes.json");
 }
 
 function setup() {
-  cnv = createCanvas(1080, 1080);
+  cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
 
   palette = palettes[PALETTE_NAME];
@@ -22,8 +24,9 @@ function setup() {
   colors_bg = palette["bg"];
 
   background(colors_bg);
-  strokeWeight(2);
+  strokeWeight(STROKE_WEIGHT);
   fill(colors_bg);
+  stroke(random(colors));
 }
 
 function draw() {
