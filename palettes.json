@@ -15,10 +15,6 @@
     "bg": "#7F4040",
     "colors": ["#F7665D", "#F7826B", "#F7A571", "#78F7C2", "#BFF7B0"]
   },
-  "seb": {
-    "bg": "#5F9595",
-    "colors": ["#FEB89F", "#F5D1C3", "#F7F3F0", "#C4D7D1"]
-  },
   "newblack": {
     "bg": "#000000",
     "colors": ["#C48100", "#FFAD00", "#FFC235", "#FFFABC"]
@@ -34,6 +30,10 @@
   "redcent": {
     "bg": "#DC3522",
     "colors": ["#D9CB9E", "#374140", "#2A2C2B", "#1E1E20"]
+  },
+  "blucent": {
+    "bg": "#0A5E77",
+    "colors": ["#CBD09E", "#413740", "#2C2A2B", "#1E1E20"]
   },
   "blorange": {
     "bg": "#dccea3",
@@ -62,10 +62,6 @@
   "vintage": {
     "bg": "#333333",
     "colors": ["#0A7B83", "#2AA876", "#FFD265", "#F19C65", "#CE4D45"]
-  },
-  "darklear": {
-    "bg": "#333333",
-    "colors": ["#A82221", "#DB5E31", "#EDA23E", "#F2CB67", "#BFB840"]
   },
   "monster": {
     "bg": "#333333",

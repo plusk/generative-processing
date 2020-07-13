@@ -9,7 +9,7 @@ let colors_bg;
 //yeblu
 //pastella
 //sydney
-const PALETTE_NAME = "sydney";
+const PALETTE_NAME = "redrange";
 
 let padding;
 
@@ -110,14 +110,14 @@ function consider(vert, nuvert, row) {
         random(1 - (0.2 / POLYCOUNT) * row, 1 + (row - 1) / POLYCOUNT)
     );
     line(
-      vert[0] - DECAY,
-      vert[1] - DECAY,
-      nuvert[0] + DECAY,
-      nuvert[1] + DECAY
+      vert[0] + DECAY * random(-1, 1),
+      vert[1] + DECAY * random(-1, 1),
+      nuvert[0] + DECAY * random(-1, 1),
+      nuvert[1] + DECAY * random(-1, 1)
     );
     strokeWeight(STROKE_WEIGHT * 3);
-    point(vert[0] - DECAY, vert[1] - DECAY);
-    point(nuvert[0] + DECAY, nuvert[1] + DECAY);
+    point(vert[0] + DECAY * random(-1, 1), vert[1] + DECAY * random(-1, 1));
+    point(nuvert[0] + DECAY * random(-1, 1), nuvert[1] + DECAY * random(-1, 1));
     strokeWeight(STROKE_WEIGHT);
   }
 }

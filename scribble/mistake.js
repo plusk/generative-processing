@@ -19,6 +19,8 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
+const PALETTE_NAME = "retro";
+
 function preload() {
   palettes = loadJSON("../palettes.json");
 }
@@ -27,7 +29,7 @@ function setup() {
   cnv = createCanvas(1080, 1080);
   cnv.mouseClicked(clickOnSave);
 
-  palette = palettes["retro"];
+  palette = palettes[PALETTE_NAME];
   colors = palette["colors"];
   colors_bg = palette["bg"];
 
