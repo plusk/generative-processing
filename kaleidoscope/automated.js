@@ -12,7 +12,7 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "parchment";
+const PALETTE_NAME = "pastella";
 
 function preload() {
   palettes = loadJSON("palettes.json");

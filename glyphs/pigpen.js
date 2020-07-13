@@ -24,7 +24,7 @@ let GRIDCOUNT;
 
 let CODE;
 
-let gapfactor = 0.35375 * 350;
+let gapfactor = 0.35375 * 1;
 
 function preload() {
   palettes = loadJSON("palettes.json");

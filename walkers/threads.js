@@ -8,13 +8,14 @@ let colors_bg;
 const PALETTE_NAME = "retro";
 const STROKE_WEIGHT = 5;
 const THREAD_COUNT = 1000;
-const SPEED = 10;
-const SPEED_DIFF = 5;
+const SPEED = 5;
 const NOISE_GRANULARITY = 0.005;
+const NOISE_EVOLUTION = 0.0001;
 const OPACITY = 255;
-let fade = 0;
-const FADE_IN = 10;
+const FADE_IN = 1000;
 
+let fade = 0;
+let noize = 0;
 const THREADS = [];
 
 function preload() {
@@ -51,6 +52,7 @@ function setup() {
 function draw() {
   fade += FADE_IN;
   //background(colors_bg);
+  noize += NOISE_EVOLUTION;
 
   for (let t = 0; t < THREADS.length; t++) {
     const thread = THREADS[t];
@@ -62,14 +64,18 @@ function draw() {
 }
 
 function updateThread(thread) {
-  let noize = noise(thread.x * NOISE_GRANULARITY, thread.y * NOISE_GRANULARITY);
-  const xNew = thread.x + cos(thread.angle * noize) * SPEED_DIFF;
-  const yNew = thread.y + sin(thread.angle * noize) * SPEED_DIFF;
+  let noisebois = noise(
+    thread.x * NOISE_GRANULARITY,
+    thread.y * NOISE_GRANULARITY,
+    noize
+  );
+  const xNew = thread.x + cos(thread.angle * noisebois) * SPEED;
+  const yNew = thread.y + sin(thread.angle * noisebois) * SPEED;
   line(thread.x, thread.y, xNew, yNew);
   //circle(thread.x, thread.y, 50);
-  point(thread["x"], thread["y"]);
+  //point(thread["x"], thread["y"]);
   thread.x = xNew % width;
-  thread.y = yNew % width;
+  thread.y = yNew % height;
 }
 
 function clickOnSave() {
