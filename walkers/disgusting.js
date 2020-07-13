@@ -5,7 +5,7 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const FRAME_LIMIT = 45;
+const FRAME_LIMIT = 30;
 const PALETTE_NAME = "symmeblu";
 const STROKE_WEIGHT_START = 100;
 const STROKE_WEIGHT = 5;
@@ -38,7 +38,8 @@ function setup() {
   strokeWeight(STROKE_WEIGHT);
   fill(colors_bg);
 
-  drawingContext.shadowBlur = 2;
+  drawingContext.shadowBlur = 1;
+  drawingContext.shadowColor = "black";
 
   const angRandy = random(PI);
   const squirtle = sqrt(THREAD_COUNT);
