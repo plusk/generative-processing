@@ -5,17 +5,23 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const FRAME_LIMIT = 45;
+// sydney
+// redcent
+// symmeblu
+// termos
+// vintage
+// monster
 const PALETTE_NAME = "symmeblu";
-const STROKE_WEIGHT_START = 100;
-const STROKE_WEIGHT = 5;
-const STROKE_WEIGHT_DIFF = (STROKE_WEIGHT_START - STROKE_WEIGHT) / FRAME_LIMIT;
-const THREAD_COUNT = 200;
+const FRAME_LIMIT = 45;
 const SPEED = 50;
-const NOISE_GRANULARITY = 0.005; //0.005
+const STROKE_WEIGHT = 5;
+const STROKE_WEIGHT_START = 50; // higher = more background circles
+const THREAD_COUNT = 200;
+const NOISE_GRANULARITY = 0.005;
 //const NOISE_EVOLUTION = 0.0001;
 const OPACITY = 255;
 
+const STROKE_WEIGHT_DIFF = (STROKE_WEIGHT_START - STROKE_WEIGHT) / FRAME_LIMIT;
 const FADE_IN = OPACITY / FRAME_LIMIT;
 let fade = 0;
 let noize = 0;
@@ -30,7 +36,7 @@ function setup() {
   cnv.mouseClicked(clickOnSave);
 
   palette = palettes[PALETTE_NAME];
-  //const keys = Object.keys(palettes);
+  const keys = Object.keys(palettes);
   //palette = palettes[keys[(keys.length * Math.random()) << 0]];
   colors = palette["colors"];
   colors_bg = color(palette["bg"]);
@@ -47,7 +53,7 @@ function setup() {
       y: ((height / squirtle) * ceil(t / squirtle)) % height,
       angle: PI / 2,
       color: collie,
-      strokeWeight: STROKE_WEIGHT_START,
+      strokeWeight: random(STROKE_WEIGHT_START * 0.5, STROKE_WEIGHT_START),
     });
   }
 }
@@ -68,8 +74,8 @@ function draw() {
     } else {
       thread.strokeWeight = STROKE_WEIGHT;
     }
+    //fill(thread.color);
     stroke(thread.color);
-
     updateThread(thread);
   }
   timer++;
@@ -104,6 +110,7 @@ function updateThread(thread) {
   }
   //line(xOld, yOld, xNew, yNew);
   //circle(thread.x, thread.y, thread.strokeWeight / 2);
+  //rect(thread.x, thread.y, thread.strokeWeight / 2, thread.strokeWeight / 2);
   point(thread.x, thread.y);
 
   thread.x = xNew;
@@ -111,5 +118,5 @@ function updateThread(thread) {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }
