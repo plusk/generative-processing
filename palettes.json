@@ -11,14 +11,6 @@
     "bg": "#dccea3",
     "colors": ["#264653", "#2a9d8f", "#e9c46a", "#f4a261", "#e76f51"]
   },
-  "caro": {
-    "bg": "#5F7F6F",
-    "colors": ["#7DB37B", "#BFD192", "#F5E49E", "#F7C6A3", "#F4A28B"]
-  },
-  "yazmin": {
-    "bg": "#dccea3",
-    "colors": ["#BF3952", "#0F4045", "#BF9A78", "#4C6F69", "#D95B5B"]
-  },
   "sydney": {
     "bg": "#7F4040",
     "colors": ["#F7665D", "#F7826B", "#F7A571", "#78F7C2", "#BFF7B0"]
@@ -26,10 +18,6 @@
   "seb": {
     "bg": "#5F9595",
     "colors": ["#FEB89F", "#F5D1C3", "#F7F3F0", "#C4D7D1"]
-  },
-  "marcela": {
-    "bg": "#DDB46F",
-    "colors": ["#49521C", "#CE6A41", "#71342F"]
   },
   "newblack": {
     "bg": "#000000",
@@ -42,10 +30,6 @@
   "yeblu": {
     "bg": "#FEB41C",
     "colors": ["#24221F", "#363F45", "#4B5F6D", "#5E7C88"]
-  },
-  "burnt": {
-    "bg": "#FF6138",
-    "colors": ["#FFFF9D", "#BEEB9F", "#79BD8F", "#00A388"]
   },
   "redcent": {
     "bg": "#DC3522",

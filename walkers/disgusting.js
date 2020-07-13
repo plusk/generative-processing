@@ -11,7 +11,7 @@ const STROKE_WEIGHT_START = 100;
 const STROKE_WEIGHT = 5;
 const STROKE_WEIGHT_DIFF = (STROKE_WEIGHT_START - STROKE_WEIGHT) / FRAME_LIMIT;
 const THREAD_COUNT = 200;
-const SPEED = 50;
+const SPEED = 10;
 const NOISE_GRANULARITY = 0.005; //0.005
 //const NOISE_EVOLUTION = 0.0001;
 const OPACITY = 255;
@@ -26,7 +26,7 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(1080, 1350); // 1080, 1350
+  cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
 
   palette = palettes[PALETTE_NAME];
@@ -38,6 +38,9 @@ function setup() {
   strokeWeight(STROKE_WEIGHT);
   fill(colors_bg);
 
+  drawingContext.shadowBlur = 2;
+
+  const angRandy = random(PI);
   const squirtle = sqrt(THREAD_COUNT);
   for (let t = 0; t < THREAD_COUNT; t++) {
     const collie = color(random(colors));
@@ -45,7 +48,7 @@ function setup() {
     THREADS.push({
       x: ((width / squirtle) * t) % width,
       y: ((height / squirtle) * ceil(t / squirtle)) % height,
-      angle: PI / 2,
+      angle: angRandy,
       color: collie,
       strokeWeight: STROKE_WEIGHT_START,
     });
@@ -102,9 +105,9 @@ function updateThread(thread) {
     yOld = 0;
     yNew = yNew % height;
   }
-  //line(xOld, yOld, xNew, yNew);
+  line(xOld, yOld, xNew, yNew);
   //circle(thread.x, thread.y, thread.strokeWeight / 2);
-  point(thread.x, thread.y);
+  //point(thread["x"], thread["y"]);
 
   thread.x = xNew;
   thread.y = yNew;

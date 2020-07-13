@@ -5,18 +5,15 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const FRAME_LIMIT = 45;
-const PALETTE_NAME = "symmeblu";
-const STROKE_WEIGHT_START = 100;
+const PALETTE_NAME = "retro";
 const STROKE_WEIGHT = 5;
-const STROKE_WEIGHT_DIFF = (STROKE_WEIGHT_START - STROKE_WEIGHT) / FRAME_LIMIT;
-const THREAD_COUNT = 200;
-const SPEED = 50;
-const NOISE_GRANULARITY = 0.005; //0.005
+const THREAD_COUNT = 1000;
+const SPEED = 5;
+const NOISE_GRANULARITY = 0.005;
 //const NOISE_EVOLUTION = 0.0001;
 const OPACITY = 255;
+const FADE_IN = 5;
 
-const FADE_IN = OPACITY / FRAME_LIMIT;
 let fade = 0;
 let noize = 0;
 const THREADS = [];
@@ -26,55 +23,44 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(1080, 1350); // 1080, 1350
+  cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
 
   palette = palettes[PALETTE_NAME];
   //const keys = Object.keys(palettes);
   //palette = palettes[keys[(keys.length * Math.random()) << 0]];
   colors = palette["colors"];
-  colors_bg = color(palette["bg"]);
+  colors_bg = palette["bg"];
   background(colors_bg);
   strokeWeight(STROKE_WEIGHT);
   fill(colors_bg);
 
+  const angRandy = random(TWO_PI);
   const squirtle = sqrt(THREAD_COUNT);
   for (let t = 0; t < THREAD_COUNT; t++) {
     const collie = color(random(colors));
     if (OPACITY >= fade) collie.setAlpha(fade);
     THREADS.push({
-      x: ((width / squirtle) * t) % width,
-      y: ((height / squirtle) * ceil(t / squirtle)) % height,
-      angle: PI / 2,
+      x: ((width / squirtle) * (t + 0.5)) % width,
+      y: ((height / squirtle) * (0.5 + ceil(t / squirtle))) % height,
+      //angle: angRandy,
+      angle: TWO_PI,
       color: collie,
-      strokeWeight: STROKE_WEIGHT_START,
     });
   }
 }
 
-let timer = 0;
-
 function draw() {
   fade += FADE_IN;
-  //noize += NOISE_EVOLUTION;
   //background(colors_bg);
+  //noize += NOISE_EVOLUTION;
 
   for (let t = 0; t < THREADS.length; t++) {
     const thread = THREADS[t];
-    if (OPACITY >= fade) thread.color.setAlpha(fade);
-    strokeWeight(thread.strokeWeight);
-    if (thread.strokeWeight - STROKE_WEIGHT_DIFF >= STROKE_WEIGHT) {
-      thread.strokeWeight -= STROKE_WEIGHT_DIFF;
-    } else {
-      thread.strokeWeight = STROKE_WEIGHT;
-    }
+    thread.color.setAlpha(fade);
     stroke(thread.color);
 
     updateThread(thread);
-  }
-  timer++;
-  if (timer > FRAME_LIMIT) {
-    noLoop();
   }
 }
 
@@ -89,25 +75,19 @@ function updateThread(thread) {
   let xNew = xOld + cos(thread.angle * noisebois) * SPEED;
   let yNew = yOld + sin(thread.angle * noisebois) * SPEED;
   if (xNew <= 0) {
-    xOld = width;
-    xNew = width - xNew;
-  } else if (xNew >= width) {
     xOld = 0;
-    xNew = xNew % width;
+    xNew = width - xNew;
   }
   if (yNew <= 0) {
-    yOld = height;
-    yNew = height - yNew;
-  } else if (yNew >= height) {
     yOld = 0;
-    yNew = yNew % height;
+    yNew = height - yNew;
   }
-  //line(xOld, yOld, xNew, yNew);
-  //circle(thread.x, thread.y, thread.strokeWeight / 2);
-  point(thread.x, thread.y);
+  line(xOld, yOld, xNew, yNew);
+  //circle(thread.x, thread.y, 50);
+  //point(thread["x"], thread["y"]);
 
-  thread.x = xNew;
-  thread.y = yNew;
+  thread.x = xNew % width;
+  thread.y = yNew % height;
 }
 
 function clickOnSave() {
