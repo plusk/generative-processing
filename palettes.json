@@ -1,4 +1,8 @@
 {
+  "mono": {
+    "bg": "#000000",
+    "colors": ["#ffffff"]
+  },
   "parchment": {
     "bg": "#dccea3",
     "colors": ["#00000040", "#00000080", "#000000c0", "#000000"]
@@ -15,10 +19,6 @@
     "bg": "#7F4040",
     "colors": ["#F7665D", "#F7826B", "#F7A571", "#78F7C2", "#BFF7B0"]
   },
-  "newblack": {
-    "bg": "#000000",
-    "colors": ["#C48100", "#FFAD00", "#FFC235", "#FFFABC"]
-  },
   "redrange": {
     "bg": "#EFEFEF",
     "colors": ["#2B3A42", "#3F5765", "#FF530D"]
@@ -30,18 +30,6 @@
   "redcent": {
     "bg": "#DC3522",
     "colors": ["#D9CB9E", "#374140", "#2A2C2B", "#1E1E20"]
-  },
-  "blucent": {
-    "bg": "#0A5E77",
-    "colors": ["#CBD09E", "#413740", "#2C2A2B", "#1E1E20"]
-  },
-  "blorange": {
-    "bg": "#dccea3",
-    "colors": ["#023B47", "#295E52", "#F2E085", "#FCAB55", "#EE7F38"]
-  },
-  "blurred": {
-    "bg": "#dccea3",
-    "colors": ["#F7604F", "#734A45", "#AB8268", "#FFDBC4", "#6FB9BF"]
   },
   "gublu": {
     "bg": "#dccea3",
