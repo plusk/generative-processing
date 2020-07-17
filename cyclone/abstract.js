@@ -5,11 +5,11 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "pastella";
+const PALETTE_NAME = "termos";
 const STROKE_WEIGHT = 2;
 const COUNT = 100;
 const ANGLE_STEP = 0.01; // variance speed (frequency)
-const AMP = 10; // variance at center
+const AMP = 100; // variance at center
 const TIGHTNESS = 150;
 
 const beads = [];
@@ -37,8 +37,9 @@ function setup() {
     beads.push({
       x: i,
       y: i * 5,
-      angle: 0,
+      angle: PI / 2,
       color: color(random(colors)),
+      //color: color(colors[i % colors.length]),
     });
   }
 }
@@ -66,5 +67,5 @@ function updateBead(bead) {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

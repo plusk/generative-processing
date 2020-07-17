@@ -5,11 +5,11 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "monster";
+const PALETTE_NAME = "termos";
 const STROKE_WEIGHT = 2;
 const COUNT = 100;
-const ANGLE_STEP = 0.1; // frequency, wack around PI etc
-const AMP = 50; // variance at center
+const ANGLE_STEP = 0.05; // frequency, wack around PI etc
+const AMP = 100; // variance at center
 const EDGE_AMP = 0.15;
 const TIGHTNESS = 150;
 
@@ -38,7 +38,8 @@ function setup() {
     beads.push({
       x: 0,
       y: i * 2,
-      angle: i * ANGLE_STEP,
+      angle: i * ANGLE_STEP, //QUARTER_PI, PI, TWO_PI
+      //angle: (PI / COUNT) * i, //QUARTER_PI, PI, TWO_PI
       color: color(colors[i % colors.length]),
     });
   }
@@ -50,6 +51,9 @@ function draw() {
     const bead = beads[i];
     updateBead(bead);
     drawBead(bead);
+    if (bead.y > height + COUNT) {
+      noLoop();
+    }
   }
 }
 
@@ -67,5 +71,5 @@ function updateBead(bead) {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

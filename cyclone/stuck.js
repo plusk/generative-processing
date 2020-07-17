@@ -5,11 +5,11 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "pastella";
+const PALETTE_NAME = "termos";
 const STROKE_WEIGHT = 4; // 2-4 optimal for 5 count?
 const COUNT = 1350 / 2;
 const ANGLE_STEP = 0.2; // frequency
-const AMP = 50; // variance at center
+const AMP = 100; // variance at center
 const EDGE_AMP = 0.15;
 const TIGHTNESS = 150;
 const OPACITY_CENTER = 300; // higher than 255 means higher on edges
@@ -76,5 +76,5 @@ function updateBead(bead) {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

@@ -6,15 +6,12 @@ let colors_stroke;
 let colors_bg;
 
 const PALETTE_NAME = "termos";
-const STROKE_WEIGHT = 2; // 2-4 optimal for 5 count?
+const STROKE_WEIGHT = 2;
 const COUNT = 100;
-const SPEED = 10; // rate of y growth, about a tenth of COUNT works
-const ANGLE_STEP = 0.05; // frequency
+const ANGLE_STEP = 0.2; // frequency, wack around PI etc
 const AMP = 100; // variance at center
 const EDGE_AMP = 0.15;
 const TIGHTNESS = 150;
-const OPACITY_CENTER = 255; // higher than 255 means higher on edges
-const BEAD_OFFSET_Y = 2; // min 1, avoid matching stroke weight?
 
 const beads = [];
 
@@ -36,16 +33,13 @@ function setup() {
   strokeWeight(STROKE_WEIGHT);
   fill(colors_bg);
   stroke(random(colors));
-  drawingContext.shadowBlur = STROKE_WEIGHT;
 
-  const randy = random(TWO_PI);
   for (let i = 0; i < COUNT; i++) {
     beads.push({
-      x: 0, //overriden by formula regardless
-      y: i * BEAD_OFFSET_Y,
-      angle: randy + i * random(ANGLE_STEP),
+      x: 0,
+      y: i * 2,
+      angle: (QUARTER_PI / COUNT) * i,
       color: color(colors[i % colors.length]),
-      //color: color(random(colors)),
     });
   }
 }
@@ -55,28 +49,24 @@ function draw() {
   for (let i = 0; i < beads.length; i++) {
     const bead = beads[i];
     updateBead(bead);
+    drawBead(bead);
     if (bead.y > height) {
       noLoop();
-      //saveCanvas();
     }
   }
 }
 
-function updateBead(bead) {
-  const yoyo = Math.exp(EDGE_AMP * ((bead.y - height / 2) / TIGHTNESS) ** 2);
-  const yoyangle = Math.exp(
-    EDGE_AMP * ((bead.y - height / 2) / TIGHTNESS) ** 2
-  );
-  bead.angle += ANGLE_STEP * yoyangle; // changes everything
-  bead.x = sin(bead.angle) * AMP * yoyo;
-
-  bead.color.setAlpha(OPACITY_CENTER / yoyo);
+function drawBead(bead) {
   stroke(bead.color);
-  drawingContext.shadowColor = bead.color;
-  strokeWeight(STROKE_WEIGHT + random(STROKE_WEIGHT, STROKE_WEIGHT * 2) * yoyo);
   point(bead.x, bead.y);
   //circle(bead.x, bead.y, 100);
-  bead.y += SPEED;
+}
+
+function updateBead(bead) {
+  const yoyo = Math.exp(EDGE_AMP * ((bead.y - height / 2) / TIGHTNESS) ** 2);
+  bead.angle += PI;
+  bead.x = sin(bead.angle) * AMP * yoyo;
+  bead.y++;
 }
 
 function clickOnSave() {

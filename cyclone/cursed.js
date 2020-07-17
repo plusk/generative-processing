@@ -5,11 +5,11 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "mono";
+const PALETTE_NAME = "termos";
 const STROKE_WEIGHT = 2;
 const COUNT = 10000;
 const ANGLE_STEP = 0.7; // variance speed (frequency)
-const AMP = 50; // variance at center
+const AMP = 100; // variance at center
 const EDGE_AMP = 0.15;
 const TIGHTNESS = 150;
 
@@ -40,6 +40,7 @@ function setup() {
       y: i * 2,
       angle: i * ANGLE_STEP,
       color: color(colors[i % colors.length]),
+      color: color(random(colors)),
     });
   }
 }
@@ -67,5 +68,5 @@ function updateBead(bead) {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

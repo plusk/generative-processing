@@ -5,7 +5,7 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "sydney";
+const PALETTE_NAME = "termos";
 const STROKE_WEIGHT = 2; // 2-4 optimal for 5 count?
 const COUNT = 100;
 const SPEED = 10; // rate of y growth, about a tenth of COUNT works
