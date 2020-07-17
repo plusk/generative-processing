@@ -11,6 +11,7 @@ const COUNT = 100;
 const ANGLE_STEP = 0.01; // variance speed (frequency)
 const AMP = 100; // variance at center
 const TIGHTNESS = 150;
+const EDGE_AMP = 0.15;
 
 const beads = [];
 
@@ -60,7 +61,7 @@ function drawBead(bead) {
 }
 
 function updateBead(bead) {
-  const yoyo = Math.exp(0.5 * ((bead.y - height / 2) / TIGHTNESS) ** 2);
+  const yoyo = Math.exp(EDGE_AMP * ((bead.y - height / 2) / TIGHTNESS) ** 2);
   bead.angle += ANGLE_STEP;
   bead.x = sin(bead.angle) * AMP * yoyo;
   bead.y++;
