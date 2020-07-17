@@ -8,9 +8,9 @@ let colors_bg;
 const PALETTE_NAME = "symmeblu";
 
 const STROKE_WEIGHT = 2;
-const WAVE_COUNT = 50;
+const WAVE_COUNT = 100;
 const PADDING = 200;
-const AMP = 150;
+const AMP = 100;
 const TIGHTNESS = 150;
 const EVO = 0.01;
 
@@ -42,7 +42,7 @@ function draw() {
 
   for (let y = PADDING; y < height - PADDING; y += height / WAVE_COUNT) {
     beginShape();
-    fill(colors[y % colors.length]);
+    fill(colors[Math.round(y) % colors.length]);
     for (let x = PADDING; x < width - PADDING; x += 5) {
       let noisebois = noise(x * 0.01, y * 0.01, z) * AMP;
       let yohann = Math.exp(-1 * ((x - width / 2) / TIGHTNESS) ** 2);

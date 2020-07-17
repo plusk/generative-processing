@@ -5,7 +5,7 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "parchment";
+const PALETTE_NAME = "onom";
 
 const STROKE_WEIGHT = 2;
 
@@ -27,10 +27,14 @@ function setup() {
   strokeWeight(STROKE_WEIGHT);
   fill(colors_bg);
   stroke(random(colors));
+
+  //drawingContext.shadowBlur = STROKE_WEIGHT;
+  //drawingContext.shadowColor = random(colors);
 }
 
 function draw() {
   circle(width / 2, height / 2, 100);
+  // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
 }
 
 function clickOnSave() {

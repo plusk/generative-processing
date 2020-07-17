@@ -3,9 +3,9 @@
     "bg": "#000000",
     "colors": ["#ffffff"]
   },
-  "parchment": {
+  "onom": {
     "bg": "#dccea3",
-    "colors": ["#00000040", "#00000080", "#000000c0", "#000000"]
+    "colors": ["#000000"]
   },
   "retro": {
     "bg": "#dccea3",

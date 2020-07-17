@@ -9,6 +9,7 @@ function setup() {
   gap = width / 16;
   noStroke();
   colorMode(HSL);
+  rectMode(CENTER);
 }
 
 let z = 0;
@@ -18,9 +19,10 @@ function draw() {
   z++;
   for (let y = section; y <= height - section; y += gap) {
     for (let x = section; x <= width - section; x += gap) {
-      const nooice = noise(0.005 * x, 0.005 * y, 0.02 * z);
+      const nooice = noise(0.005 * x, 0.005 * y, 0.01 * z);
       fill(0, 100, 65);
       circle(x, y, nooice * gap);
+      //rect(x, y, nooice * gap * 1.25);
     }
   }
 }

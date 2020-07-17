@@ -5,7 +5,7 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "parchment";
+const PALETTE_NAME = "onom";
 const STROKE_WEIGHT = 2;
 const THREAD_COUNT = 1000;
 const SPEED = 10;
