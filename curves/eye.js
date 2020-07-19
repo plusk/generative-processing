@@ -8,6 +8,8 @@ let colors_bg;
 const PALETTE_NAME = "onom";
 
 const STROKE_WEIGHT = 2;
+const RADIUS = 400;
+const ANGLE_STEP = 0.01;
 
 function preload() {
   palettes = loadJSON("palettes.json");
@@ -20,22 +22,28 @@ function setup() {
   palette = palettes[PALETTE_NAME];
   // const keys = Object.keys(palettes);
   // palette = palettes[keys[(keys.length * Math.random()) << 0]];
-  COLOR_PALETTE = palette["colors"];
-  COLOR_BG = color(palette["bg"]);
-  COLOR_STROKE = color(random(COLOR_PALETTE));
+  colors = palette["colors"];
+  colors_bg = palette["bg"];
 
-  background(COLOR_BG);
-  fill(COLOR_BG);
-  //COLOR_STROKE.setAlpha(5);
-  stroke(COLOR_STROKE);
+  background(colors_bg);
   strokeWeight(STROKE_WEIGHT);
+  fill(colors_bg);
+  stroke(random(colors));
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
   //drawingContext.shadowColor = random(colors);
 }
 
 function draw() {
-  circle(width / 2, height / 2, 100);
+  translate(width / 2, height / 2);
+  for (let r = 0; r < RADIUS; r += STROKE_WEIGHT * 2) {
+    for (let a = 0; a < TWO_PI; a += ANGLE_STEP) {
+      const x = r * cos(a);
+      const y = r * sin(a);
+      circle(x, y, r);
+    }
+  }
+  noLoop();
   // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
 }
 

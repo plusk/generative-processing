@@ -8,6 +8,8 @@ let colors_bg;
 const PALETTE_NAME = "onom";
 
 const STROKE_WEIGHT = 2;
+const COUNT_X = 50;
+const COUNT_Y = 50;
 
 function preload() {
   palettes = loadJSON("palettes.json");
@@ -26,17 +28,28 @@ function setup() {
 
   background(COLOR_BG);
   fill(COLOR_BG);
-  //COLOR_STROKE.setAlpha(5);
+  noFill();
+  COLOR_STROKE.setAlpha(63);
   stroke(COLOR_STROKE);
   strokeWeight(STROKE_WEIGHT);
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
-  //drawingContext.shadowColor = random(colors);
+  //drawingContext.shadowColor = random(COLOR_PALETTE);
 }
 
 function draw() {
-  circle(width / 2, height / 2, 100);
-  // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
+  const xEnd = random(width);
+  const yEnd = random(height);
+  const xAnchor0 = random(width);
+  const yAnchor0 = random(height);
+  const xAnchor1 = random(width);
+  const yAnchor1 = random(height);
+  for (let x = 0; x <= width; x += width / COUNT_X) {
+    for (let y = 0; y <= height; y += height / COUNT_Y) {
+      bezier(x, y, xAnchor0, yAnchor0, xAnchor1, yAnchor1, xEnd, yEnd);
+    }
+  }
+  noLoop();
 }
 
 function clickOnSave() {
