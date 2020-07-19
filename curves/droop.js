@@ -46,7 +46,7 @@ function draw() {
   const yAnchor1 = random(height);
   for (let x = 0; x <= width; x += width / COUNT_X) {
     for (let y = 0; y <= height; y += height / COUNT_Y) {
-      bezier(x, y, xAnchor0, yAnchor0, xAnchor1, yAnchor1, xEnd, yEnd);
+      bezier(xEnd, yEnd, xAnchor0, yAnchor0, xAnchor1, yAnchor1, x, y);
     }
   }
   noLoop();
