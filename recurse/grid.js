@@ -7,7 +7,7 @@ let colors_bg;
 
 const PALETTE_NAME = "symmeblu";
 
-const STROKE_WEIGHT = 4;
+const STROKE_WEIGHT = 8;
 const MAX_DEPTH = 4;
 const PADDING = 200;
 

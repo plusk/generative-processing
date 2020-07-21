@@ -6,11 +6,12 @@ let colors_stroke;
 let colors_bg;
 
 const FRAME_LIMIT = 30;
-const PALETTE_NAME = "symmeblu";
+const PALETTE_NAME = "redcent"; //mono retro redcent symmeblu pastella termos vintage
 const STROKE_WEIGHT_START = 100;
 const STROKE_WEIGHT = 5;
 const STROKE_WEIGHT_DIFF = (STROKE_WEIGHT_START - STROKE_WEIGHT) / FRAME_LIMIT;
-const THREAD_COUNT = 200;
+const SHADOW_BLUR = 5;
+const THREAD_COUNT = 144;
 const SPEED = 10;
 const NOISE_GRANULARITY = 0.005; //0.005
 //const NOISE_EVOLUTION = 0.0001;
@@ -38,8 +39,8 @@ function setup() {
   strokeWeight(STROKE_WEIGHT);
   fill(colors_bg);
 
-  drawingContext.shadowBlur = 1;
-  drawingContext.shadowColor = "black";
+  drawingContext.shadowBlur = SHADOW_BLUR;
+  drawingContext.shadowColor = "#0000007f";
 
   const angRandy = random(PI);
   const squirtle = sqrt(THREAD_COUNT);
@@ -107,13 +108,12 @@ function updateThread(thread) {
     yNew = yNew % height;
   }
   line(xOld, yOld, xNew, yNew);
-  //circle(thread.x, thread.y, thread.strokeWeight / 2);
-  //point(thread["x"], thread["y"]);
+  //point(thread.x, thread.y);
 
   thread.x = xNew;
   thread.y = yNew;
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

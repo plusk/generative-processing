@@ -8,7 +8,7 @@ let colors_bg;
 const PALETTE_NAME = "termos";
 const STROKE_WEIGHT = 2; // 2-4 optimal for 5 count?
 const COUNT = 10;
-const SPEED = 2; // rate of y growth, about a tenth of COUNT works
+const SPEED = 1; // rate of y growth, about a tenth of COUNT works
 const ANGLE_STEP = 0.05; // frequency
 const AMP = 100; // variance at center
 const EDGE_AMP = 0.15;

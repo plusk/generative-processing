@@ -39,10 +39,6 @@
     "bg": "#333333",
     "colors": ["#405952", "#9C9B7A", "#FFD393", "#FF974F", "#F54F29"]
   },
-  "pastella": {
-    "bg": "#333333",
-    "colors": ["#A8E6CF", "#DCEDC1", "#FFD3B6", "#FFAAA5", "#FF8B94"]
-  },
   "termos": {
     "bg": "#333333",
     "colors": ["#4C6472", "#57A4B1", "#B0D894", "#FADE89", "#F95355"]
@@ -50,6 +46,10 @@
   "vintage": {
     "bg": "#333333",
     "colors": ["#0A7B83", "#2AA876", "#FFD265", "#F19C65", "#CE4D45"]
+  },
+  "pastella": {
+    "bg": "#333333",
+    "colors": ["#A8E6CF", "#DCEDC1", "#FFD3B6", "#FFAAA5", "#FF8B94"]
   },
   "monster": {
     "bg": "#333333",

@@ -1,37 +1,37 @@
 let cnv;
-let palettes;
-let palette;
-let colors;
-let colors_stroke;
-let colors_bg;
+let PALETTES;
+let PALETTE;
+let COLORS;
+let BG;
+let STROKE;
 
 const PALETTE_NAME = "onom";
 
 const STROKE_WEIGHT = 2;
 
 function preload() {
-  palettes = loadJSON("palettes.json");
+  PALETTES = loadJSON("palettes.json");
 }
 
 function setup() {
   cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
 
-  palette = palettes[PALETTE_NAME];
-  // const keys = Object.keys(palettes);
-  // palette = palettes[keys[(keys.length * Math.random()) << 0]];
-  COLOR_PALETTE = palette["colors"];
-  COLOR_BG = color(palette["bg"]);
-  COLOR_STROKE = color(random(COLOR_PALETTE));
+  PALETTE = PALETTES[PALETTE_NAME];
+  // const PALETTE_KEYS = Object.keys(PALETTES);
+  // PALETTE = PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+  COLORS = PALETTE["colors"];
+  BG = color(PALETTE["bg"]);
+  STROKE = color(random(COLORS));
 
-  background(COLOR_BG);
-  fill(COLOR_BG);
-  //COLOR_STROKE.setAlpha(5);
-  stroke(COLOR_STROKE);
+  background(BG);
+  fill(BG);
+  //STROKE.setAlpha(5);
+  stroke(STROKE);
   strokeWeight(STROKE_WEIGHT);
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
-  //drawingContext.shadowColor = random(colors);
+  //drawingContext.shadowColor = random(COLORS);
 }
 
 function draw() {
