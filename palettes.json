@@ -49,24 +49,6 @@
   },
   "pastella": {
     "bg": "#333333",
-    "colors": ["#A8E6CF", "#DCEDC1", "#FFD3B6", "#FFAAA5", "#FF8B94"]
-  },
-  "monster": {
-    "bg": "#333333",
-    "colors": [
-      "#A8E6CF",
-      "#DCEDC1",
-      "#FFD3B6",
-      "#FFAAA5",
-      "#FF8B94",
-      "#FEB89F",
-      "#F5D1C3",
-      "#F7F3F0",
-      "#C4D7D1",
-      "#BFD192",
-      "#F5E49E",
-      "#F7C6A3",
-      "#F4A28B"
-    ]
+    "colors": ["#A8E6CF", "#BFD192", "#F5E49E", "#F4A28B", "#FF8B94"]
   }
 }

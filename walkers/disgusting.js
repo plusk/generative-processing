@@ -6,7 +6,7 @@ let colors_stroke;
 let colors_bg;
 
 const FRAME_LIMIT = 30;
-const PALETTE_NAME = "redcent"; //mono retro redcent symmeblu pastella termos vintage
+const PALETTE_NAME = "pastella"; //mono retro redcent symmeblu pastella termos vintage
 const STROKE_WEIGHT_START = 100;
 const STROKE_WEIGHT = 5;
 const STROKE_WEIGHT_DIFF = (STROKE_WEIGHT_START - STROKE_WEIGHT) / FRAME_LIMIT;

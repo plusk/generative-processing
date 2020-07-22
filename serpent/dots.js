@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "monster";
+const PALETTE_NAME = "pastella"; // termos, pastella, monster
 const MIN_ALPHA = 63;
 const MAX_ALPHA = 255;
 
@@ -47,7 +47,7 @@ let ticker = 0;
 const LAYERS = 4;
 const MAXNDEX = 3;
 const MAXYNDEX = 16;
-const DURATION = 120;
+const DURATION = 30 * 4;
 const HIGHLIGHTED = [];
 
 function draw() {
@@ -95,8 +95,8 @@ function draw() {
   }
   scroll--;
   ticker++;
-  saveCanvas();
-  if (ticker === 600) {
+  //saveCanvas();
+  if (ticker === 30 * 15) {
     noLoop();
   }
 }
@@ -125,8 +125,8 @@ function drawDots(x, y, l, diameter, dots, HIGHLIGHTED, xndex, yndex) {
       const eeek = Math.exp(
         -((thispos - timedot * 2) ** 2) / (0.25 * timedot) ** 2
       );
-      //drawingContext.shadowColor = thisstroke;
-      //drawingContext.shadowBlur = STROKE_WEIGHT;
+      drawingContext.shadowColor = thisstroke;
+      drawingContext.shadowBlur = STROKE_WEIGHT;
       thisstroke.setAlpha(MIN_ALPHA + alphaRange * yootaro * eeek);
     } else {
       thisstroke.setAlpha(MIN_ALPHA);
