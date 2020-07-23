@@ -5,7 +5,7 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "symmeblu";
+const PALETTE_NAME = "symmeblu"; // redrange, redcent, symmeblu, termos, vintage
 
 const STROKE_WEIGHT = 8;
 const MAX_DEPTH = 4;
@@ -29,7 +29,7 @@ function setup() {
   strokeWeight(STROKE_WEIGHT);
   stroke(colors_bg);
   rectMode(CENTER);
-  frameRate(2);
+  frameRate(1);
 }
 
 let frame = 0;

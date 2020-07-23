@@ -17,3 +17,13 @@ The webpage wiill automatically reload when you save the `js` file you're workin
 Redirect `index.html` to a different `js` file as needed.
 
 Check your stuff out at [http://localhost:3000](http://localhost:3000).
+
+## Export
+
+`saveCanvas()` will output a `png` file, base template activates it when clicking the canvas.
+
+Saving the canvas on every frame can be useful for making videos. I use the following to combine the images into an `mp4` file:
+
+```bash
+ffmpeg -framerate 30 -i %03d.png -pix_fmt yuv420p output.mp4
+```
