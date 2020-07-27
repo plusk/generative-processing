@@ -5,11 +5,12 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "monster";
+const PALETTE_NAME = "pastella";
 
 const STROKE_WEIGHT = 10;
 const WAVE_COUNT = 50;
 const AMP = 1000;
+const GRAN = 0.0005;
 const EVO = 0.005;
 
 let z = 0;
@@ -42,7 +43,7 @@ function draw() {
     stroke(colors[y % colors.length]);
     beginShape(POINTS);
     for (let x = 0; x <= width; x += STROKE_WEIGHT * 2) {
-      let noisebois = (noise(x * 0.001, y * 0.001, z) - 0.5) * AMP;
+      let noisebois = (noise(x * GRAN, y * GRAN, z) - 0.5) * AMP;
       const yNew = y + noisebois;
       vertex(x, yNew);
     }
