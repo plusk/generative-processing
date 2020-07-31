@@ -42,5 +42,9 @@
   "pastella": {
     "bg": "#333333",
     "colors": ["#A8E6CF", "#BFD192", "#F5E49E", "#F4A28B", "#FF8B94"]
+  },
+  "speis": {
+    "bg": "#252932",
+    "colors": ["#fade89", "#d4ea97", "#aef2b3", "#8cf6d5", "#78f7f7"]
   }
 }
