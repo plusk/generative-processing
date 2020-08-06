@@ -88,7 +88,7 @@ function draw() {
   if (frameCount > FRAME_LIMIT) {
     console.log("donezo");
     noLoop();
-    saveCanvas();
+    //saveCanvas();
   }
 }
 
