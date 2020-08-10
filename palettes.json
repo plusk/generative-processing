@@ -19,10 +19,6 @@
     "bg": "#EFEFEF",
     "colors": ["#2B3A42", "#3F5765", "#FF530D"]
   },
-  "yeblu": {
-    "bg": "#FEB41C",
-    "colors": ["#24221F", "#363F45", "#4B5F6D", "#5E7C88"]
-  },
   "redcent": {
     "bg": "#DC3522",
     "colors": ["#D9CB9E", "#374140", "#2A2C2B", "#1E1E20"]

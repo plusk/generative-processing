@@ -27,6 +27,7 @@ function setup() {
   STROKE = color(random(COLORS));
 
   background(BG);
+  BG.setAlpha(0.5);
   fill(BG);
   STROKE.setAlpha(1);
   stroke(STROKE);
@@ -36,9 +37,26 @@ function setup() {
   //drawingContext.shadowColor = STROKE;
 }
 
+const ANGLE = 0.1;
+const RADDY = 1;
+let r = 0;
+let a = -Math.PI / 2;
+
 function draw() {
-  circle(width / 2, height / 2, 100);
-  // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
+  translate(width / 2, height / 2);
+  binarize(frameCount);
+  r += RADDY;
+  a += ANGLE;
+}
+
+function binarize(numb) {
+  beginShape(QUAD_STRIP);
+  for (let i = 0; i < numb; i++) {
+    const x = (RADDY * i + r) * cos(ANGLE * i + a);
+    const y = (RADDY * i + r) * sin(ANGLE * i + a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
 }
 
 function clickOnSave() {
