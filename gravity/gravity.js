@@ -7,31 +7,33 @@ let STROKE;
 
 const processing = new p5();
 
-const PALETTE_NAME = "speis";
+const PALETTE_NAME = "pastella";
 
 const STROKE_WEIGHT = 1;
-const OPACITY = 1;
+const CENTER_SIZE = STROKE_WEIGHT * 20;
+const OPACITY = 0.5;
 const COUNT = 5000;
-const SPAWN_RADIUS = 500;
+const SPAWN_RADIUS = 250;
 const CENTER_RADIUS = 250;
-const MAX_VELOCITY = 10;
-const ACCELERATION = 0.25;
+const MAX_VELOCITY = 5;
+const ACCELERATION = 0.1;
 
 const particles = [];
 const center = processing.createVector(0, 0);
-let centerAngle = 0;
+let centerAngle = Math.PI / 2;
 const centerAngleStep = 0.01;
 
 class Particle {
-  constructor(x, y) {
+  constructor(x, y, i) {
     this.location = createVector(x, y);
     this.velocity = createVector(center.x, center.y);
+    this.color = COLORS[i % COLORS.length];
+    this.accfactor = random(0.75, 1);
   }
-
   update() {
     const direction = p5.Vector.sub(center, this.location);
     direction.normalize();
-    direction.mult(ACCELERATION);
+    direction.mult(ACCELERATION * this.accfactor);
     this.velocity.add(direction);
     this.velocity.limit(MAX_VELOCITY);
     this.location.add(this.velocity);
@@ -56,7 +58,8 @@ function setup() {
 
   background(BG);
   fill(BG);
-  STROKE.setAlpha(1);
+  BG.setAlpha(0.75);
+  STROKE.setAlpha(OPACITY);
   stroke(STROKE);
   strokeWeight(STROKE_WEIGHT);
 
@@ -65,9 +68,10 @@ function setup() {
 
   for (let i = 0; i < COUNT; i++) {
     const a = (i * TWO_PI) / COUNT;
-    const x = random(SPAWN_RADIUS) * cos(a);
-    const y = random(SPAWN_RADIUS) * sin(a);
-    particles.push(new Particle(x, y));
+    const randy = random(SPAWN_RADIUS);
+    const x = randy * cos(a);
+    const y = randy * sin(a);
+    particles.push(new Particle(x, y, i));
   }
 }
 
@@ -76,17 +80,11 @@ function draw() {
   translate(width / 2, height / 2);
   drawCenter();
   strokeWeight(STROKE_WEIGHT);
+  drawingContext.shadowBlur = 0;
+  stroke(0, 0, 100, OPACITY);
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i];
-    const randy = random(COLORS);
-    const speedness = p.velocity.mag() / MAX_VELOCITY;
-    const coleur = color(
-      hue(randy),
-      saturation(randy),
-      lightness(randy),
-      1 - speedness
-    );
-    stroke(coleur);
+    stroke(p.color);
     point(p.location.x, p.location.y);
     p.update();
   }
@@ -95,8 +93,9 @@ function draw() {
 }
 
 function drawCenter() {
-  strokeWeight(STROKE_WEIGHT * 10);
-  stroke(0, 0, 100);
+  const coleur = color(0, 0, 100);
+  strokeWeight(CENTER_SIZE);
+  stroke(coleur);
   point(center.x, center.y);
 }
 

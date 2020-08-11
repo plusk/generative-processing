@@ -28,7 +28,7 @@ function setup() {
 
   background(BG);
   fill(BG);
-  STROKE.setAlpha(1);
+  STROKE.setAlpha(OPACITY);
   stroke(STROKE);
   strokeWeight(STROKE_WEIGHT);
 
