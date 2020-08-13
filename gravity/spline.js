@@ -7,14 +7,14 @@ let STROKE;
 
 const processing = new p5();
 
-const PALETTE_NAME = "pastella";
+const PALETTE_NAME = "speis"; //termos, pastella, speis(sterk)
 
 const STROKE_WEIGHT = 1;
-const CENTER_SIZE = STROKE_WEIGHT * 20;
+const CENTER_SIZE = STROKE_WEIGHT * 15;
 const OPACITY = 0.5;
-const COUNT = 7500;
-const VERTICES = 100;
-const SPAWN_RADIUS = 500;
+const COUNT = 10000;
+const VERTICES = 10;
+const SPAWN_RADIUS = 1080 / 2;
 const CENTER_RADIUS = 250;
 const MAX_VELOCITY = 7.5;
 const ACCELERATION = 0.2;
@@ -61,6 +61,8 @@ function setup() {
   BG = color(PALETTE["bg"]);
   STROKE = color(random(COLORS));
 
+  //frameRate(30);
+
   background(BG);
   fill(BG);
   BG.setAlpha(1);
@@ -70,7 +72,6 @@ function setup() {
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
   //drawingContext.shadowColor = STROKE;
-
   vertices.push(createVector(0, height / 2));
   vertices.push(createVector(0, height / 2));
   for (let i = 0; i < VERTICES; i++) {
@@ -81,15 +82,17 @@ function setup() {
       )
     );
   }
+  vertices.push(createVector(0, 0));
+  vertices.push(createVector(0, 0));
 
   for (let i = 0; i < vertices.length - 3; i++) {
     const a = vertices[i];
     const b = vertices[i + 1];
     const c = vertices[i + 2];
     const d = vertices[i + 3];
-    for (let bla = 0; bla < 1; bla += 1 * TIMEWALK) {
-      const x = curvePoint(a.x, b.x, c.x, d.x, bla);
-      const y = curvePoint(a.y, b.y, c.y, d.y, bla);
+    for (let t = 0; t < 1; t += 1 * TIMEWALK) {
+      const x = curvePoint(a.x, b.x, c.x, d.x, t);
+      const y = curvePoint(a.y, b.y, c.y, d.y, t);
       path.push(createVector(x, y));
     }
   }
@@ -102,7 +105,6 @@ function setup() {
     const y = randy * sin(a);
     particles.push(new Particle(x, y, i));
   }
-  frameRate(30);
 }
 
 function draw() {
@@ -134,8 +136,7 @@ function draw() {
     point(p.location.x, p.location.y);
     p.update();
   }
-
-  if (walkindex >= path.length) noLoop();
+  //if (walkindex >= path.length) noLoop();
 }
 
 function drawCenter() {
@@ -147,7 +148,7 @@ function drawCenter() {
 function updateCenter() {
   center.x = path[walkindex].x;
   center.y = path[walkindex].y;
-  walkindex++;
+  if (walkindex < path.length - 1) walkindex++;
 }
 
 function clickOnSave() {
