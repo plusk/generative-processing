@@ -5,7 +5,7 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "warm";
+const PALETTE_NAME = "speis";
 const STROKE_WEIGHT = 2;
 const THREAD_COUNT = 10 * 10;
 const SPEED = 10;

@@ -7,7 +7,7 @@ let STROKE;
 
 const processing = new p5();
 
-const PALETTE_NAME = "speis"; //termos, pastella, speis(sterk)
+const PALETTE_NAME = "speis"; //termos, pastella, speis
 
 const STROKE_WEIGHT = 1;
 const CENTER_SIZE = STROKE_WEIGHT * 15;
@@ -19,6 +19,8 @@ const CENTER_RADIUS = 250;
 const MAX_VELOCITY = 7.5;
 const ACCELERATION = 0.2;
 const TIMEWALK = 0.02;
+
+const EXPORT = false;
 
 let center;
 const particles = [];
@@ -61,7 +63,7 @@ function setup() {
   BG = color(PALETTE["bg"]);
   STROKE = color(random(COLORS));
 
-  //frameRate(30);
+  if (EXPORT) frameRate(5);
 
   background(BG);
   fill(BG);
@@ -111,7 +113,6 @@ function draw() {
   background(BG);
   translate(width / 2, height / 2);
   /*
-
   strokeWeight(STROKE_WEIGHT * 0.5);
   beginShape();
   for (let i = 0; i < vertices.length; i++) {
@@ -125,7 +126,7 @@ function draw() {
     point(path[i].x, path[i].y);
     strokeWeight(STROKE_WEIGHT);
   }
-*/
+  */
   updateCenter();
   drawCenter();
   strokeWeight(STROKE_WEIGHT);
@@ -137,6 +138,12 @@ function draw() {
     p.update();
   }
   //if (walkindex >= path.length) noLoop();
+  if (EXPORT) {
+    saveCanvas();
+  }
+  if (frameCount > 900) {
+    noLoop();
+  }
 }
 
 function drawCenter() {

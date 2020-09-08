@@ -5,6 +5,8 @@ let COLORS;
 let BG;
 let STROKE;
 
+const EXPORT = false;
+
 const PALETTE_NAME = "onom";
 
 const STROKE_WEIGHT = 2;
@@ -15,6 +17,8 @@ function preload() {
 }
 
 function setup() {
+  if (EXPORT) frameRate(5);
+
   cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
 

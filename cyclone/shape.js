@@ -38,7 +38,8 @@ function setup() {
   stroke(random(colors));
   drawingContext.shadowBlur = STROKE_WEIGHT;
 
-  const randy = random(TWO_PI);
+  //const randy = random(TWO_PI);
+  const randy = TWO_PI;
   for (let i = 0; i < COUNT; i++) {
     beads.push({
       x: 0, //overriden by formula regardless
