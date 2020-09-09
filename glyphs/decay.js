@@ -110,14 +110,20 @@ function consider(vert, nuvert, row) {
         random(1 - (0.2 / POLYCOUNT) * row, 1 + (row - 1) / POLYCOUNT)
     );
     line(
-      vert[0] + DECAY * random(-1, 1),
-      vert[1] + DECAY * random(-1, 1),
-      nuvert[0] + DECAY * random(-1, 1),
-      nuvert[1] + DECAY * random(-1, 1)
+      vert[0] + DECAY * random(-randy, randy),
+      vert[1] + DECAY * random(-randy, randy),
+      nuvert[0] + DECAY * random(-randy, randy),
+      nuvert[1] + DECAY * random(-randy, randy)
     );
     strokeWeight(STROKE_WEIGHT * 3);
-    point(vert[0] + DECAY * random(-1, 1), vert[1] + DECAY * random(-1, 1));
-    point(nuvert[0] + DECAY * random(-1, 1), nuvert[1] + DECAY * random(-1, 1));
+    point(
+      vert[0] + DECAY * random(-randy, randy),
+      vert[1] + DECAY * random(-randy, randy)
+    );
+    point(
+      nuvert[0] + DECAY * random(-randy, randy),
+      nuvert[1] + DECAY * random(-randy, randy)
+    );
     strokeWeight(STROKE_WEIGHT);
   }
 }

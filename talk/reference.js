@@ -2,14 +2,12 @@ let cnv;
 let palettes;
 let palette;
 let colors;
-let colors_stroke;
-let colors_bg;
 
 //redrange
 //yeblu
 //pastella
 //sydney
-const PALETTE_NAME = "mello";
+const PALETTE_NAME = "bekk";
 
 let padding;
 
@@ -29,42 +27,41 @@ function setup() {
   cnv = createCanvas(1080, 1350);
   cnv.mouseClicked(clickOnSave);
 
-  palette = palettes[PALETTE_NAME];
+  const palette = palettes[PALETTE_NAME];
   // const keys = Object.keys(palettes);
   // palette = palettes[keys[(keys.length * Math.random()) << 0]];
   colors = palette["colors"];
-  colors_bg = palette["bg"];
 
-  background(colors_bg);
   strokeWeight(STROKE_WEIGHT);
-
-  fill(colors_bg);
-
   frameRate(2);
 
-  padding = 1080 / 5;
+  padding = width / 5;
 
   jumpx = (width - padding * 2) / (POLYCOUNT - 1);
   jumpy = (height - padding * 2) / (POLYCOUNT - 1);
 }
 
-let col;
-let row;
+function drawBackground() {
+  const c1 = color("#FF9999");
+  const c2 = color("#FF5B5B");
+  for (var y = 0; y < height; y++) {
+    const inter = y / height;
+    var c = lerpColor(c1, c2, inter);
+    stroke(c);
+    line(0, y, width, y);
+  }
+}
 
 function draw() {
-  background(colors_bg);
-  row = 1;
+  drawBackground();
+  let row = 1;
   for (let y = padding; y <= height - padding; y += jumpy) {
-    col = 2;
+    let col = 2;
     for (let x = padding; x <= width - padding; x += jumpx) {
       push();
       translate(x, y);
       rotate(-PI / 2);
-      if (col == 1) {
-        point(0, 0);
-      } else {
-        polygon(0, 0, jumpx * 0.3, col, row);
-      }
+      polygon(0, 0, jumpx * 0.3, col, row);
       pop();
       col++;
     }
@@ -110,14 +107,20 @@ function consider(vert, nuvert, row) {
         random(1 - (0.2 / POLYCOUNT) * row, 1 + (row - 1) / POLYCOUNT)
     );
     line(
-      vert[0] + DECAY * random(-1, 1),
-      vert[1] + DECAY * random(-1, 1),
-      nuvert[0] + DECAY * random(-1, 1),
-      nuvert[1] + DECAY * random(-1, 1)
+      vert[0] + DECAY * random(-randy, randy),
+      vert[1] + DECAY * random(-randy, randy),
+      nuvert[0] + DECAY * random(-randy, randy),
+      nuvert[1] + DECAY * random(-randy, randy)
     );
     strokeWeight(STROKE_WEIGHT * 3);
-    point(vert[0] + DECAY * random(-1, 1), vert[1] + DECAY * random(-1, 1));
-    point(nuvert[0] + DECAY * random(-1, 1), nuvert[1] + DECAY * random(-1, 1));
+    point(
+      vert[0] + DECAY * random(-randy, randy),
+      vert[1] + DECAY * random(-randy, randy)
+    );
+    point(
+      nuvert[0] + DECAY * random(-randy, randy),
+      nuvert[1] + DECAY * random(-randy, randy)
+    );
     strokeWeight(STROKE_WEIGHT);
   }
 }

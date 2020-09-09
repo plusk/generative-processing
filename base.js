@@ -1,6 +1,4 @@
-let cnv;
 let PALETTES;
-let PALETTE;
 let COLORS;
 let BG;
 let STROKE;
@@ -19,11 +17,11 @@ function preload() {
 function setup() {
   if (EXPORT) frameRate(5);
 
-  cnv = createCanvas(1080, 1080); // 1080, 1350
+  const cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
 
   colorMode(HSL);
-  PALETTE = PALETTES[PALETTE_NAME];
+  const PALETTE = PALETTES[PALETTE_NAME];
   // const PALETTE_KEYS = Object.keys(PALETTES);
   // PALETTE = PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
   COLORS = PALETTE["colors"];

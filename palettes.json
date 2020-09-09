@@ -46,5 +46,22 @@
   "mello": {
     "bg": "#dccea3",
     "colors": ["#F8A255", "#F76F55", "#E14B56", "#A83A55", "#5F2756"]
+  },
+  "bekk": {
+    "bg": "#FFFFFF",
+    "colors": [
+      "#A1F5E3",
+      "#E7E7E7",
+      "#FFFFFF",
+      "#0e0e0e",
+      "#0e0e0e",
+      "#0e0e0e",
+      "#0e0e0e",
+      "#0e0e0e"
+    ]
+  },
+  "test": {
+    "bg": "#cfc7b9",
+    "colors": ["#4aad8b", "#e15147", "#f3b551", "#cec8b8", "#d1af84", "#544e47"]
   }
 }
