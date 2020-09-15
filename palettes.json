@@ -4,11 +4,11 @@
     "colors": ["#ffffff"]
   },
   "onom": {
-    "bg": "#dccea3",
+    "bg": "#FAEBD7",
     "colors": ["#000000"]
   },
   "retro": {
-    "bg": "#dccea3",
+    "bg": "#FAEBD7",
     "colors": ["#5C4B51", "#8CBEB2", "#F2EBBF", "#F3B562", "#F06060"]
   },
   "sydney": {
@@ -44,11 +44,11 @@
     "colors": ["#fade89", "#d4ea97", "#aef2b3", "#8cf6d5", "#78f7f7"]
   },
   "mello": {
-    "bg": "#dccea3",
+    "bg": "#FAEBD7",
     "colors": ["#F8A255", "#F76F55", "#E14B56", "#A83A55", "#5F2756"]
   },
   "bekk": {
-    "bg": "#FFFFFF",
+    "bg": "#ff7b7b",
     "colors": [
       "#A1F5E3",
       "#E7E7E7",

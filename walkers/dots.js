@@ -10,13 +10,12 @@ let colors_bg;
 // symmeblu
 // termos
 // vintage
-// monster
-const PALETTE_NAME = "symmeblu";
-const FRAME_LIMIT = 45;
+const PALETTE_NAME = "termos";
+const FRAME_LIMIT = 35;
 const SPEED = 50;
-const STROKE_WEIGHT = 5;
+const STROKE_WEIGHT = 1;
 const STROKE_WEIGHT_START = 50; // higher = more background circles
-const THREAD_COUNT = 200;
+const THREAD_COUNT = 500;
 const NOISE_GRANULARITY = 0.005;
 //const NOISE_EVOLUTION = 0.0001;
 const OPACITY = 255;
@@ -32,7 +31,7 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(1080, 1350); // 1080, 1350
+  cnv = createCanvas(2400, 1350); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
 
   palette = palettes[PALETTE_NAME];
