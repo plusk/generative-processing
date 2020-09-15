@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "termos"; //mono, onom, redrange
+const PALETTE_NAME = "symmeblu"; //mono, onom, redrange
 
 const MAX_FRAMES = 450;
 const STROKE_WEIGHT = 1;
@@ -88,11 +88,11 @@ function draw() {
   //circle(0, 0, MIN_RADIUS * 2);
   //saveCanvas();
   if (frame >= MAX_FRAMES) {
-    //noLoop();
+    noLoop();
   }
   frame++;
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

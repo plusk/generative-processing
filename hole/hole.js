@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "termos";
+const PALETTE_NAME = "symmeblu";
 
 const STROKE_WEIGHT = 2;
 const ANGLE_STEP = 0.1;
@@ -82,5 +82,5 @@ function draw() {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

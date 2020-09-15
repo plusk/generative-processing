@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "termos"; //mono, onom, redrange
+const PALETTE_NAME = "symmeblu"; //mono, onom, redrange
 
 const MAX_FRAMES = 450;
 const STROKE_WEIGHT = 1;
@@ -26,7 +26,7 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(1080, 720); // 1080, (1350/720)
+  cnv = createCanvas(1080, 1080); // 1080, (1350/720)
   cnv.mouseClicked(clickOnSave);
 
   PALETTE = PALETTES[PALETTE_NAME];
@@ -55,6 +55,7 @@ function setup() {
     });
   }
   //circle(0, 0, 200);
+  //frameRate(4);
 }
 
 let frame = 0;
@@ -71,16 +72,18 @@ function draw() {
       poi.radius = MAX_RADIUS;
       strokeWeight(poi.weight);
     } else {
-      const factor =
-        (MAX_RADIUS + (MIN_RADIUS / MAX_FRAMES) * frame * 2 - poi.radius) /
-        MAX_RADIUS;
+      const factor = (MAX_RADIUS + MIN_RADIUS - poi.radius) / MAX_RADIUS;
       poi.angle += ANGLE_STEP * factor ** ANGLE_AMP;
       poi.radius -= RADIUS_STEP * factor ** RADIUS_AMP;
       strokeWeight(STROKE_WEIGHT / 2 + poi.weight * factor ** WEIGHT_AMP);
       const xNew = poi.radius * cos(poi.angle);
       const yNew = poi.radius * sin(poi.angle);
-      let factorini = ((factor ** 0.05 * frame) / MAX_FRAMES) * factor ** -10;
-      line(x * factorini, y * factorini, xNew, yNew * factorini);
+      let factorini = (factor ** 0.5 * 0.5 * MAX_FRAMES) / frame;
+      if (frame >= MAX_FRAMES / 2) {
+        factorini = factor ** 0.5;
+      }
+      //line(x * factorini, y * factorini, xNew * factorini, yNew * factorini);
+      line(x * factorini, y * factorini, xNew, yNew);
     }
   }
   //circle(0, 0, MIN_RADIUS * 2);
@@ -92,5 +95,5 @@ function draw() {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }
