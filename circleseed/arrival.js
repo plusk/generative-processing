@@ -10,10 +10,10 @@ const PALETTE_NAME = "onom";
 const STROKE_WEIGHT = 2;
 const RING_COUNT = 1;
 const LINE_COUNT = 10000;
-const STEP = 5;
+const STEP = 4;
 const ANGLE_STEP = 1.75;
 const RADIUS = 250;
-const NOISE_DETAIL = 0.005;
+const NOISE_DETAIL = 0.0075;
 
 const FRAME_LIMIT = 60;
 
@@ -39,6 +39,7 @@ function setup() {
   STROKE.setAlpha(15);
   stroke(STROKE);
   strokeWeight(STROKE_WEIGHT);
+  colorMode(HSL);
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
   //drawingContext.shadowColor = random(COLORS);
@@ -87,5 +88,5 @@ function drawLine(LINE) {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }
