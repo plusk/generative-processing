@@ -1,18 +1,14 @@
-let cnv;
-
 const STROKE_WEIGHT = 3;
 const PADDING = 216;
 const SHAPE_COUNT = 7;
 
 function setup() {
-  cnv = createCanvas(1080, 1350);
-  cnv.mouseClicked(clickOnSave);
+  createCanvas(1080, 1350);
 
-  strokeWeight(STROKE_WEIGHT);
-}
-
-function draw() {
   background(color("#ff7b7b"));
+
+  noFill();
+  strokeWeight(STROKE_WEIGHT);
 
   const Y_STEP = (height - PADDING * 2) / (SHAPE_COUNT - 1);
   const X_STEP = (width - PADDING * 2) / (SHAPE_COUNT - 1);
@@ -22,8 +18,4 @@ function draw() {
       circle(x, y, 75);
     }
   }
-}
-
-function clickOnSave() {
-  saveCanvas();
 }
