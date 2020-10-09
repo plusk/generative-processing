@@ -1,7 +1,4 @@
-let PALETTES;
-let COLORS;
-let BG;
-let STROKE;
+let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
 
 const EXPORT = false;
 
@@ -24,13 +21,13 @@ function setup() {
   const PALETTE = PALETTES[PALETTE_NAME];
   // const PALETTE_KEYS = Object.keys(PALETTES);
   // PALETTE = PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
-  COLORS = PALETTE["colors"];
-  BG = color(PALETTE["bg"]);
-  STROKE = color(random(COLORS));
+  COLORS = PALETTE["colors"].map((col) => color(col));
+  BACKGROUNDS = PALETTE["bg"].map((col) => color(col));
+
+  STROKE = random(COLORS);
+  BG = random(BACKGROUNDS);
 
   background(BG);
-  fill(BG);
-  STROKE.setAlpha(OPACITY);
   stroke(STROKE);
   strokeWeight(STROKE_WEIGHT);
 
