@@ -1,13 +1,8 @@
-let cnv;
-let PALETTES;
-let PALETTE;
-let COLORS;
-let BG;
-let STROKE;
+let PALETTES, COLORS, BG, STROKE;
 
 const EXPORT = false;
 
-const PALETTE_NAME = "mello";
+const PALETTE_NAME = "gradient";
 
 const STROKE_WEIGHT = 2;
 const OPACITY = 1;
@@ -18,28 +13,31 @@ function preload() {
 
 function setup() {
   if (EXPORT) frameRate(5);
-  cnv = createCanvas(1080, 1080); // 1080, 1350
-  cnv.mouseClicked(clickOnSave);
-  PALETTE = PALETTES[PALETTE_NAME];
-  COLORS = PALETTE["colors"];
-  BG = color(PALETTE["bg"]);
-  STROKE = color(random(COLORS));
 
-  background(BG);
-  fill(BG);
-  STROKE.setAlpha(OPACITY);
-  stroke(STROKE);
+  const cnv = createCanvas(1080, 1080); // 1080, 1350
+  cnv.mouseClicked(clickOnSave);
+
+  colorMode(HSL);
+  const PALETTE = PALETTES[PALETTE_NAME];
+  // const PALETTE_KEYS = Object.keys(PALETTES);
+  // PALETTE = PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+  COLORS = PALETTE["colors"].map((col) => color(col));
+  BG = PALETTE["bg"].map((col) => color(col));
+
   strokeWeight(STROKE_WEIGHT);
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
   //drawingContext.shadowColor = STROKE;
+}
 
+function draw() {
   drawBackground();
+  // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
 }
 
 function drawBackground() {
-  c1 = color("#FFB88D");
-  c2 = color("#FF5B5B");
+  c1 = BG[0];
+  c2 = BG[1];
   for (var y = 0; y < height; y++) {
     const inter = y / height;
     var c = lerpColor(c1, c2, inter);
@@ -48,11 +46,6 @@ function drawBackground() {
   }
 }
 
-function draw() {
-  circle(width / 2, height / 2, 100);
-  // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
-}
-
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }
