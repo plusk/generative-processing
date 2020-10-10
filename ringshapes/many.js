@@ -8,8 +8,11 @@ const STROKE_WEIGHT = 2;
 
 const COUNT = 25;
 const OPACITY = 0.075;
-const ANGLE_STEP = 0.0025;
+const ANGLE_STEP = 0.005;
 const MAX_RADIUS = (1080 / 4) * 3;
+
+const FRAME_START = (Math.PI / ANGLE_STEP) * 2 - 1;
+const FRAME_END = (Math.PI / ANGLE_STEP) * 4;
 
 let RINGS = [];
 
@@ -18,7 +21,8 @@ function preload() {
 }
 
 function setup() {
-  if (EXPORT) frameRate(5);
+  if (EXPORT) frameRate(4);
+  pixelDensity(1);
 
   const cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
@@ -65,9 +69,18 @@ function draw() {
     ring.a += i * ANGLE_STEP;
   }
   endShape();
+
+  if (EXPORT) {
+    if (frameCount > FRAME_START && frameCount <= FRAME_END) {
+      saveCanvas();
+    }
+    if (frameCount > FRAME_END) {
+      noLoop();
+    }
+  }
   // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

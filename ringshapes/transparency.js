@@ -8,7 +8,7 @@ const STROKE_WEIGHT = 2;
 const OPACITY = 1;
 
 const COUNT = 10;
-const ANGLE_STEP = 0.01;
+const ANGLE_STEP = 0.005;
 const MAX_RADIUS = 500;
 
 let RINGS = [];
@@ -30,9 +30,13 @@ function setup() {
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = PALETTE["bg"].map((col) => color(col));
   STROKE = random(COLORS);
+  stroke(STROKE);
+  background(random(BG));
 
   strokeWeight(STROKE_WEIGHT);
-  fill(color(255, 255, 255, 0.05));
+  const FILL = random(BG);
+  FILL.setAlpha(0.05);
+  fill(FILL);
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
   //drawingContext.shadowColor = STROKE;
@@ -47,6 +51,7 @@ function setup() {
 
 function draw() {
   translate(width / 2, height / 2);
+  rotate(-HALF_PI);
   beginShape();
   for (let i = 0; i < RINGS.length; i++) {
     const ring = RINGS[i];

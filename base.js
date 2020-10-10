@@ -12,7 +12,8 @@ function preload() {
 }
 
 function setup() {
-  if (EXPORT) frameRate(5);
+  if (EXPORT) frameRate(4);
+  pixelDensity(1);
 
   const cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);

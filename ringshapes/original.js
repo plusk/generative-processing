@@ -13,12 +13,16 @@ const MAX_RADIUS = 500;
 
 let RINGS = [];
 
+const FRAME_START = 0;
+const FRAME_END = (Math.PI / ANGLE_STEP) * 2;
+
 function preload() {
   PALETTES = loadJSON("palettes.json");
 }
 
 function setup() {
-  if (EXPORT) frameRate(5);
+  if (EXPORT) frameRate(4);
+  pixelDensity(1);
 
   const cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
@@ -65,6 +69,15 @@ function draw() {
     ring.a += (COUNT - i) * ANGLE_STEP;
   }
   endShape();
+
+  if (EXPORT) {
+    if (frameCount > FRAME_START && frameCount <= FRAME_END) {
+      saveCanvas();
+    }
+    if (frameCount > FRAME_END) {
+      noLoop();
+    }
+  }
   // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
 }
 
