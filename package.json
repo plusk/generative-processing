@@ -1,0 +1,24 @@
+{
+  "name": "generative-processing",
+  "version": "1.0.0",
+  "description": "it is what it is and it ain't what it ain't",
+  "main": "base.js",
+  "dependencies": {
+    "browser-sync": "^2.26.12",
+    "p5": "^1.1.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "browser-sync start --server -f -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plusk/generative-processing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plusk/generative-processing/issues"
+  },
+  "homepage": "https://github.com/plusk/generative-processing#readme"
+}
