@@ -2,7 +2,7 @@ let PALETTES, COLORS, BG, STROKE;
 
 const EXPORT = false;
 
-const PALETTE_NAME = "gradient";
+const PALETTE_NAME = "mello";
 
 const STROKE_WEIGHT = 2;
 const OPACITY = 1;

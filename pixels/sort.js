@@ -1,7 +1,7 @@
 let cnv;
 
 function preload() {
-  img = loadImage("img.jpg");
+  img = loadImage("pixels/img.jpg");
 }
 
 function setup() {

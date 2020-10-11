@@ -4,7 +4,7 @@ const COUNT = 108;
 const SIZE = 1080 / COUNT;
 
 function preload() {
-  img = loadImage("img.jpg");
+  img = loadImage("pixels/img.jpg");
 }
 
 function setup() {
