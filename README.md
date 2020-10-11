@@ -1,15 +1,15 @@
-# generative-processing
+### Setup
 
-Having a local server is handy:
+There isn't a lot required to get going, but you'll need P5 itself and a local server.
 
 ```bash
-npm install -g browser-sync
+npm install
 ```
 
 To run the server locally:
 
 ```bash
-browser-sync start --server -f -w
+npm start
 ```
 
 The webpage wiill automatically reload when you save the `js` file you're working on.
@@ -18,12 +18,12 @@ Redirect `index.html` to a different `js` file as needed.
 
 Check your stuff out at [http://localhost:3000](http://localhost:3000).
 
-## Export
+### Export
 
 `saveCanvas()` will output a `png` file, base template activates it when clicking the canvas.
 
 Saving the canvas on every frame can be useful for making videos. I use the following to combine the images into an `mp4` file:
 
 ```bash
-ffmpeg -framerate 30 -i %03d.png -pix_fmt yuv420p output.mp4
+ffmpeg -framerate 30 -i %05d.png -pix_fmt yuv420p output.mp4
 ```
