@@ -13,7 +13,7 @@ function preload() {
 
 function setup() {
   if (EXPORT) frameRate(4);
-  pixelDensity(1);
+  if (EXPORT) pixelDensity(1);
 
   const cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
@@ -27,6 +27,8 @@ function setup() {
 
   STROKE = random(COLORS);
   BG = random(BACKGROUNDS);
+
+  STROKE.setAlpha(OPACITY);
 
   background(BG);
   stroke(STROKE);
