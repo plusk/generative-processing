@@ -1,23 +1,30 @@
 let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
 
-const EXPORT = false;
-
 const PALETTE_NAME = "symmeblu";
 const HAS_STROKE = true;
 
-const STROKE_WEIGHT = 5;
+const STROKE_WEIGHT = 4;
 const OPACITY = 1;
 
 const SIZE = 400;
+
+const SHAPE_CHANCE = 0.25;
+const BACKGROUND_CHANCE = 0.5;
+
+const SHAPE_WEIGHTS = [
+  { type: "SQUARE", weight: 1 },
+  { type: "DIAMOND", weight: 1 },
+  { type: "TRIANGLE", weight: 1 },
+  { type: "CIRCLE", weight: 1 },
+];
+let WEIGHTED_SHAPES = [];
 
 function preload() {
   PALETTES = loadJSON("palettes.json");
 }
 
 function setup() {
-  if (EXPORT) frameRate(4);
-  if (EXPORT) pixelDensity(1);
-
+  // pixelDensity(1);
   frameRate(2);
 
   const cnv = createCanvas(1080, 1080); // 1080, 1350
@@ -33,8 +40,6 @@ function setup() {
   STROKE = random(COLORS);
   BG = random(BACKGROUNDS);
 
-  STROKE.setAlpha(OPACITY);
-
   background(BG);
   strokeWeight(STROKE_WEIGHT);
 
@@ -44,36 +49,51 @@ function setup() {
 
   !HAS_STROKE && noStroke();
 
-  //drawingContext.shadowBlur = STROKE_WEIGHT;
-  //drawingContext.shadowColor = STROKE;
+  for (let s = 0; s < SHAPE_WEIGHTS.length; s++) {
+    const shape = SHAPE_WEIGHTS[s];
+    for (let w = 0; w < shape.weight; w++) {
+      WEIGHTED_SHAPES.push(shape.type);
+    }
+  }
 }
 
 function draw() {
   background(BG);
   step(0, width / 2, height / 2, SIZE * 2);
-
-  // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
 }
 
-function step(currentDepth, x, y, radius) {
+function step(currentDepth, x, y, r) {
+  const r2 = r / 2;
+
   fill(random(COLORS));
+  const shape = random(WEIGHTED_SHAPES);
 
-  if (currentDepth != 0 && (random() > 0.75 || radius <= STROKE_WEIGHT * 8)) {
-    const shape = random(["SQUARE", "CIRCLE", "TRIANGLE"]);
-    if (shape === "SQUARE") {
-      random() > 0.5 && rect(x, y, radius);
+  if (
+    currentDepth != 0 &&
+    (random() < SHAPE_CHANCE || r <= STROKE_WEIGHT * 8)
+  ) {
+    drawBackgroundOrDont(x, y, r);
+
+    if (shape == "SQUARE") {
       return;
     }
-    if (shape === "CIRCLE") {
-      random() > 0.5 && rect(x, y, radius);
-      fill(random(COLORS));
-      circle(x, y, radius);
+
+    if (shape == "DIAMOND") {
+      beginShape();
+      vertex(x + r2, y);
+      vertex(x, y + r2);
+      vertex(x - r2, y);
+      vertex(x, y - r2);
+      endShape(CLOSE);
       return;
     }
-    if (shape === "TRIANGLE") {
-      random() > 0.5 && rect(x, y, radius);
-      fill(random(COLORS));
 
+    if (shape == "CIRCLE") {
+      circle(x, y, r);
+      return;
+    }
+
+    if (shape == "TRIANGLE") {
       const excludedCorner = random([
         "TOPLEFT",
         "TOPRIGHT",
@@ -81,49 +101,29 @@ function step(currentDepth, x, y, radius) {
         "BOTRIGHT",
       ]);
       if (excludedCorner == "TOPLEFT") {
-        triangle(
-          x - radius / 2,
-          y + radius / 2,
-          x + radius / 2,
-          y - radius / 2,
-          x + radius / 2,
-          y + radius / 2
-        );
+        triangle(x - r2, y + r2, x + r2, y - r2, x + r2, y + r2);
       } else if (excludedCorner == "TOPRIGHT") {
-        triangle(
-          x - radius / 2,
-          y - radius / 2,
-          x + radius / 2,
-          y + radius / 2,
-          x - radius / 2,
-          y + radius / 2
-        );
+        triangle(x - r2, y - r2, x + r2, y + r2, x - r2, y + r2);
       } else if (excludedCorner == "BOTLEFT") {
-        triangle(
-          x - radius / 2,
-          y - radius / 2,
-          x + radius / 2,
-          y + radius / 2,
-          x + radius / 2,
-          y - radius / 2
-        );
+        triangle(x - r2, y - r2, x + r2, y + r2, x + r2, y - r2);
       } else if (excludedCorner == "BOTRIGHT") {
-        triangle(
-          x - radius / 2,
-          y - radius / 2,
-          x - radius / 2,
-          y + radius / 2,
-          x + radius / 2,
-          y - radius / 2
-        );
+        triangle(x - r2, y - r2, x - r2, y + r2, x + r2, y - r2);
       }
       return;
     }
   }
-  step(currentDepth + 1, x - radius / 4, y - radius / 4, radius / 2);
-  step(currentDepth + 1, x + radius / 4, y - radius / 4, radius / 2);
-  step(currentDepth + 1, x - radius / 4, y + radius / 4, radius / 2);
-  step(currentDepth + 1, x + radius / 4, y + radius / 4, radius / 2);
+  step(currentDepth + 1, x - r2 / 2, y - r2 / 2, r2);
+  step(currentDepth + 1, x + r2 / 2, y - r2 / 2, r2);
+  step(currentDepth + 1, x - r2 / 2, y + r2 / 2, r2);
+  step(currentDepth + 1, x + r2 / 2, y + r2 / 2, r2);
+}
+
+function drawBackgroundOrDont(x, y, r) {
+  fill(random(COLORS));
+  if (random() < BACKGROUND_CHANCE) {
+    rect(x, y, r);
+    fill(random(COLORS));
+  }
 }
 
 function clickOnSave() {
