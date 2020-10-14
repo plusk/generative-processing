@@ -2,7 +2,7 @@ let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
 
 const EXPORT = false;
 
-const PALETTE_NAME = "mono";
+const PALETTE_NAME = "onom";
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 0.1;

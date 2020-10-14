@@ -8,7 +8,8 @@ const STROKE_WEIGHT = 1;
 const OPACITY = 1;
 const LAYER_COUNT = 10;
 const MAX_RADIUS = 750;
-const IS_DARK = true;
+
+const IS_DARK = false;
 const HAS_STROKE = false;
 
 const NOISE_FACTOR = 2;
@@ -76,5 +77,5 @@ function drawLayer(r, i) {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }
