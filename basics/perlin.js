@@ -3,23 +3,15 @@ const ACTIVE_WALKERS = [];
 
 const PALETTE_NAME = "termos";
 
-const WALKER_COUNT = 500;
+const WALKER_COUNT = 1000;
 const STROKE_WEIGHT = 2;
 const OPACITY = 1;
 
-const MIN_STEPS = 10;
+const MIN_STEPS = 50;
 const MAX_STEPS = 100;
 const STEP_LENGTH = STROKE_WEIGHT + 1;
 
-const NOISE_ZOOM = 0.001;
-
-/* Enable for adding anti-walkers that erase from the canvas */
-const ERASERS_ENABLED = true;
-const ERASER_SPAWN_CHANCE = 0.5;
-
-/* Noise will trend toward an angle, enable to randomize it */
-const RANDOM_ANGLE_BIAS = true;
-let ANGLE_BIAS = Math.PI / 2; // if not random, choose a bias
+const NOISE_ZOOM = 0.0005;
 
 /* Slap a circle on it! */
 const CLIP_CONTENT = true;
@@ -27,11 +19,19 @@ const CLIP_RADIUS = 405;
 
 /* Enable for very straight angles */
 const ROUNDED_ANGLES = false;
-const ANGLE_STEP = Math.PI / 4;
+const ANGLE_STEP = Math.PI / 3;
 
 /* Enable for location-based coloring */
-const NOISED_STROKE = true;
-const STROKE_NOISE_ZOOM = 0.002;
+const NOISED_STROKE = false;
+const STROKE_NOISE_ZOOM = 0.005;
+
+/* Noise will trend toward an angle, enable to randomize it */
+const RANDOM_ANGLE_BIAS = true;
+let ANGLE_BIAS = Math.PI / 2; // if not random, choose a bias
+
+/* Enable for adding anti-walkers that erase from the canvas */
+const ERASERS_ENABLED = true;
+const ERASER_SPAWN_CHANCE = 0.5;
 
 /* Instead of lines, draw strings of dots */
 const DOT_LINES = false;
