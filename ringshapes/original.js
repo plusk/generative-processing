@@ -32,7 +32,7 @@ function setup() {
   // const PALETTE_KEYS = Object.keys(PALETTES);
   // PALETTE = PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
   COLORS = PALETTE["colors"].map((col) => color(col));
-  BG = PALETTE["bg"].map((col) => color(col));
+  BG = color(PALETTE.bg);
   STROKE = random(COLORS);
 
   strokeWeight(STROKE_WEIGHT);

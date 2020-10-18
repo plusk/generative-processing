@@ -23,7 +23,7 @@ function setup() {
   const entries = Object.entries(PALETTES);
   let index = 0;
   for (const [name, palette] of entries) {
-    fill(palette.bg[0]);
+    fill(palette.bg);
     const ydiff = height / entries.length;
     const y = index * ydiff;
     rect(0, y, width, ydiff);

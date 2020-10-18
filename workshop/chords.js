@@ -1,4 +1,4 @@
-let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
+let PALETTES, COLORS, STROKE, BG;
 
 const PRINT_MODE = false;
 
@@ -31,10 +31,9 @@ function setup() {
   // const PALETTE_KEYS = Object.keys(PALETTES);
   // PALETTE = PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
   COLORS = PALETTE["colors"].map((col) => color(col));
-  BACKGROUNDS = PALETTE["bg"].map((col) => color(col));
+  BG = color(PALETTE.bg);
 
   STROKE = random(COLORS);
-  BG = random(BACKGROUNDS);
 
   STROKE.setAlpha(OPACITY);
 

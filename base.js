@@ -25,7 +25,7 @@ function setup() {
     ? PALETTES[PALETTE_NAME]
     : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
   COLORS = PALETTE["colors"].map((col) => color(col));
-  BACKGROUNDS = PALETTE["bg"].map((col) => color(col));
+  BACKGROUNDS = color(PALETTE.bg);
 
   STROKE = random(COLORS);
   BG = random(BACKGROUNDS);
