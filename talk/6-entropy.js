@@ -1,22 +1,28 @@
 let cnv;
-let PALETTES;
 let COLORS;
 
 const STROKE_WEIGHT = 3;
 const PADDING = 216;
 const SHAPE_COUNT = 7;
 
-const PALETTE_NAME = "bekk";
-
-function preload() {
-  PALETTES = loadJSON("palettes.json");
-}
+const PALETTE = {
+  bg: ["#ff7b7b"],
+  colors: [
+    "#A1F5E3",
+    "#E7E7E7",
+    "#FFFFFF",
+    "#0e0e0e",
+    "#0e0e0e",
+    "#0e0e0e",
+    "#0e0e0e",
+    "#0e0e0e",
+  ],
+};
 
 function setup() {
   cnv = createCanvas(1080, 1350);
   cnv.mouseClicked(clickOnSave);
 
-  const PALETTE = PALETTES[PALETTE_NAME];
   COLORS = PALETTE["colors"];
 
   angleMode(DEGREES);
