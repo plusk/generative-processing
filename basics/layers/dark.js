@@ -11,6 +11,8 @@ const MAX_RADIUS = 500;
 
 const IS_DARK = true;
 const HAS_STROKE = false;
+const SYMMETRICAL_X = false;
+const SYMMETRICAL_Y = false;
 
 const NOISE_AMPLIFIER = 2;
 const NOISE_SPEED = 0.005;
@@ -65,8 +67,12 @@ function drawLayer(r, i) {
 
   beginShape();
   for (let a = 0; a < 360; a++) {
-    const xOff = map(i * SHARPNESS * cos(a) + 1, -1, 1, 1, 1 + NOISE_AMPLIFIER);
-    const yOff = map(i * SHARPNESS * sin(a) + 1, -1, 1, 1, 1 + NOISE_AMPLIFIER);
+    const xOff = SYMMETRICAL_Y
+      ? cos(a)
+      : map(i * SHARPNESS * cos(a) + 1, -1, 1, 1, 1 + NOISE_AMPLIFIER);
+    const yOff = SYMMETRICAL_X
+      ? sin(a)
+      : map(i * SHARPNESS * sin(a) + 1, -1, 1, 1, 1 + NOISE_AMPLIFIER);
     const noised = noise(xOff, yOff, frameCount * NOISE_SPEED);
 
     const noisedRadius = noised * r;
