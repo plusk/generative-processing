@@ -27,3 +27,5 @@ Saving the canvas on every frame can be useful for making videos. I use the foll
 ```bash
 ffmpeg -framerate 30 -i %05d.png -pix_fmt yuv420p output.mp4
 ```
+
+The script requires that the filenames are formatted in order as `00001.png`, `00002.png`, `00003.png`, etc.
