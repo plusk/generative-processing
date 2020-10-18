@@ -2,8 +2,8 @@ let PALETTES, COLORS, STROKE, BG;
 
 const PRINT_MODE = false;
 
-const RANDOM_PALETTE = true;
-const PALETTE_NAME = "mello";
+const RANDOM_PALETTE = false;
+const PALETTE_NAME = "genesis";
 
 const STROKE_WEIGHT = 1;
 const LAYER_COUNT = 10;

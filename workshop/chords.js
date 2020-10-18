@@ -2,17 +2,16 @@ let PALETTES, COLORS, STROKE, BG;
 
 const PRINT_MODE = false;
 
-const RANDOM_PALETTE = true;
-const PALETTE_NAME = "onom";
+const RANDOM_PALETTE = false;
+const PALETTE_NAME = "mono";
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 0.1;
 const RADIUS = 400;
 
 const IS_RANDOM = false;
-
-const LINE_COUNT = 10;
 const NOISE_SPEED = 0.05;
+const LINE_COUNT = 10;
 
 const RANDOM_BIASED_ANGLE = true;
 let BIASED_ANGLE = Math.PI / 2;

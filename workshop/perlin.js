@@ -3,8 +3,8 @@ const ACTIVE_WALKERS = [];
 
 const PRINT_MODE = false;
 
-const RANDOM_PALETTE = true;
-const PALETTE_NAME = "symmeblu";
+const RANDOM_PALETTE = false;
+const PALETTE_NAME = "termos";
 
 const WALKER_COUNT = 500;
 const STROKE_WEIGHT = 2;

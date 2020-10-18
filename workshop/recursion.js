@@ -2,7 +2,7 @@ let PALETTES, COLORS, STROKE, BG;
 
 const PRINT_MODE = false;
 
-const RANDOM_PALETTE = true;
+const RANDOM_PALETTE = false;
 const PALETTE_NAME = "symmeblu";
 
 const HAS_STROKE = true;

@@ -2,8 +2,8 @@ let PALETTES, COLORS, BG;
 
 const PRINT_MODE = false;
 
-const RANDOM_PALETTE = true;
-const PALETTE_NAME = "termos";
+const RANDOM_PALETTE = false;
+const PALETTE_NAME = "speis";
 
 const MIN_OPACITY = 0.1;
 const MAX_OPACITY = 1;
