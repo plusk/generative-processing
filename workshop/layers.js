@@ -6,20 +6,28 @@ const RANDOM_PALETTE = true;
 const PALETTE_NAME = "mello";
 
 const STROKE_WEIGHT = 1;
-const OPACITY = 1;
 const LAYER_COUNT = 10;
 const MAX_RADIUS = 500;
 
 const INVERTED_GRADIENT = false;
+const CAP_LIGHTNESS = false;
 const HAS_STROKE = false;
-const COLORED_BACKGROUND = true;
-const CAP_LIGHTNESS = true;
 const SYMMETRICAL_X = false;
 const SYMMETRICAL_Y = false;
+
+/**
+ * Background is determined by the gradient, but these flags may override it
+ * If both flags are true, palette background will be used
+ */
+const USE_FILL_AS_BACKGROUND = true;
+const USE_PALETTE_BACKGROUND = false;
 
 const NOISE_AMPLIFIER = 2;
 const NOISE_SPEED = 0.005;
 const SHARPNESS = 0.1;
+
+/* Negative speed rotates counter-clockwise */
+const ROTATION_SPEED = 0.05;
 
 function preload() {
   PALETTES = loadJSON("palettes.json");
@@ -41,8 +49,6 @@ function setup() {
 
   STROKE = random(COLORS);
 
-  background(BG);
-  STROKE.setAlpha(OPACITY);
   HAS_STROKE ? stroke(STROKE) : noStroke();
   strokeWeight(STROKE_WEIGHT);
   angleMode(DEGREES);
@@ -50,13 +56,21 @@ function setup() {
 
 function draw() {
   translate(width / 2, height / 2);
-  COLORED_BACKGROUND
-    ? background(STROKE)
-    : background(INVERTED_GRADIENT ? 255 : 0);
+  drawBackground();
 
   for (let i = LAYER_COUNT; i > 0; i--) {
     drawLayer((MAX_RADIUS / LAYER_COUNT) * i, i);
   }
+}
+
+function drawBackground() {
+  if (INVERTED_GRADIENT) {
+    CAP_LIGHTNESS ? background(STROKE) : background(255);
+  } else {
+    background(0);
+  }
+  USE_FILL_AS_BACKGROUND && background(STROKE);
+  USE_PALETTE_BACKGROUND && background(BG);
 }
 
 function drawLayer(r, i) {
@@ -82,8 +96,8 @@ function drawLayer(r, i) {
     const noised = noise(xOff, yOff, frameCount * NOISE_SPEED);
 
     const noisedRadius = noised * r;
-    const x = noisedRadius * cos(a);
-    const y = noisedRadius * sin(a);
+    const x = noisedRadius * cos(a + frameCount * ROTATION_SPEED);
+    const y = noisedRadius * sin(a + frameCount * ROTATION_SPEED);
     vertex(x, y);
   }
   endShape(CLOSE);
