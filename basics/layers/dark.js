@@ -12,8 +12,9 @@ const MAX_RADIUS = 500;
 const IS_DARK = true;
 const HAS_STROKE = false;
 
-const NOISE_FACTOR = 2;
+const NOISE_AMPLIFIER = 2;
 const NOISE_SPEED = 0.005;
+const SHARPNESS = 0.1;
 
 function preload() {
   PALETTES = loadJSON("palettes.json");
@@ -64,8 +65,8 @@ function drawLayer(r, i) {
 
   beginShape();
   for (let a = 0; a < 360; a++) {
-    const xOff = map(i * 0.1 * cos(a) + 1, -1, 1, 1, 1 + NOISE_FACTOR);
-    const yOff = map(i * 0.1 * sin(a) + 1, -1, 1, 1, 1 + NOISE_FACTOR);
+    const xOff = map(i * SHARPNESS * cos(a) + 1, -1, 1, 1, 1 + NOISE_AMPLIFIER);
+    const yOff = map(i * SHARPNESS * sin(a) + 1, -1, 1, 1, 1 + NOISE_AMPLIFIER);
     const noised = noise(xOff, yOff, frameCount * NOISE_SPEED);
 
     const noisedRadius = noised * r;
