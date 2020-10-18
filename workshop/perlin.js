@@ -3,6 +3,7 @@ const ACTIVE_WALKERS = [];
 
 const PRINT_MODE = false;
 
+const RANDOM_PALETTE = true;
 const PALETTE_NAME = "symmeblu";
 
 const WALKER_COUNT = 500;
@@ -49,9 +50,10 @@ function setup() {
   cnv.mouseClicked(clickOnSave);
 
   colorMode(HSL);
-  const PALETTE = PALETTES[PALETTE_NAME];
-  // const PALETTE_KEYS = Object.keys(PALETTES);
-  // PALETTE = PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+  const PALETTE_KEYS = Object.keys(PALETTES);
+  const PALETTE = !RANDOM_PALETTE
+    ? PALETTES[PALETTE_NAME]
+    : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = color(PALETTE.bg);
 

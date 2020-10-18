@@ -2,6 +2,7 @@ let PALETTES, COLORS, STROKE, BG;
 
 const PRINT_MODE = false;
 
+const RANDOM_PALETTE = true;
 const PALETTE_NAME = "mello";
 
 const STROKE_WEIGHT = 1;
@@ -29,7 +30,10 @@ function setup() {
   cnv.mouseClicked(clickOnSave);
 
   colorMode(HSL);
-  const PALETTE = PALETTES[PALETTE_NAME];
+  const PALETTE_KEYS = Object.keys(PALETTES);
+  const PALETTE = !RANDOM_PALETTE
+    ? PALETTES[PALETTE_NAME]
+    : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = color(PALETTE.bg);
 
