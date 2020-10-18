@@ -1,9 +1,11 @@
 let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
 const ACTIVE_WALKERS = [];
 
-const PALETTE_NAME = "termos";
+const PRINT_MODE = false;
 
-const WALKER_COUNT = 1000;
+const PALETTE_NAME = "symmeblu";
+
+const WALKER_COUNT = 500;
 const STROKE_WEIGHT = 2;
 const OPACITY = 1;
 
@@ -11,19 +13,19 @@ const MIN_STEPS = 50;
 const MAX_STEPS = 100;
 const STEP_LENGTH = STROKE_WEIGHT + 1;
 
-const NOISE_ZOOM = 0.0005;
+const NOISE_ZOOM = 0.002;
 
 /* Slap a circle on it! */
 const CLIP_CONTENT = true;
-const CLIP_RADIUS = 405;
+const CLIP_RADIUS = 400;
 
 /* Enable for very straight angles */
 const ROUNDED_ANGLES = false;
 const ANGLE_STEP = Math.PI / 3;
 
 /* Enable for location-based coloring */
-const NOISED_STROKE = false;
-const STROKE_NOISE_ZOOM = 0.005;
+const NOISED_STROKE = true;
+const STROKE_NOISE_ZOOM = 0.0025;
 
 /* Noise will trend toward an angle, enable to randomize it */
 const RANDOM_ANGLE_BIAS = true;
@@ -36,24 +38,14 @@ const ERASER_SPAWN_CHANCE = 0.5;
 /* Instead of lines, draw strings of dots */
 const DOT_LINES = false;
 
-/**
- *
- *
- *
- * CONF-O-RAMA ENDS HERE
- *
- *
- *
- */
-
 function preload() {
   PALETTES = loadJSON("palettes.json");
 }
 
 function setup() {
-  //pixelDensity(1);
+  pixelDensity(1);
 
-  const cnv = createCanvas(1080, 1080); // 1080, 1350
+  const cnv = PRINT_MODE ? createCanvas(4960, 7016) : createCanvas(1080, 1350);
   cnv.mouseClicked(clickOnSave);
 
   colorMode(HSL);

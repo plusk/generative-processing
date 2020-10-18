@@ -1,5 +1,7 @@
 let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
 
+const PRINT_MODE = false;
+
 const PALETTE_NAME = "symmeblu";
 const HAS_STROKE = true;
 
@@ -8,7 +10,7 @@ const OPACITY = 1;
 
 const SIZE = 400;
 
-const SHAPE_CHANCE = 0.25;
+const SHAPE_CHANCE = 0.2;
 const BACKGROUND_CHANCE = 0.5;
 
 const SHAPE_WEIGHTS = [
@@ -24,10 +26,10 @@ function preload() {
 }
 
 function setup() {
-  // pixelDensity(1);
-  frameRate(2);
+  pixelDensity(1);
+  frameRate(1);
 
-  const cnv = createCanvas(1080, 1080); // 1080, 1350
+  const cnv = PRINT_MODE ? createCanvas(4960, 7016) : createCanvas(1080, 1350);
   cnv.mouseClicked(clickOnSave);
 
   colorMode(HSL);

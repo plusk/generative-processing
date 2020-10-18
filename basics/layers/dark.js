@@ -1,15 +1,15 @@
 let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
 
-const EXPORT = false;
+const PRINT_MODE = false;
 
-const PALETTE_NAME = "speis";
+const PALETTE_NAME = "mello";
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 1;
 const LAYER_COUNT = 10;
-const MAX_RADIUS = 750;
+const MAX_RADIUS = 500;
 
-const IS_DARK = false;
+const IS_DARK = true;
 const HAS_STROKE = false;
 
 const NOISE_FACTOR = 2;
@@ -20,10 +20,9 @@ function preload() {
 }
 
 function setup() {
-  if (EXPORT) frameRate(4);
-  angleMode(DEGREES);
+  pixelDensity(1);
 
-  const cnv = createCanvas(1080, 1350); // 1080, 1350
+  const cnv = PRINT_MODE ? createCanvas(4960, 7016) : createCanvas(1080, 1350);
   cnv.mouseClicked(clickOnSave);
 
   colorMode(HSL);
@@ -38,6 +37,7 @@ function setup() {
   STROKE.setAlpha(OPACITY);
   stroke(STROKE);
   strokeWeight(STROKE_WEIGHT);
+  angleMode(DEGREES);
 }
 
 function draw() {

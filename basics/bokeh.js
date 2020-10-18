@@ -1,15 +1,15 @@
 let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
 
-const EXPORT = false;
+const PRINT_MODE = false;
 
-const PALETTE_NAME = "speis";
+const PALETTE_NAME = "termos";
 
 const STROKE_WEIGHT = 2;
 
 const MIN_OPACITY = 0.1;
 const MAX_OPACITY = 1;
 
-const MIN_SIZE = 1;
+const MIN_SIZE = 2;
 const MAX_SIZE = 100;
 
 function preload() {
@@ -17,10 +17,9 @@ function preload() {
 }
 
 function setup() {
-  if (EXPORT) frameRate(4);
-  if (EXPORT) pixelDensity(1);
+  pixelDensity(1);
 
-  const cnv = createCanvas(1080, 1080); // 1080, 1350
+  const cnv = PRINT_MODE ? createCanvas(4960, 7016) : createCanvas(1080, 1350);
   cnv.mouseClicked(clickOnSave);
 
   colorMode(HSL);
@@ -36,9 +35,6 @@ function setup() {
   background(BG);
   stroke(STROKE);
   strokeWeight(STROKE_WEIGHT);
-
-  //drawingContext.shadowBlur = STROKE_WEIGHT;
-  //drawingContext.shadowColor = STROKE;
 }
 
 function draw() {
@@ -50,7 +46,6 @@ function draw() {
   stroke(pointColor);
 
   point(random(width), random(height));
-  // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
 }
 
 function clickOnSave() {
