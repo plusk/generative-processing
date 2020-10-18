@@ -10,8 +10,10 @@ const OPACITY = 1;
 const LAYER_COUNT = 10;
 const MAX_RADIUS = 500;
 
-const IS_DARK = true;
+const INVERTED_GRADIENT = false;
 const HAS_STROKE = false;
+const COLORED_BACKGROUND = true;
+const CAP_LIGHTNESS = true;
 const SYMMETRICAL_X = false;
 const SYMMETRICAL_Y = false;
 
@@ -41,16 +43,16 @@ function setup() {
 
   background(BG);
   STROKE.setAlpha(OPACITY);
-  stroke(STROKE);
+  HAS_STROKE ? stroke(STROKE) : noStroke();
   strokeWeight(STROKE_WEIGHT);
   angleMode(DEGREES);
 }
 
 function draw() {
   translate(width / 2, height / 2);
-  background(IS_DARK ? 0 : 255);
-
-  !HAS_STROKE && noStroke();
+  COLORED_BACKGROUND
+    ? background(STROKE)
+    : background(INVERTED_GRADIENT ? 255 : 0);
 
   for (let i = LAYER_COUNT; i > 0; i--) {
     drawLayer((MAX_RADIUS / LAYER_COUNT) * i, i);
@@ -58,13 +60,14 @@ function draw() {
 }
 
 function drawLayer(r, i) {
-  const layerColorFactor = IS_DARK
-    ? IS_DARK - i / LAYER_COUNT
-    : i / LAYER_COUNT;
+  const layerColorFactor = INVERTED_GRADIENT
+    ? i / LAYER_COUNT
+    : 1 - i / LAYER_COUNT;
+
   const fillColor = color(
     hue(STROKE),
     layerColorFactor * saturation(STROKE),
-    layerColorFactor * 100
+    layerColorFactor * (CAP_LIGHTNESS ? lightness(STROKE) : 100)
   );
   fill(fillColor);
 
