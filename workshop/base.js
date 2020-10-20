@@ -3,9 +3,10 @@ let PALETTES, COLORS, STROKE, BG;
 const PRINT_MODE = false;
 
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "termos";
+const PALETTE_NAME = "online";
 
 const STROKE_WEIGHT = 2;
+const DIAMETER = 400;
 
 function preload() {
   PALETTES = loadJSON("palettes.json");
@@ -32,7 +33,7 @@ function setup() {
 }
 
 function draw() {
-  circle(width / 2, height / 2, 400);
+  circle(width / 2, height / 2, DIAMETER);
 }
 
 function clickOnSave() {
