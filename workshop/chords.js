@@ -28,8 +28,8 @@ const STROKE_WEIGHT = 1;
 /* This effectively overrides the remaining config */
 const IS_RANDOM = false;
 
-/* If not IS_RANDOM: noise will naturally tend towards a mean */
-/* Enable this to vary where the mean is, or disable and specify your own */
+/* If not IS_RANDOM: noise will naturally lean towards an angle */
+/* Enable this to vary where the angle is, or disable and specify your own */
 const RANDOM_BIASED_ANGLE = true;
 let BIASED_ANGLE = Math.PI / 2;
 
