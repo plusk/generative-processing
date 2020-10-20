@@ -39,41 +39,44 @@ const ERASER_SPAWN_CHANCE = 0.5;
 /* Instead of lines, draw strings of dots */
 const DOT_LINES = false;
 
+/*
+
+  CONFIG END
+
+*/
+
 function preload() {
   PALETTES = loadJSON("palettes.json");
 }
 
 function setup() {
-  pixelDensity(1);
-
   const cnv = PRINT_MODE ? createCanvas(4960, 7016) : createCanvas(1080, 1350);
   cnv.mouseClicked(clickOnSave);
+  pixelDensity(1);
 
-  colorMode(HSL);
+  /* Get colors from the palettes */
   const PALETTE_KEYS = Object.keys(PALETTES);
   const PALETTE = !RANDOM_PALETTE
     ? PALETTES[PALETTE_NAME]
     : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = color(PALETTE.bg);
+  colorMode(HSL);
 
+  /* Sketch-specific setup */
+  background(BG);
   shuffleArray(COLORS);
+  STROKE = random(COLORS);
+  strokeWeight(STROKE_WEIGHT);
 
   for (let c = 0; c < COLORS.length; c++) {
     COLORS[c].setAlpha(OPACITY);
   }
 
-  STROKE = random(COLORS);
-
-  background(BG);
-  strokeWeight(STROKE_WEIGHT);
-
   noiseDetail(3, 0.75);
 
   if (RANDOM_ANGLE_BIAS) ANGLE_BIAS = random(TWO_PI);
-
-  //drawingContext.shadowBlur = STROKE_WEIGHT;
-  //drawingContext.shadowColor = STROKE;
 }
 
 function draw() {

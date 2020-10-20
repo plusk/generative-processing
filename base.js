@@ -1,4 +1,4 @@
-let PALETTES, COLORS, STROKE, BACKGROUNDS, BG;
+let PALETTES, COLORS, STROKE, BG;
 
 const EXPORT = false;
 
@@ -13,28 +13,27 @@ function preload() {
 }
 
 function setup() {
-  if (EXPORT) frameRate(4);
-  if (EXPORT) pixelDensity(1);
-
   const cnv = createCanvas(1080, 1080); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
+  if (EXPORT) pixelDensity(1);
+  if (EXPORT) frameRate(4);
 
-  colorMode(HSL);
+  /* Get colors from the palettes */
   const PALETTE_KEYS = Object.keys(PALETTES);
   const PALETTE = !RANDOM_PALETTE
     ? PALETTES[PALETTE_NAME]
     : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+
   COLORS = PALETTE["colors"].map((col) => color(col));
-  BACKGROUNDS = color(PALETTE.bg);
+  BG = color(PALETTE.bg);
+  colorMode(HSL);
 
-  STROKE = random(COLORS);
-  BG = random(BACKGROUNDS);
-
-  STROKE.setAlpha(OPACITY);
-
-  background(BG);
-  stroke(STROKE);
+  /* Sketch-specific setup */
   strokeWeight(STROKE_WEIGHT);
+  STROKE = random(COLORS);
+  STROKE.setAlpha(OPACITY);
+  stroke(STROKE);
+  background(BG);
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
   //drawingContext.shadowColor = STROKE;
@@ -46,5 +45,5 @@ function draw() {
 }
 
 function clickOnSave() {
-  //saveCanvas();
+  saveCanvas();
 }

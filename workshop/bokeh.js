@@ -20,24 +20,32 @@ const SHAPE_WEIGHTS = [
 ];
 const WEIGHTED_SHAPES = [];
 
+/*
+
+  CONFIG END
+
+*/
+
 function preload() {
   PALETTES = loadJSON("palettes.json");
 }
 
 function setup() {
-  pixelDensity(1);
-
   const cnv = PRINT_MODE ? createCanvas(4960, 7016) : createCanvas(1080, 1350);
   cnv.mouseClicked(clickOnSave);
+  pixelDensity(1);
 
-  colorMode(HSL);
+  /* Get colors from the palettes */
   const PALETTE_KEYS = Object.keys(PALETTES);
   const PALETTE = !RANDOM_PALETTE
     ? PALETTES[PALETTE_NAME]
     : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = color(PALETTE.bg);
+  colorMode(HSL);
 
+  /* Sketch-specific setup */
   background(BG);
   noStroke();
 
