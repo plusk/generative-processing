@@ -7,16 +7,35 @@ const PRINT_MODE = false;
 const RANDOM_PALETTE = false;
 const PALETTE_NAME = "mono";
 
-const STROKE_WEIGHT = 1;
-const OPACITY = 0.1;
+/* Choose a random color from the palette for each line */
+const RANDOM_STROKE = false;
+
+/* How big the circle will be */
 const RADIUS = 400;
 
-const IS_RANDOM = false;
-const NOISE_SPEED = 0.05;
-const LINE_COUNT = 10;
+/* How many independent lines will be drawn each frame */
+const LINE_COUNT = 5;
 
+/* How swiftly the lines will move around (lower is slower) */
+const NOISE_SPEED = 0.05;
+
+/* How opaque the lines will be, lower means more transparent */
+/* Lower will be smoother, but also takes longer to fill the circle */
+const OPACITY = 0.05;
+const STROKE_WEIGHT = 1;
+
+/* Enable to use randomness instead of noise to select line locations */
+/* This effectively overrides the remaining config */
+const IS_RANDOM = false;
+
+/* If not IS_RANDOM: noise will naturally tend towards a mean */
+/* Enable this to vary where the mean is, or disable and specify your own */
 const RANDOM_BIASED_ANGLE = true;
 let BIASED_ANGLE = Math.PI / 2;
+
+/* If not IS_RANDOM: this value effectively says how strong the bias is */
+/* A lower value means the bias is strong, higher means near-random lines */
+const NOISE_RANDOMNESS = 0.75;
 
 /*
 
@@ -44,24 +63,26 @@ function setup() {
   BG = color(PALETTE.bg);
 
   /* Sketch-specific setup */
+  strokeWeight(STROKE_WEIGHT);
   STROKE = random(COLORS);
   STROKE.setAlpha(OPACITY);
   stroke(STROKE);
-
   background(BG);
-  strokeWeight(STROKE_WEIGHT);
 
   RANDOM_BIASED_ANGLE && (BIASED_ANGLE = random(TWO_PI));
-  noiseDetail(4, 0.75);
+  noiseDetail(4, NOISE_RANDOMNESS);
 }
 
 function draw() {
+  /* Moves the origin of the coordinate system to the center of the canvas */
+  /* Rotate based on the bias angle, be that random or not */
   translate(width / 2, height / 2);
   rotate(BIASED_ANGLE);
 
+  /* For every line to be rendered each frame */
   for (let i = 0; i < LINE_COUNT; i++) {
+    /* Select two random or noised angles on the circle */
     let a1, a2;
-
     if (IS_RANDOM) {
       a1 = random(TWO_PI);
       a2 = random(TWO_PI);
@@ -70,11 +91,20 @@ function draw() {
       a2 = TWO_PI * noise(i + LINE_COUNT, frameCount * NOISE_SPEED);
     }
 
+    /* Use the two angles to determine two points on the circle */
     const x1 = RADIUS * cos(a1);
     const y1 = RADIUS * sin(a1);
     const x2 = RADIUS * cos(a2);
     const y2 = RADIUS * sin(a2);
 
+    /* If random, choose a new color for each line */
+    if (RANDOM_STROKE) {
+      const randomColor = random(COLORS);
+      randomColor.setAlpha(OPACITY);
+      stroke(randomColor);
+    }
+
+    /* Draw a line between the two points */
     line(x1, y1, x2, y2);
   }
 }
