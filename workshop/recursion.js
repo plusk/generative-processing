@@ -1,7 +1,9 @@
 let PALETTES, COLORS, STROKE, BG;
 
+/* Enable to make a canvas suitable for A2 paper */
 const PRINT_MODE = false;
 
+/* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
 const PALETTE_NAME = "symmeblu";
 
@@ -14,8 +16,10 @@ const SIZE = 400;
 const SHAPE_CHANCE = 0.2;
 const BACKGROUND_CHANCE = 0.5;
 
-/* Shapes are weighed in relation to eachother, whole numbers only */
-/* Example: the weights 1 2 3 4 will be the same as 2 4 6 8 */
+/* The shape will be randomly selected from the following object */
+/* The random selection is weighted based on the integer values */
+/* Example: 1 is a normal amount, 2 is double, 0 would be none of that type */
+/* The values are weighed in relation to each other, so 1 2 3 4 = 2 4 6 8 */
 const SHAPE_WEIGHTS = [
   { type: "SQUARE", weight: 1 },
   { type: "DIAMOND", weight: 1 },
@@ -46,9 +50,9 @@ function setup() {
     ? PALETTES[PALETTE_NAME]
     : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
 
+  colorMode(HSL);
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = color(PALETTE.bg);
-  colorMode(HSL);
 
   /* Sketch-specific setup */
   STROKE = random(COLORS);

@@ -24,9 +24,9 @@ function setup() {
     ? PALETTES[PALETTE_NAME]
     : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
 
+  colorMode(HSL);
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = color(PALETTE.bg);
-  colorMode(HSL);
 
   /* Sketch-specific setup */
   strokeWeight(STROKE_WEIGHT);

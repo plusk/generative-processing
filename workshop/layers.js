@@ -1,7 +1,9 @@
 let PALETTES, COLORS, STROKE, BG;
 
+/* Enable to make a canvas suitable for A2 paper */
 const PRINT_MODE = false;
 
+/* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
 const PALETTE_NAME = "genesis";
 
@@ -50,9 +52,9 @@ function setup() {
     ? PALETTES[PALETTE_NAME]
     : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
 
+  colorMode(HSL);
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = color(PALETTE.bg);
-  colorMode(HSL);
 
   /* Sketch-specific setup */
   STROKE = random(COLORS);

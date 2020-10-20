@@ -1,22 +1,28 @@
 let PALETTES, COLORS, BG;
 
+/* Enable to make a canvas suitable for A2 paper */
 const PRINT_MODE = false;
 
+/* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
 const PALETTE_NAME = "speis";
 
-const MIN_OPACITY = 0.1;
-const MAX_OPACITY = 1;
-
+/* Shape size will be a random number between these bounds */
 const MIN_SIZE = 2;
 const MAX_SIZE = 100;
 
-/* Shapes are weighed in relation to eachother, whole numbers only */
-/* Example: the weights 1 2 3 will be the same as 2 4 6 */
+/* Shape opacity will be selected based on size, scaled to these bounds */
+const MIN_OPACITY = 0.1;
+const MAX_OPACITY = 1;
+
+/* The shape will be randomly selected from the following object */
+/* The random selection is weighted based on the integer values */
+/* Example: 1 is a normal amount, 2 is double, 0 would be none of that type */
+/* The values are weighed in relation to each other, so 1 2 3 = 2 4 6 */
 const SHAPE_WEIGHTS = [
   { type: "CIRCLE", weight: 1 },
-  { type: "TRIANGLE", weight: 0 },
-  { type: "SQUARE", weight: 0 },
+  { type: "TRIANGLE", weight: 1 },
+  { type: "SQUARE", weight: 1 },
 ];
 const WEIGHTED_SHAPES = [];
 
@@ -41,9 +47,9 @@ function setup() {
     ? PALETTES[PALETTE_NAME]
     : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
 
+  colorMode(HSL);
   COLORS = PALETTE["colors"].map((col) => color(col));
   BG = color(PALETTE.bg);
-  colorMode(HSL);
 
   /* Sketch-specific setup */
   background(BG);
@@ -59,7 +65,10 @@ function setup() {
 }
 
 function draw() {
+  /* Select a random size between the given bounds */
   const size = random(MIN_SIZE, MAX_SIZE);
+
+  /* Set color opacity based on the selected of the shape */
   const fillColor = random(COLORS);
   fillColor.setAlpha(1 + MIN_OPACITY - size / MAX_SIZE);
   fill(fillColor);
@@ -68,19 +77,22 @@ function draw() {
 }
 
 function drawRandomShape(x, y, size) {
+  /* Move to the given coordinates in order to rotate properly */
   translate(x, y);
   rotate(random(TWO_PI));
 
+  /* Select a shape and draw it */
   const shape = random(WEIGHTED_SHAPES);
   if (shape == "CIRCLE") {
     circle(x, y, size);
-  } else if (shape == "TRIANGLE") {
-    drawTriangle(x, y, size);
   } else if (shape == "SQUARE") {
     square(x, y, size);
+  } else if (shape == "TRIANGLE") {
+    drawTriangle(x, y, size);
   }
 }
 
+/* Draw an equilateral triangle */
 function drawTriangle(x, y, size) {
   const x1 = x + (cos((1 * TWO_PI) / 3) * size) / 2;
   const y1 = y + (sin((1 * TWO_PI) / 3) * size) / 2;
