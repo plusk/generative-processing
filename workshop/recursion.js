@@ -7,14 +7,24 @@ const PRINT_MODE = false;
 const RANDOM_PALETTE = false;
 const PALETTE_NAME = "symmeblu";
 
-const HAS_STROKE = true;
+/* The size of the recursion field */
+const SIZE = 800;
+
+/* In addition to the thickness of spacing, adjusts maximum recursion depth */
+/* Scaling up the stroke weight would result in larger shapes overall */
 const STROKE_WEIGHT = 4;
-const OPACITY = 1;
 
-const SIZE = 400;
+/* Enable to set a stroke on each shape based on the background color */
+const HAS_STROKE = true;
 
+/* Keep in mind that spawning shape means no subdivision/recursion in the slot */
 const SHAPE_CHANCE = 0.2;
+
+/* Lower chance means more empty space in the field */
 const BACKGROUND_CHANCE = 0.5;
+
+/* Will clear the canvas each frame if enabled, disabling leads to overlap */
+const CLEAR_EACH_FRAME = true;
 
 /* The shape will be randomly selected from the following object */
 /* The random selection is weighted based on the integer values */
@@ -55,16 +65,13 @@ function setup() {
   BG = color(PALETTE.bg);
 
   /* Sketch-specific setup */
+  strokeWeight(STROKE_WEIGHT);
   STROKE = random(COLORS);
+  strokeJoin(BEVEL);
+  HAS_STROKE ? stroke(BG) : noStroke();
 
   background(BG);
-  strokeWeight(STROKE_WEIGHT);
-
   rectMode(CENTER);
-  strokeJoin(BEVEL);
-  stroke(BG);
-
-  !HAS_STROKE && noStroke();
 
   /* Initialize weighted shapes */
   for (let s = 0; s < SHAPE_WEIGHTS.length; s++) {
@@ -76,11 +83,16 @@ function setup() {
 }
 
 function draw() {
-  background(BG);
-  step(0, width / 2, height / 2, SIZE * 2);
+  CLEAR_EACH_FRAME && background(BG);
+
+  /* Start the recursion field */
+  /* More fields can be placed by duplicating this line and changing positions */
+  step(0, width / 2, height / 2, SIZE);
 }
 
 function step(currentDepth, x, y, r) {
+  /* Based on chance to spawn shape, stop recursion for the tile */
+  /* If the max depth has been met, all tiles will draw a shape */
   if (
     currentDepth != 0 &&
     (random() < SHAPE_CHANCE || r <= STROKE_WEIGHT * 8)
@@ -88,6 +100,8 @@ function step(currentDepth, x, y, r) {
     drawRandomShape(x, y, r);
     return;
   }
+
+  /* If no shape this tile, divide recursion field into four smaller tiles */
   const r2 = r / 2;
   step(currentDepth + 1, x - r2 / 2, y - r2 / 2, r2);
   step(currentDepth + 1, x + r2 / 2, y - r2 / 2, r2);
@@ -95,18 +109,11 @@ function step(currentDepth, x, y, r) {
   step(currentDepth + 1, x + r2 / 2, y + r2 / 2, r2);
 }
 
-function drawBackgroundOrDont(x, y, r) {
-  fill(random(COLORS));
-  if (random() < BACKGROUND_CHANCE) {
-    rect(x, y, r);
-    fill(random(COLORS));
-  }
-}
-
 function drawRandomShape(x, y, r) {
   drawBackgroundOrDont(x, y, r);
-  const shape = random(WEIGHTED_SHAPES);
 
+  /* Select a shape based on shape weights, then draw it */
+  const shape = random(WEIGHTED_SHAPES);
   if (shape == "DIAMOND") {
     drawDiamond(x, y, r);
   } else if (shape == "CIRCLE") {
@@ -119,6 +126,16 @@ function drawRandomShape(x, y, r) {
   }
 }
 
+/* Set a random background and foreground color for new shape */
+function drawBackgroundOrDont(x, y, r) {
+  fill(random(COLORS));
+  if (random() < BACKGROUND_CHANCE) {
+    rect(x, y, r);
+    fill(random(COLORS));
+  }
+}
+
+/* Draw what is basically a rotated square */
 function drawDiamond(x, y, r) {
   const r2 = r / 2;
   beginShape();
@@ -129,10 +146,10 @@ function drawDiamond(x, y, r) {
   endShape(CLOSE);
 }
 
+/* Draw a triangle in one of the four possible orientations*/
 function drawTriangle(x, y, r) {
   const r2 = r / 2;
   const excludedCorner = random(["TOPLEFT", "TOPRIGHT", "BOTLEFT", "BOTRIGHT"]);
-
   if (excludedCorner == "TOPLEFT") {
     triangle(x - r2, y + r2, x + r2, y - r2, x + r2, y + r2);
   } else if (excludedCorner == "TOPRIGHT") {
