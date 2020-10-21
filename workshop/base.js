@@ -46,6 +46,8 @@ function setup() {
 }
 
 function draw() {
+  /* Inspiration can be found here! https://p5js.org/examples/ */
+  /* Documentation can be found here! https://p5js.org/reference/*/
   circle(width / 2, height / 2, DIAMETER);
 }
 
