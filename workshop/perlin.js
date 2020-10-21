@@ -78,9 +78,12 @@ function setup() {
 
   /* Get colors from the palettes */
   const PALETTE_KEYS = Object.keys(PALETTES);
+  const RANDOM_PALETTE_NAME =
+    PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
   const PALETTE = !RANDOM_PALETTE
     ? PALETTES[PALETTE_NAME]
-    : PALETTES[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+    : PALETTES[RANDOM_PALETTE_NAME];
+  console.log("Palette name: ", RANDOM_PALETTE_NAME);
 
   colorMode(HSL);
   COLORS = PALETTE["colors"].map((col) => color(col));
