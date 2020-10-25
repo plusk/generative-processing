@@ -5,13 +5,13 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "mono";
+const PALETTE_NAME = "termos";
 
 /* Choose a random color from the palette for each line */
 const RANDOM_STROKE = false;
 
 /* Each line has its own color from the palette */
-const PALETTED_STROKE = false;
+const PALETTED_STROKE = true;
 
 /* How big the circle will be */
 const RADIUS = 400;
@@ -20,11 +20,11 @@ const RADIUS = 400;
 const LINE_COUNT = 10;
 
 /* How swiftly the lines will move around (lower is slower) */
-const NOISE_SPEED = 0.05;
+const NOISE_SPEED = 0.02;
 
 /* How opaque the lines will be, lower means more transparent */
 /* Lower will be smoother, but also takes longer to fill the circle */
-const OPACITY = 0.05;
+const OPACITY = 0.2;
 const STROKE_WEIGHT = 1;
 
 /* Enable to use randomness instead of noise to select line locations */
