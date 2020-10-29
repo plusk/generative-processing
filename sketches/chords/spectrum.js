@@ -17,7 +17,7 @@ const PALETTED_STROKE = true;
 const RADIUS = 400;
 
 /* How many independent lines will be drawn each frame */
-const LINE_COUNT = 15;
+const LINE_COUNT = 5;
 
 /* How swiftly the lines will move around (lower is slower) */
 const NOISE_SPEED = 0.0015;
