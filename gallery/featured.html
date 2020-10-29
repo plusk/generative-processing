@@ -10,12 +10,22 @@
       body {
         display: grid;
         place-items: center;
+        height: 100vh;
         margin: 0;
       }
-      canvas {
-        width: initial !important;
-        height: 100vh !important;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+      @media (orientation: landscape) {
+        canvas {
+          width: initial !important;
+          height: 100vh !important;
+        }
+      }
+
+      @media (orientation: portrait) {
+        canvas {
+          width: 100vw !important;
+          height: initial !important;
+        }
       }
     </style>
 
