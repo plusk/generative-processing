@@ -1,0 +1,65 @@
+:root {
+  --primary: #b3ffab;
+  --text: #333;
+  --background: antiquewhite;
+  --background-contrast: white;
+  --padding: 50px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: var(--text);
+  background: var(--background);
+}
+
+body > *:not(header) {
+  width: 75%;
+  margin: 0 auto;
+  padding: var(--padding);
+}
+
+header {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(var(--primary), var(--background));
+  height: 75vh;
+}
+
+header > h1 {
+  font-size: 5rem;
+}
+
+header > p {
+  font-size: 3rem;
+}
+
+main {
+  min-width: 500px;
+  background: var(--background-contrast);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+main > * + * {
+  margin-top: 25px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--padding) !important;
+  border-top: 1px solid var(--text);
+}
+
+footer > * + * {
+  margin-left: 25px;
+}
+
+@media only screen and (max-width: 400px) {
+  main {
+    width: 100%;
+    min-width: initial;
+  }
+}
