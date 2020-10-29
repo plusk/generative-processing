@@ -2,6 +2,7 @@
   --text: black;
   --background: antiquewhite;
   --padding: 50px;
+  --line-width: 2px;
 }
 
 body {
@@ -17,16 +18,28 @@ body {
 }
 
 header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
+  position: relative;
   width: 100vw;
   height: 75vh;
 
   font-family: "Montserrat", sans-serif;
-  background: linear-gradient(var(--primary), var(--background));
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 3fr 1fr;
+  grid-gap: var(--line-width);
+  background: var(--text);
+}
+
+header > div {
+  background: var(--background);
+}
+
+header > div:not(.empty) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  grid-column: 2;
+  padding: var(--padding);
 }
 
 h1 {
@@ -77,11 +90,11 @@ main .sketch-entrance {
 }
 
 footer {
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   margin-top: var(--padding);
-  border-top: 1px solid var(--text);
+  border-top: var(--line-width) solid var(--text);
   padding-top: var(--padding);
 }
 
