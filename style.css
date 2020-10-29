@@ -19,7 +19,7 @@ body {
 
 header {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 75vh;
 
   font-family: "Montserrat", sans-serif;
@@ -28,6 +28,7 @@ header {
   grid-template-rows: 3fr 1fr;
   grid-gap: var(--line-width);
   background: var(--text);
+  margin: var(--padding) 0;
 }
 
 header > div {
@@ -93,7 +94,7 @@ main .sketch-entrance {
 }
 
 footer {
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   margin-top: var(--padding);
@@ -138,6 +139,7 @@ footer > * + * {
   #header-items {
     grid-row: 1 / -1;
     grid-column: 1 / -1;
+    padding: var(--padding) 0;
   }
 
   h1 {
