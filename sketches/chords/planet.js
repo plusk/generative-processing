@@ -20,11 +20,11 @@ const RADIUS = 400;
 const LINE_COUNT = 10;
 
 /* How swiftly the lines will move around (lower is slower) */
-const NOISE_SPEED = 0.02;
+const NOISE_SPEED = 0.04;
 
 /* How opaque the lines will be, lower means more transparent */
 /* Lower will be smoother, but also takes longer to fill the circle */
-const OPACITY = 0.2;
+const OPACITY = 0.25;
 const STROKE_WEIGHT = 1;
 
 /* Enable to use randomness instead of noise to select line locations */
@@ -36,8 +36,8 @@ const IS_SYMMETRICAL = false;
 
 /* If not IS_RANDOM: noise will naturally lean towards an angle */
 /* Enable this to vary where the angle is, or disable and specify your own */
-const RANDOM_BIASED_ANGLE = true;
-let BIASED_ANGLE = Math.PI / 2;
+const RANDOM_BIASED_ANGLE = false;
+let BIASED_ANGLE = Math.PI / 4;
 
 /* If not IS_RANDOM: this value effectively says how strong the bias is */
 /* A lower value means the bias is strong, higher means near-random lines */
