@@ -4,7 +4,7 @@
   "description": "it is what it is and it ain't what it ain't",
   "main": "base.js",
   "dependencies": {
-    "browser-sync": "^2.26.12",
+    "browser-sync": "^2.26.13",
     "p5": "^1.1.9"
   },
   "devDependencies": {},
