@@ -53,7 +53,7 @@ const ROTATION_SPEED = 0.001;
 */
 
 function preload() {
-  PALETTES = loadJSON("palettes.json");
+  PALETTES = loadJSON("/palettes.json");
 }
 
 function setup() {
