@@ -52,7 +52,7 @@ main {
   display: grid;
   grid-gap: calc(var(--padding) / 2);
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 200px;
+  grid-auto-rows: 40vw;
 }
 
 main .sketch-entrance {
@@ -98,13 +98,33 @@ footer {
   padding-top: var(--padding);
 }
 
+footer > a {
+  transition: opacity 0.2s;
+}
+
+footer > a:hover {
+  opacity: 0.5;
+}
+
+footer > a > img {
+  width: var(--padding);
+}
+
 footer > * + * {
-  margin-left: 25px;
+  margin-left: var(--padding);
 }
 
 @media only screen and (max-width: 400px) {
-  main {
-    width: 100%;
-    min-width: initial;
+  :root {
+    --padding: 25px;
+  }
+
+  body {
+    padding: 0 var(--padding) var(--padding);
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
   }
 }
