@@ -4,27 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Generative Processing</title>
-
-    <!-- Some super basic styling for the canvas -->
-    <style>
-      body {
-        display: grid;
-        place-items: center;
-        margin: 0;
-      }
-      canvas {
-        width: initial !important;
-        height: 100vh !important;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      }
-    </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-
-    <!-- Change the path below to switch between sketches -->
-    <script src="./workshop/perlin.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- P5 will insert a canvas tag here -->
+    <header>
+      <div class="empty"></div>
+      <div id="header-items">
+        <h1>Big text</h1>
+        <p>Slightly smaller text</p>
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+    </header>
+    <main>
+      <a class="sketch-entrance" href="./gallery/chords.html">
+        <div>Chords</div>
+        <img src="/gallery/thumbs/chords.png" alt="chords" />
+      </a>
+      <a class="sketch-entrance" href="./gallery/recursion.html">
+        <div>Recursion</div>
+        <img src="/gallery/thumbs/recursion.png" alt="recursion" />
+      </a>
+      <a class="sketch-entrance" href="./gallery/layers.html">
+        <div>Layers</div>
+        <img src="/gallery/thumbs/layers.png" alt="layers" />
+      </a>
+      <a class="sketch-entrance" href="./gallery/perlin.html">
+        <div>Perlin</div>
+        <img src="/gallery/thumbs/perlin.png" alt="perlin" />
+      </a>
+    </main>
+    <footer>
+      <a href="https://www.instagram.com/anders.larsen.96/"
+        ><img src="/gallery/instagram.svg" alt="Instagram"
+      /></a>
+      <a href="https://github.com/plusk"
+        ><img src="/gallery/github.svg" alt="GitHub"
+      /></a>
+    </footer>
   </body>
 </html>

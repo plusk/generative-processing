@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "vintage";
+const PALETTE_NAME = "symmeblu";
 
 const STROKE_WEIGHT = 2;
 const OPACITY = 1;
@@ -68,7 +68,7 @@ const DOT_LINES = false;
 const ACTIVE_WALKERS = [];
 
 function preload() {
-  PALETTES = loadJSON("palettes.json");
+  PALETTES = loadJSON("/palettes.json");
 }
 
 function setup() {
