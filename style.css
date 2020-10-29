@@ -1,45 +1,44 @@
 :root {
   --primary: #b3ffab;
   --text: #333;
-  --background: antiquewhite;
+  --background: oldlace;
   --background-contrast: white;
   --padding: 50px;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--padding);
+
   color: var(--text);
   background: var(--background);
-}
-
-body > *:not(header) {
-  width: 75%;
-  margin: 0 auto;
-  padding: var(--padding);
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
 }
 
 header {
-  font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(var(--primary), var(--background));
+
+  width: 100vw;
   height: 75vh;
+  margin: calc(-1 * var(--padding));
+
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(var(--primary), var(--background));
 }
 
-header > h1 {
+h1 {
   font-size: 5rem;
-}
-
-header > p {
-  font-size: 3rem;
+  margin: 1rem 0;
 }
 
 main {
   min-width: 500px;
-  background: var(--background-contrast);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 main > * + * {
