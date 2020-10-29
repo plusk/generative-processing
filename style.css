@@ -34,7 +34,7 @@ header > div {
   background: var(--background);
 }
 
-header > div:not(.empty) {
+#header-items {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -42,9 +42,12 @@ header > div:not(.empty) {
   padding: var(--padding);
 }
 
+#header-items > * + * {
+  margin-top: 1rem;
+}
+
 h1 {
   font-size: 5rem;
-  margin: 1rem 0;
 }
 
 main {
@@ -114,14 +117,27 @@ footer > * + * {
   margin-left: var(--padding);
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 1000px) {
   :root {
     --padding: 25px;
   }
 
   body {
-    padding: 0 var(--padding) var(--padding);
+    padding: var(--padding);
     font-size: 1rem;
+  }
+
+  header {
+    height: unset;
+  }
+
+  .empty {
+    display: none;
+  }
+
+  #header-items {
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
   }
 
   h1 {
