@@ -8,7 +8,7 @@ The `talk/` folder is part of a code walkthrough for a short talk I held for Bek
 
 The `workshop/` folder is part of a workshop i held for the student organization [Online](http://online.ntnu.no/) through Bekk in October 2020.
 
-The `base.js` file provides a base template for new sketches and is iterated on continuously, but does nothing by itself.
+The `sketches/base.js` file provides a base template for new sketches and is iterated on continuously, but does nothing by itself.
 
 ### Setup
 
