@@ -40,27 +40,25 @@ const template = (sketch) => `
 </html>
 `;
 
-const compiledData = data.map((entry) => {
+const pathToHtmlPath = (filePath) =>
+  path.join(
+    path.dirname(filePath),
+    path.basename(filePath, path.extname(filePath)) + ".html"
+  );
+
+data.map((entry) => {
   console.log(`Building ${entry.title}`);
 
   const filePath = `${dir}/${entry.path}`;
 
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
-  const finalFilePath = path.join(
-    path.dirname(filePath),
-    path.basename(filePath, path.extname(filePath)) + ".html"
-  );
+  const finalFilePath = pathToHtmlPath(filePath);
 
   fs.writeFileSync(finalFilePath, template(entry), function (err) {
     if (err) throw err;
     console.log("Saved!");
   });
-
-  return {
-    finalFilePath,
-    ...entry,
-  };
 });
 
 console.log("Copying style files");
@@ -95,7 +93,7 @@ const frontpageTemplate = (entries) => `
       ${entries
         .map(
           (entry) => `
-        <a class="sketch-entrance" href="/${entry.finalFilePath}">
+        <a class="sketch-entrance" href="/${pathToHtmlPath(entry.path)}">
           <div>${entry.title}</div>
           <img src=${entry.img} alt=${entry.title} />
         </a>
@@ -121,11 +119,7 @@ const frontpageTemplate = (entries) => `
 
 console.log("Writing index.html");
 
-fs.writeFileSync(
-  `${dir}/index.html`,
-  frontpageTemplate(compiledData),
-  function (err) {
-    if (err) throw err;
-    console.log("Generated index");
-  }
-);
+fs.writeFileSync(`${dir}/index.html`, frontpageTemplate(data), function (err) {
+  if (err) throw err;
+  console.log("Generated index");
+});
