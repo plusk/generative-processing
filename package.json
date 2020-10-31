@@ -4,14 +4,11 @@
   "description": "it is what it is and it ain't what it ain't",
   "main": "base.js",
   "devDependencies": {
-    "browser-sync": "^2.26.13",
-    "gh-pages": "^3.1.0"
+    "browser-sync": "^2.26.13"
   },
   "scripts": {
     "start": "browser-sync start --server -f -w",
-    "build": "node build.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist/"
+    "build": "node build.js"
   },
   "repository": {
     "type": "git",
