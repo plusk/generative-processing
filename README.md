@@ -1,18 +1,18 @@
 ### Project structure
 
-The majority of the work can be found in the `sketches/` directory. Some sketches have been posted on Instagram, others are still missing a certain _je ne sais quoi_, and some are just straight-up duds.
+This repository serves as both a collection of generative artwork, and a website displaying some of that artwork. The majority of the work can be found in the `sketches/` directory. Some sketches have been posted on Instagram, others are still missing a certain _je ne sais quoi_, and some are just straight-up duds. The sketches I deem worthy are added to `data.js`, which will then be mapped out on the [website](https://plusk.no/), hosted on GitHub Pages. 
 
 `index.html` provides an entry point for the project, where the `script` tag at the bottom determines which sketch will be viewed.
 
 The `talk/` folder is part of a code walkthrough for a short talk I held for Bekk in September 2020. The talk can be found in Norwegian [here](https://oi.bekk.no/pangea/foredrag/9).
 
-The `workshop/` folder is part of a workshop i held for the student organization [Online](http://online.ntnu.no/) through Bekk in October 2020.
+The `workshop/` folder is part of a workshop I held for the student organization [Online](http://online.ntnu.no/) through Bekk in October 2020.
 
 The `sketches/base.js` file provides a base template for new sketches and is iterated on continuously, but does nothing by itself.
 
 ### Setup
 
-There isn't a lot required to get going, but you'll need P5 itself and a local server.
+There isn't a lot required to get going, but you'll want a local server for hot reloading.
 
 ```bash
 npm install
@@ -25,6 +25,8 @@ npm start
 ```
 
 The sketch will then be live on [http://localhost:3000](http://localhost:3000). The webpage will automatically reload when saving files.
+
+If updating a sketch referenced in `data.js`, a GitHub Action will automatically update the website when the `master` branch is updated.
 
 ### Export
 
