@@ -125,3 +125,5 @@ fs.writeFileSync(`${dir}/index.html`, frontpageTemplate(data), function (err) {
   if (err) throw err;
   console.log("Generated index");
 });
+
+fs.copyFileSync("palettes.json", "dist/palettes.json");
