@@ -4,60 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Generative Processing</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      @media (orientation: landscape) {
+        canvas {
+          width: initial !important;
+          height: 100vh !important;
+        }
+      }
+
+      @media (orientation: portrait) {
+        canvas {
+          width: 100vw !important;
+          height: initial !important;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="/workshop/chords.js"></script>
   </head>
-  <body>
-    <header>
-      <div class="empty"></div>
-      <div id="header-items">
-        <h1>Big text</h1>
-        <p>Slightly smaller text</p>
-      </div>
-      <div class="empty"></div>
-      <div class="empty"></div>
-    </header>
-    <main>
-      <a class="sketch-entrance" href="./gallery/chords.html">
-        <div>Chords</div>
-        <img
-          src="https://res.cloudinary.com/plusk/image/upload/v1603995119/chords-base_zpogba.png"
-          alt="chords"
-        />
-      </a>
-      <a class="sketch-entrance" href="./gallery/recursion.html">
-        <div>Recursion</div>
-        <img
-          src="https://res.cloudinary.com/plusk/image/upload/v1603995110/recursion-base_cppogf.png"
-          alt="recursion"
-        />
-      </a>
-      <a class="sketch-entrance" href="./gallery/layers.html">
-        <div>Layers</div>
-        <img
-          src="https://res.cloudinary.com/plusk/image/upload/v1603995123/layers-base_b8shsb.png"
-          alt="layers"
-        />
-      </a>
-      <a class="sketch-entrance" href="./gallery/perlin.html">
-        <div>Perlin</div>
-        <img
-          src="https://res.cloudinary.com/plusk/image/upload/v1603995115/perlin-base_ysyw6i.png"
-          alt="perlin"
-        />
-      </a>
-    </main>
-    <footer>
-      <a href="https://www.instagram.com/anders.larsen.96/"
-        ><img src="/gallery/instagram.svg" alt="Instagram"
-      /></a>
-      <a href="https://github.com/plusk"
-        ><img src="/gallery/github.svg" alt="GitHub"
-      /></a>
-    </footer>
-  </body>
+  <body></body>
 </html>
