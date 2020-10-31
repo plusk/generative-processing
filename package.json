@@ -10,7 +10,8 @@
   "scripts": {
     "start": "browser-sync start --server -f -w",
     "build": "node build.js",
-    "deploy": "npm run build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist/"
   },
   "repository": {
     "type": "git",
