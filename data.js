@@ -1,11 +1,5 @@
 module.exports = [
   {
-    title: "bokeh",
-    path: "workshop/bokeh.js",
-    img:
-      "https://res.cloudinary.com/plusk/image/upload/v1604160298/bokeh-base_js9pqs.png",
-  },
-  {
     title: "chords",
     path: "workshop/chords.js",
     img:
