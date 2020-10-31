@@ -53,6 +53,8 @@ data.map((entry) => {
 
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
+  fs.copyFileSync(`./${entry.path}`, filePath);
+
   const finalFilePath = pathToHtmlPath(filePath);
 
   fs.writeFileSync(finalFilePath, template(entry), function (err) {
