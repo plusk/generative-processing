@@ -7,30 +7,30 @@ const PRINT_MODE = false;
 const RANDOM_PALETTE = false;
 const PALETTE_NAME = "stronk";
 
-const LAYER_COUNT = 10;
+const LAYER_COUNT = 100;
 
 /* The average radius of the full shape */
-const MEAN_RADIUS = 540;
+const MEAN_RADIUS = 675;
 
 /* Enable strokes on the border of each layer, specify weight if enabled */
 const HAS_STROKE = false;
 const STROKE_WEIGHT = 1;
 
 /* Layers are light to dark (from the center), enable to reverse it */
-const INVERTED_GRADIENT = false;
+const INVERTED_GRADIENT = true;
 
 /* Instead of gradient from light to dark, go from the fill color to dark */
-const CAP_LIGHTNESS = false;
+const CAP_LIGHTNESS = true;
 
 /* The degree to which noise affects the layers */
 /* Low values are blobby, high values are spikey */
-const NOISE_MULTIPLIER = 0.2;
+const NOISE_MULTIPLIER = 2;
 
 /* The speed at which the layers */
-const NOISE_SPEED = 0.0025;
+const NOISE_SPEED = 0.005;
 
 /* Mirror the layers on either axis */
-const SYMMETRICAL_X = false;
+const SYMMETRICAL_X = true;
 const SYMMETRICAL_Y = false;
 
 /* Background is determined by the gradient, but these flags may override it */
@@ -44,7 +44,7 @@ const USE_PALETTE_BACKGROUND = false;
 const POINT_COUNT = 500;
 
 /* Mild rotation, negative speed rotates counter-clockwise */
-const ROTATION_SPEED = 0.001;
+const ROTATION_SPEED = 0.0;
 
 /*
 

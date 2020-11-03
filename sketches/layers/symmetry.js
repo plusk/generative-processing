@@ -5,46 +5,47 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "genesis";
+const PALETTE_NAME = "stronk";
 
 const LAYER_COUNT = 10;
 
 /* The average radius of the full shape */
-const MEAN_RADIUS = 500;
+const MEAN_RADIUS = 675;
 
 /* Enable strokes on the border of each layer, specify weight if enabled */
-const HAS_STROKE = false;
-const STROKE_WEIGHT = 2;
+const HAS_STROKE = true;
+const STROKE_WEIGHT = 8;
 
 /* Layers are light to dark (from the center), enable to reverse it */
 const INVERTED_GRADIENT = true;
 
 /* Instead of gradient from light to dark, go from the fill color to dark */
-const CAP_LIGHTNESS = true;
+const CAP_LIGHTNESS = false;
 
 /* The degree to which noise affects the layers */
 /* Low values are blobby, high values are spikey */
-const NOISE_MULTIPLIER = 0.2;
+const NOISE_MULTIPLIER = 10;
 
 /* The speed at which the layers */
-const NOISE_SPEED = 0.005;
+const NOISE_SPEED = 0.002;
 
 /* Mirror the layers on either axis */
-const SYMMETRICAL_X = false;
-const SYMMETRICAL_Y = false;
+const SYMMETRICAL_X = true;
+const SYMMETRICAL_Y = true;
 
 /* Background is determined by the gradient, but these flags may override it */
 /* If both flags are true, palette background will be used */
-const USE_FILL_AS_BACKGROUND = false;
-const USE_PALETTE_BACKGROUND = true;
+const USE_FILL_AS_BACKGROUND = true;
+const USE_PALETTE_BACKGROUND = false;
 
 /* The amount of points that make up each layer, lower means "pointier" */
 /* For example 3 points mean triangular layers, 4 means squares */
 /* Higher might not be noticable, but will make for smoother borders */
-const POINT_COUNT = 500;
+const POINT_COUNT = NOISE_MULTIPLIER * NOISE_MULTIPLIER;
 
 /* Mild rotation, negative speed rotates counter-clockwise */
-const ROTATION_SPEED = 0.001;
+//const ROTATION_SPEED = 0.001;
+const ROTATION_SPEED = 0;
 
 /*
 
@@ -122,10 +123,10 @@ function drawLayer(r, i) {
   for (let a = 0; a < TWO_PI; a += TWO_PI / POINT_COUNT) {
     /* Maybe overcomplicated way of getting x and y coordinate in noise field */
     const xOff = SYMMETRICAL_Y
-      ? cos(a)
+      ? cos(a * NOISE_MULTIPLIER)
       : map(i * cos(a) + 1, -1, 1, 1, 1 + NOISE_MULTIPLIER);
     const yOff = SYMMETRICAL_X
-      ? sin(a)
+      ? sin(a * NOISE_MULTIPLIER)
       : map(i * sin(a) + 1, -1, 1, 1, 1 + NOISE_MULTIPLIER);
 
     /* Get noise based on x, y, and the "time" */
