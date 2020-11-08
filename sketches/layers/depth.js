@@ -10,7 +10,7 @@ const PALETTE_NAME = "stronk";
 const LAYER_COUNT = 50;
 
 /* The average radius of the full shape */
-const MEAN_RADIUS = 675;
+const MEAN_RADIUS = 1350; // 675 or 1350 are my favorites
 
 /* Enable strokes on the border of each layer, specify weight if enabled */
 const HAS_STROKE = false;
