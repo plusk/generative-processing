@@ -36,7 +36,7 @@ const SYMMETRICAL_Y = false;
 /* Background is determined by the gradient, but these flags may override it */
 /* If both flags are true, palette background will be used */
 const USE_FILL_AS_BACKGROUND = true;
-const USE_PALETTE_BACKGROUND = false;
+const USE_PALETTE_BACKGROUND = true;
 
 /* The amount of points that make up each layer, lower means "pointier" */
 /* For example 3 points mean triangular layers, 4 means squares */
@@ -57,7 +57,7 @@ function preload() {
 }
 
 function setup() {
-  const cnv = PRINT_MODE ? createCanvas(4960, 7016) : createCanvas(1080, 1350);
+  const cnv = PRINT_MODE ? createCanvas(4960, 7016) : createCanvas(1080, 720);
   cnv.mouseClicked(clickOnSave);
   pixelDensity(1);
 
@@ -82,7 +82,7 @@ function setup() {
 
 function draw() {
   /* Move coordinate system to center of canvas for easier trigonometry */
-  translate(width / 2, height / 2);
+  translate(width / 2, height);
 
   /* Home-made helper function to select background based on config */
   drawBackground();
