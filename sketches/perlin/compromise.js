@@ -5,39 +5,39 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "vintage";
+const PALETTE_NAME = "symmeblu";
 
-const STROKE_WEIGHT = 1;
-const OPACITY = 0.25;
+const STROKE_WEIGHT = 2;
+const OPACITY = 1;
 
 /* The amount of walkers that will be actively drawing each frame */
 /* Reducing increases performance, while increasing will fill in faster */
-const WALKER_COUNT = 10000;
+const WALKER_COUNT = 1000;
 
 /* The smoothness of the noise, makes a big difference */
 /* Lower values result in more gradual angle adjustments, a bit like zooming in */
 /* Higher values will lead to often more jagged lines, walkers gathering up more */
-const NOISE_ZOOM = 0.0025;
+const NOISE_ZOOM = 0.002;
 
 /* Disabling means every walker will have its own color */
 /* Enable to color the walkers based on their location / angle */
 /* Matching the stroke noise with the noise zoom make them mostly aligned */
 /* However, making the noise zooms slightly different offer more layered textures */
 const NOISED_STROKE = true;
-const STROKE_NOISE_ZOOM = 0.0025;
+const STROKE_NOISE_ZOOM = 0.01;
 
 /* The amount of steps a walker will take before being respawned */
 /* Longer steps will often lead to being able to gather more */
 /* Shorter steps will give a rougher or more hairy texture */
 /* A wider range also means more random respawns, and a more textured look */
-const MIN_STEPS = 10;
-const MAX_STEPS = 50;
+const MIN_STEPS = 50;
+const MAX_STEPS = 100;
 /* Shorter steps make smoother lines, while longer ones may be more jagged */
-const STEP_SIZE = 40 * STROKE_WEIGHT + 1;
+const STEP_SIZE = STROKE_WEIGHT + 1;
 
 /* Enable to clip the flow field by adding a big circle on it */
 /* Disabling reveals the flow field of the full canvas */
-const CLIP_CONTENT = false;
+const CLIP_CONTENT = true;
 const CLIP_RADIUS = 400;
 
 /* Enable to round angles to their nearest ANGLE_STEP */
@@ -53,11 +53,11 @@ let ANGLE_BIAS = Math.PI / 2;
 /* Enable for adding "erasers" that draw more background on the noise */
 /* Disabling or reducing will likely lead to a less textured result*/
 const ERASERS_ENABLED = true;
-const ERASER_SPAWN_CHANCE = 0.1;
+const ERASER_SPAWN_CHANCE = 0.5;
 
 /* Instead of lines, draw strings of dots */
 /* Works well with very high step sizes */
-const DOT_LINES = true;
+const DOT_LINES = false;
 
 /*
 
