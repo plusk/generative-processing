@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "mono"; // mono, termos, pastella
+const PALETTE_NAME = "mono"; // mono, pastella
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 0.1;
@@ -17,14 +17,14 @@ const WALKER_COUNT = 2000;
 /* The smoothness of the noise, makes a big difference */
 /* Lower values result in more gradual angle adjustments, a bit like zooming in */
 /* Higher values will lead to often more jagged lines, walkers gathering up more */
-const NOISE_ZOOM = 0.002;
+const NOISE_ZOOM = 0.003;
 
 /* Disabling means every walker will have its own color */
 /* Enable to color the walkers based on their location / angle */
 /* Matching the stroke noise with the noise zoom make them mostly aligned */
 /* However, making the noise zooms slightly different offer more layered textures */
 const NOISED_STROKE = false;
-const STROKE_NOISE_ZOOM = 0.0025;
+const STROKE_NOISE_ZOOM = 0.003;
 
 /* The amount of steps a walker will take before being respawned */
 /* Longer steps will often lead to being able to gather more */
@@ -48,7 +48,7 @@ const ANGLE_STEP = Math.PI / 2;
 /* Noise will naturally lean towards an angle */
 /* Enable this to vary where the angle is, or disable and specify your own */
 const RANDOM_ANGLE_BIAS = true;
-let ANGLE_BIAS = Math.PI / 2;
+let ANGLE_BIAS = Math.PI / 4;
 
 /* Enable for adding "erasers" that draw more background on the noise */
 /* Disabling or reducing will likely lead to a less textured result*/
