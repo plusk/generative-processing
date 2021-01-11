@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "vintage";
+const PALETTE_NAME = "vintage"; // sydney? symmeblu? termos, vintage, pastella
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 0.25;
@@ -24,7 +24,7 @@ const NOISE_ZOOM = 0.0025;
 /* Matching the stroke noise with the noise zoom make them mostly aligned */
 /* However, making the noise zooms slightly different offer more layered textures */
 const NOISED_STROKE = true;
-const STROKE_NOISE_ZOOM = 0.0025;
+const STROKE_NOISE_ZOOM = 0.003;
 
 /* The amount of steps a walker will take before being respawned */
 /* Longer steps will often lead to being able to gather more */
