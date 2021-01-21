@@ -5,26 +5,26 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "symmeblu";
+const PALETTE_NAME = "symmeblu"; // symmeblu, termos
 
 const STROKE_WEIGHT = 2;
 const OPACITY = 1;
 
 /* The amount of walkers that will be actively drawing each frame */
 /* Reducing increases performance, while increasing will fill in faster */
-const WALKER_COUNT = 1000;
+const WALKER_COUNT = 500;
 
 /* The smoothness of the noise, makes a big difference */
 /* Lower values result in more gradual angle adjustments, a bit like zooming in */
 /* Higher values will lead to often more jagged lines, walkers gathering up more */
-const NOISE_ZOOM = 0.002;
+const NOISE_ZOOM = 0.0015;
 
 /* Disabling means every walker will have its own color */
 /* Enable to color the walkers based on their location / angle */
 /* Matching the stroke noise with the noise zoom make them mostly aligned */
 /* However, making the noise zooms slightly different offer more layered textures */
 const NOISED_STROKE = true;
-const STROKE_NOISE_ZOOM = 0.02;
+const STROKE_NOISE_ZOOM = 0.015;
 
 /* The amount of steps a walker will take before being respawned */
 /* Longer steps will often lead to being able to gather more */

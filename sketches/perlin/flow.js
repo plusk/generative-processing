@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "symmeblu";
+const PALETTE_NAME = "symmeblu"; // symmeblu, termos
 
 const STROKE_WEIGHT = 2;
 const OPACITY = 1;
