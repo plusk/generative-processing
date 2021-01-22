@@ -3,6 +3,10 @@
     "bg": "#000000",
     "colors": ["#ffffff"]
   },
+  "monomild": {
+    "bg": "#333333",
+    "colors": ["#FFFFFF"]
+  },
   "onom": {
     "bg": "#FAEBD7",
     "colors": ["#000000"]

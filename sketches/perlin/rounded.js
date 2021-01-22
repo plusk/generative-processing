@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "mono"; // mono, pastella
+const PALETTE_NAME = "monomild"; // monomild, symmeblu, termos, vintage, pastella
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 0.1;
@@ -23,15 +23,15 @@ const NOISE_ZOOM = 0.003;
 /* Enable to color the walkers based on their location / angle */
 /* Matching the stroke noise with the noise zoom make them mostly aligned */
 /* However, making the noise zooms slightly different offer more layered textures */
-const NOISED_STROKE = false;
+const NOISED_STROKE = true;
 const STROKE_NOISE_ZOOM = 0.003;
 
 /* The amount of steps a walker will take before being respawned */
 /* Longer steps will often lead to being able to gather more */
 /* Shorter steps will give a rougher or more hairy texture */
 /* A wider range also means more random respawns, and a more textured look */
-const MIN_STEPS = 50;
-const MAX_STEPS = 100;
+const MIN_STEPS = 100;
+const MAX_STEPS = 150;
 /* Shorter steps make smoother lines, while longer ones may be more jagged */
 const STEP_SIZE = STROKE_WEIGHT + 1;
 
@@ -58,6 +58,8 @@ const ERASER_SPAWN_CHANCE = 0.5;
 /* Instead of lines, draw strings of dots */
 /* Works well with very high step sizes */
 const DOT_LINES = false;
+
+const FRAME_LIMIT = 500;
 
 /*
 
@@ -108,7 +110,16 @@ function setup() {
   /* Determines the amount of noise layers and their effect on the final field */
   noiseDetail(3, 0.75);
 
-  if (RANDOM_ANGLE_BIAS) ANGLE_BIAS = random(TWO_PI);
+  if (RANDOM_ANGLE_BIAS) ANGLE_BIAS = random([
+    QUARTER_PI * 1,
+    QUARTER_PI * 2,
+    QUARTER_PI * 3,
+    QUARTER_PI * 4,
+    QUARTER_PI * 5,
+    QUARTER_PI * 6,
+    QUARTER_PI * 7,
+    QUARTER_PI * 8,
+  ]);
 
   /* Intiialize all walkers into the ACTIVE_WALKER list */
   for (let i = 0; i < WALKER_COUNT; i++) {
@@ -172,6 +183,11 @@ function draw() {
   }
   /* After all walkers have been drawn for the frame, add a clipping circle if desired */
   if (CLIP_CONTENT) drawClipCircle();
+
+  /* End drawing after a set amount of frames */
+  if(frameCount > FRAME_LIMIT) {
+    noLoop();
+  }
 }
 
 /* Set new coordinates, a random amount of steps, and a color for the walker */
