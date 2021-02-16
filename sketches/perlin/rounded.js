@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "monomild"; // monomild, symmeblu, termos, vintage, pastella
+const PALETTE_NAME = "vintage"; // monomild, symmeblu, termos, vintage, pastella
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 0.1;

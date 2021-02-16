@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "termos"; // monomild, symmeblu, termos, vintage, pastella
+const PALETTE_NAME = "vintage"; // monomild, symmeblu, termos, vintage, pastella
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 0.25;
@@ -17,7 +17,7 @@ const WALKER_COUNT = 10000;
 /* The smoothness of the noise, makes a big difference */
 /* Lower values result in more gradual angle adjustments, a bit like zooming in */
 /* Higher values will lead to often more jagged lines, walkers gathering up more */
-const NOISE_ZOOM = 0.0025;
+const NOISE_ZOOM = 0.05;
 
 /* Disabling means every walker will have its own color */
 /* Enable to color the walkers based on their location / angle */
@@ -37,13 +37,13 @@ const STEP_SIZE = 40 * STROKE_WEIGHT + 1;
 
 /* Enable to clip the flow field by adding a big circle on it */
 /* Disabling reveals the flow field of the full canvas */
-const CLIP_CONTENT = false;
+const CLIP_CONTENT = true;
 const CLIP_RADIUS = 400;
 
 /* Enable to round angles to their nearest ANGLE_STEP */
 /* This effectively divides the flow field into angles based */
-const ROUNDED_ANGLES = false;
-const ANGLE_STEP = Math.PI / 3;
+const ROUNDED_ANGLES = true;
+const ANGLE_STEP = Math.PI / 2;
 
 /* Noise will naturally lean towards an angle */
 /* Enable this to vary where the angle is, or disable and specify your own */
@@ -110,7 +110,16 @@ function setup() {
   /* Determines the amount of noise layers and their effect on the final field */
   noiseDetail(3, 0.75);
 
-  if (RANDOM_ANGLE_BIAS) ANGLE_BIAS = random(TWO_PI);
+  if (RANDOM_ANGLE_BIAS) ANGLE_BIAS = random([
+    QUARTER_PI * 1,
+    QUARTER_PI * 2,
+    QUARTER_PI * 3,
+    QUARTER_PI * 4,
+    QUARTER_PI * 5,
+    QUARTER_PI * 6,
+    QUARTER_PI * 7,
+    QUARTER_PI * 8,
+  ]);
 
   /* Intiialize all walkers into the ACTIVE_WALKER list */
   for (let i = 0; i < WALKER_COUNT; i++) {
@@ -176,6 +185,7 @@ function draw() {
   if (CLIP_CONTENT) drawClipCircle();
 
   /* End drawing after a set amount of frames */
+  console.log(frameCount);
   if(frameCount > FRAME_LIMIT) {
     noLoop();
   }
