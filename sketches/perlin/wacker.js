@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "vintage"; // monomild, symmeblu, termos, vintage, pastella
+const PALETTE_NAME = "termos"; // termos, vintage, pastella
 
 const STROKE_WEIGHT = 1;
 const OPACITY = 0.25;
@@ -59,7 +59,7 @@ const ERASER_SPAWN_CHANCE = 0.1;
 /* Works well with very high step sizes */
 const DOT_LINES = true;
 
-const FRAME_LIMIT = 500;
+const FRAME_LIMIT = 250;
 
 /*
 
@@ -185,7 +185,6 @@ function draw() {
   if (CLIP_CONTENT) drawClipCircle();
 
   /* End drawing after a set amount of frames */
-  console.log(frameCount);
   if(frameCount > FRAME_LIMIT) {
     noLoop();
   }
