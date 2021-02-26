@@ -26,7 +26,7 @@ To run the server locally:
 npm start
 ```
 
-The sketch will then be live on [http://localhost:3000](http://localhost:3000). The webpage will automatically reload when saving files.
+The sketch will then be live on [http://localhost:3000](http://localhost:3000). Change the script tag at the bottom of `index.html` to switch sketches to whatever file you want. The webpage will automatically reload when saving files.
 
 If updating a sketch referenced in `data.js`, a GitHub Action will automatically update the website when the `master` branch is updated.
 
