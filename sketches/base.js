@@ -3,9 +3,9 @@ let PALETTES, COLORS, STROKE, BG;
 const EXPORT = false;
 
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "onom";
+const PALETTE_NAME = "termos";
 
-const STROKE_WEIGHT = 2;
+const STROKE_WEIGHT = 10;
 const OPACITY = 1;
 
 function preload() {
@@ -13,7 +13,7 @@ function preload() {
 }
 
 function setup() {
-  const cnv = createCanvas(1080, 1080); // 1080, 1350
+  const cnv = createCanvas(1080, 1350); // 1080, 1350
   cnv.mouseClicked(clickOnSave);
   if (EXPORT) pixelDensity(1);
   if (EXPORT) frameRate(4);
@@ -40,7 +40,7 @@ function setup() {
 }
 
 function draw() {
-  circle(width / 2, height / 2, 100);
+  circle(width / 2, height / 2, 200);
   // beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP
 }
 
