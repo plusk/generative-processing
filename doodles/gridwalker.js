@@ -9,17 +9,18 @@ const STROKE_WEIGHT = 0;
 const OPACITY = 1;
 
 const PADDING = 0;
-const SIZE = 15;
+const SIZE = 10;
 
 const gridX = 64;
 const gridY = gridX * 1.25;
-const gridZ = 10;
+const gridZ = 5;
 
 const RANDOM_COLORS = false;
 
 const DECAY = 0.02;
 
-const WALKER_COUNT = 10;
+const WALKER_COUNT = 100;
+const CIRCULAR = false;
 
 class Walker {
   constructor(x, y) {
@@ -48,41 +49,23 @@ class Walker {
 }
 
 class Cell {
-  constructor(value, color) {
-    this.value = value;
+  constructor(x, y, color) {
     this.color = color;
+    this.value = 0;
+    this.x = x;
+    this.y = y;
+    this.z = 0;
   }
 }
 
 class Grid {
-  constructor(x, y, z, value, colors) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-
+  constructor(x1, y1, x2, y2, colors) {
     const g = [];
-    for (let r = 0; r < y; r++) {
+    for (let y = 0; y < gridY; y++) {
       const row = [];
-      for (let c = 0; c < x; c++) {
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        row.push(new Cell(value, color));
-      }
-      g.push(row);
-    }
-    this.g = g;
-  }
-
-  draw(x1, y1, x2, y2) {
-    for (let y = 0; y < this.g.length; y++) {
-      const r = this.g[y];
-      for (let x = 0; x < r.length; x++) {
-        const c = r[x];
-        if (c.value > 0) {
-        }
-        this.decrementCell(x, y);
-
-        const xAmt = x / (r.length - 1);
-        const yAmt = y / (this.g.length - 1);
+      for (let x = 0; x < gridX; x++) {
+        const xAmt = x / (gridX - 1);
+        const yAmt = y / (gridY - 1);
 
         const xRange = x2 - x1 - SIZE;
         const yRange = y2 - y1 - SIZE;
@@ -90,37 +73,52 @@ class Grid {
         const xCoordinate = x1 + xAmt * xRange + SIZE / 2;
         const yCoordinate = y1 + yAmt * yRange + SIZE / 2;
 
-        const fillAmt = c.value / this.z;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        row.push(new Cell(xCoordinate, yCoordinate, color));
+      }
+      g.push(row);
+    }
+    this.g = g;
+  }
 
-        const coleur = color(
-          hue(lerpColor(BG, c.color, 1)),
-          saturation(lerpColor(BG, c.color, fillAmt)),
-          lightness(lerpColor(BG, c.color, fillAmt))
-        );
+  draw() {
+    for (let y = 0; y < this.g.length; y++) {
+      const r = this.g[y];
+      for (let x = 0; x < r.length; x++) {
+        const c = r[x];
+        if (c.value > 0) {
+          this.decrementCell(x, y);
 
-        fill(coleur);
+          const fillAmt = c.z / gridZ;
 
-        circle(xCoordinate, yCoordinate, SIZE);
+          const coleur = color(
+            hue(lerpColor(BG, c.color, 1)),
+            saturation(lerpColor(BG, c.color, fillAmt)),
+            lightness(lerpColor(BG, c.color, fillAmt))
+          );
+
+          fill(coleur);
+
+          CIRCULAR ? circle(c.x, c.y, SIZE) : rect(c.x, c.y, SIZE);
+        }
       }
     }
   }
 
-  getCellValue(x, y) {
-    const value = this.g[y][x].value;
-    return value;
-  }
-
   incrementCell(x, y) {
-    const value = this.g[y][x].value;
-    if (value < this.z) {
-      this.g[y][x].value = value + 1;
+    const cell = this.g[y][x];
+    if (cell.value < gridZ) {
+      cell.value++;
     }
   }
 
   decrementCell(x, y) {
-    const value = this.g[y][x].value;
-    if (value > 0) {
-      this.g[y][x].value = value - DECAY;
+    const cell = this.g[y][x];
+    if (cell.value > 0) {
+      cell.value -= DECAY;
+      cell.z = round(cell.value);
+    } else if (cell.value < 0) {
+      cell.value = 0;
     }
   }
 }
@@ -155,15 +153,19 @@ function setup() {
   stroke(STROKE);
   background(BG);
 
-  if (RANDOM_COLORS) {
-    g = new Grid(gridX, gridY, gridZ, 0, COLORS);
-  } else {
-    g = new Grid(gridX, gridY, gridZ, 0, [random(COLORS)]);
-  }
+  g = new Grid(
+    PADDING,
+    PADDING,
+    width - PADDING,
+    height - PADDING,
+    RANDOM_COLORS ? COLORS : [random(COLORS)]
+  );
 
   for (let i = 0; i < WALKER_COUNT; i++) {
     walkers.push(new Walker(floor(random(gridX)), floor(random(gridY))));
   }
+
+  rectMode(CENTER);
 
   //drawingContext.shadowBlur = STROKE_WEIGHT;
   //drawingContext.shadowColor = STROKE;
@@ -173,7 +175,7 @@ let x = 0;
 let y = 0;
 
 function draw() {
-  g.draw(PADDING, PADDING, width - PADDING, height - PADDING);
+  g.draw();
 
   for (let i = 0; i < walkers.length; i++) {
     const w = walkers[i];
