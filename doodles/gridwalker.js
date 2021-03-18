@@ -15,12 +15,11 @@ const gridX = 64;
 const gridY = gridX * 1.25;
 const gridZ = 5;
 
-const RANDOM_COLORS = false;
-
 const DECAY = 0.02;
+const WALKER_COUNT = 50;
 
-const WALKER_COUNT = 100;
-const CIRCULAR = false;
+const RANDOM_COLORS = true;
+const CIRCULAR = true;
 
 class Walker {
   constructor(x, y) {

@@ -5,7 +5,7 @@ const PRINT_MODE = false;
 
 /* Get a random palette or choose a specific one from palettes.json */
 const RANDOM_PALETTE = false;
-const PALETTE_NAME = "genesis";
+const PALETTE_NAME = "stronk";
 
 const LAYER_COUNT = 10;
 
@@ -17,10 +17,10 @@ const HAS_STROKE = false;
 const STROKE_WEIGHT = 1;
 
 /* Layers are light to dark (from the center), enable to reverse it */
-const INVERTED_GRADIENT = false;
+const INVERTED_GRADIENT = true;
 
 /* Instead of gradient from light to dark, go from the fill color to dark */
-const CAP_LIGHTNESS = false;
+const CAP_LIGHTNESS = true;
 
 /* The degree to which noise affects the layers */
 /* Low values are blobby, high values are spikey */
@@ -35,8 +35,8 @@ const SYMMETRICAL_Y = false;
 
 /* Background is determined by the gradient, but these flags may override it */
 /* If both flags are true, palette background will be used */
-const USE_FILL_AS_BACKGROUND = true;
-const USE_PALETTE_BACKGROUND = false;
+const USE_FILL_AS_BACKGROUND = false;
+const USE_PALETTE_BACKGROUND = true;
 
 /* The amount of points that make up each layer, lower means "pointier" */
 /* For example 3 points mean triangular layers, 4 means squares */
