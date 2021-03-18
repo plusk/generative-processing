@@ -1,9 +1,9 @@
 /* The degree to which noise affects the blobs */
 /* Low values are blobby, high values are spikey */
-const BLOB_SPIKYNESS = 0.5;
+const BLOB_SPIKYNESS = 0.35;
 
 /* How much effect does each peak have on the radius? */
-const BLOB_AMP = 1.2;
+const BLOB_AMP = 1;
 
 const BLOB_SPEED = 0.002;
 
@@ -14,7 +14,7 @@ const STROKE_WEIGHT = 2;
 /* Higher might not be noticable, but will make for smoother borders */
 const POINT_COUNT = 300;
 
-const TEXT_SIZE = 32;
+const TEXT_SIZE = 48;
 
 /*
 
@@ -23,12 +23,16 @@ const TEXT_SIZE = 32;
 */
 
 function windowResized() {
-  resizeCanvas(windowWidth, round(windowWidth / 2.75));
+  resizeCanvas(1080, 1080);
+  // resizeCanvas(1080, 1920);
+  // resizeCanvas(windowWidth, round(windowWidth / 2.75));
 }
 
 function setup() {
   colorMode(HSL);
-  const cnv = createCanvas(windowWidth, round(windowWidth / 2.75));
+  const cnv = createCanvas(1080, 1080);
+  // const cnv = createCanvas(1080, 1920);
+  // const cnv = createCanvas(windowWidth, round(windowWidth / 2.75));
   cnv.mouseClicked(clickOnSave);
 
   strokeWeight(STROKE_WEIGHT);
@@ -59,13 +63,6 @@ function draw() {
   /* Home-made helper function to select background based on config */
   background(BG);
 
-  /* Because layers are drawn in sequence, draw large layers on bottom first */
-  fill(PALETTE.white);
-  drawBlob(1, width / 2, height / 2, height / 2);
-
-  fill(PALETTE.dark);
-  drawBlob(2, width / 2, height / 2, height / 2);
-
   fill(PALETTE.yellow);
   drawBlob(100, 0, height, height * 0.4);
 
@@ -84,13 +81,21 @@ function draw() {
   fill(PALETTE.teal);
   drawBlob(600, width, height / 2, height / 2);
 
-  fill(PALETTE.white);
-  text("Frokostseminaret", width / 2, height / 2);
-  text("for frontend", width / 2, height / 2 + TEXT_SIZE);
+  noStroke();
 
   drawBlob(100, 0, 0, height * 1.25, 0, PI, true);
   drawBlob(200, width, height, height, PI, PI + HALF_PI, true);
   drawBlob(201, width, height, height * 0.75, PI, PI + HALF_PI, true);
+
+  //fill(PALETTE.white);
+  //drawBlob(1, width / 2, height / 2, height / 2);
+
+  fill(PALETTE.dark);
+  drawBlob(2, width / 2, height / 2, height / 2);
+
+  fill(PALETTE.white);
+  text("Frokostseminaret", width / 2, height / 2);
+  text("for frontend", width / 2, height / 2 + TEXT_SIZE);
 }
 
 function drawBlob(
@@ -125,14 +130,12 @@ function drawBlob(
     const y = 0.2 + noised * r * BLOB_AMP * sin(a);
     vertex(cx + x, cy + y);
   }
-  if (line) {
-    endShape();
-  } else {
-    endShape(CLOSE);
-  }
 
   if (line) {
+    endShape();
     noStroke();
+  } else {
+    endShape(CLOSE);
   }
 }
 
