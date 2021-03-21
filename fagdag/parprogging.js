@@ -1,13 +1,17 @@
-let vMax, vMin;
+let vMax, vMin, PALETTE, BEKK_PALETTE, BLOBS;
 
 // How spiky the blobs are
 const BLOB_AMP = 0.5;
+const BLOB_LINE_AMP = 0.75;
 
-const BLOB_SPEED = 0.002;
+// Best results with value >= 2
+const BLOB_EASE_AMP = 3;
+
+const BLOB_ANIMATION_SPEED = 0.002;
 
 const STROKE_WEIGHT = 2;
 
-const ROTATION_SPEED = 0.001;
+const ROTATION_SPEED = 0.002;
 
 /* The amount of points that make up each layer, lower means "pointier" */
 /* For example 3 points mean triangular layers, 4 means squares */
@@ -15,6 +19,8 @@ const ROTATION_SPEED = 0.001;
 const MAX_POINT_DIST = 10;
 
 const TEXT_SIZE = 48;
+
+const RANDOM_COLORS = false;
 
 /*
 
@@ -29,6 +35,11 @@ function windowResized() {
   resizeCanvas(1080, 1080);
   // resizeCanvas(1080, 1920);
   // resizeCanvas(windowWidth, round(windowWidth / 2.75));
+}
+
+function randomColor() {
+  const keys = Object.keys(BEKK_PALETTE);
+  return BEKK_PALETTE[keys[(keys.length * Math.random()) << 0]];
 }
 
 function setup() {
@@ -53,15 +64,135 @@ function setup() {
     teal: color("#02dfc9"),
     blue: color("#293895"),
   };
+
+  BEKK_PALETTE = {
+    sort: color("#0E0E0E"),
+    hvit: color("#FFFFFF"),
+    soloppgang: color("#FFB88D"),
+    soloppgang_kontrast: color("#FF8034"),
+    regn: color("#BCCEDD"),
+    regn_kontrast: color("#7E9CB9"),
+    skyfritt: color("#B1E8FF"),
+    skyfritt_kontrast: color("#43CBFF"),
+    overskyet: color("#E7E7E7"),
+    overskyet_kontrast: color("#CECECE"),
+    solnedgang: color("#FF9999"),
+    solnedgang_kontrast: color("#FF5B5B"),
+    sol: color("#FFF2AD"),
+    sol_kontrast: color("#FFF02B"),
+    kveld: color("#E5B1FF"),
+    kveld_kontrast: color("#8E24C9"),
+    grønn: color("#A1F5E3"),
+    grønn_kontrast: color("#16DBC4"),
+    natt: color("#6D7ABB"),
+    natt_kontrast: color("#16236"),
+  };
   PALETTE.darkish.setAlpha(0.75);
+
+  BLOBS = [
+    {
+      z: 100,
+      cx: -width * 0.1,
+      cy: height * 0.9,
+      rMin: vMin * 0.1,
+      rMax: vMax * 0.3,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.yellow,
+    },
+    {
+      z: 200,
+      cx: -width * 0.1,
+      cy: height * 0.1,
+      rMin: vMin * 0.1,
+      rMax: vMin * 0.45,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.pink,
+    },
+    {
+      z: 300,
+      cx: 0,
+      cy: height * 0.5,
+      rMin: vMin * 0.1,
+      rMax: vMin * 0.2,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.dark,
+    },
+    {
+      z: 400,
+      cx: width * 0.9,
+      cy: height,
+      rMin: vMin * 0.1,
+      rMax: vMin * 0.3,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.white,
+    },
+    {
+      z: 500,
+      cx: width * 0.9,
+      cy: height * 0.8,
+      rMin: vMin * 0.1,
+      rMax: vMin * 0.3,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.yellow,
+    },
+    {
+      z: 600,
+      cx: width * 1.2,
+      cy: height / 2,
+      rMin: vMin * 0.2,
+      rMax: vMin * 0.4,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.teal,
+    },
+    {
+      z: 100,
+      cx: 0,
+      cy: 0,
+      rMin: vMin * 0.2,
+      rMax: vMin * 0.4,
+      aEnd: PI,
+      line: true,
+    },
+    {
+      z: 200,
+      cx: width,
+      cy: height,
+      rMin: vMin * 0.1,
+      rMax: vMin * 0.3,
+      aStart: PI,
+      aEnd: PI + HALF_PI,
+      line: true,
+    },
+    {
+      z: 300,
+      cx: width,
+      cy: height,
+      rMin: vMin * 0.15,
+      rMax: vMin * 0.35,
+      aStart: PI,
+      aEnd: PI + HALF_PI,
+      line: true,
+    },
+    {
+      z: 3,
+      cx: width / 2,
+      cy: height / 2,
+      rMin: vMin * 0.1,
+      rMax: vMin * 0.25,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.white,
+    },
+    {
+      z: 2,
+      cx: width / 2,
+      cy: height / 2,
+      rMin: vMin * 0.1,
+      rMax: vMin * 0.35,
+      fillColor: PALETTE.dark,
+    },
+  ];
 
   colorMode(HSL);
   BG = color(PALETTE.bg);
 
   textAlign(CENTER);
   textFont("Newzald");
-
   textSize(TEXT_SIZE);
+
+  noStroke();
   strokeCap(PROJECT);
 }
 
@@ -69,105 +200,19 @@ function draw() {
   /* Home-made helper function to select background based on config */
   background(BG);
 
-  fill(PALETTE.yellow);
-  drawBlob({ z: 100, cx: 0, cy: height, rMin: vMin * 0.1, rMax: vMax * 0.2 });
-
-  fill(PALETTE.pink);
-  drawBlob({
-    z: 200,
-    cx: -width * 0.1,
-    cy: height * 0.1,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.2,
-  });
-
-  fill(PALETTE.dark);
-  drawBlob({
-    z: 300,
-    cx: 0,
-    cy: height * 0.5,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.2,
-  });
-
-  fill(PALETTE.white);
-  drawBlob({
-    z: 400,
-    cx: width * 0.8,
-    cy: height,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.2,
-  });
-
-  fill(PALETTE.yellow);
-  drawBlob({
-    z: 500,
-    cx: width * 0.9,
-    cy: height * 0.8,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.2,
-  });
-
-  fill(PALETTE.teal);
-  drawBlob({
-    z: 600,
-    cx: width,
-    cy: height / 2,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.2,
-  });
-
-  drawBlob({
-    z: 100,
-    cx: 0,
-    cy: 0,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.2,
-    aEnd: PI,
-    line: true,
-  });
-  drawBlob({
-    z: 200,
-    cx: width,
-    cy: height,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.2,
-    aStart: PI,
-    aEnd: PI + HALF_PI,
-    line: true,
-  });
-  drawBlob({
-    z: 201,
-    cx: width,
-    cy: height,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.2,
-    aStart: PI,
-    aEnd: PI + HALF_PI,
-    line: true,
-  });
-
-  //fill(PALETTE.white);
-  //drawBlobz: ({1, width / 2, height / 2, height / 2});
-
-  fill(PALETTE.dark);
-  drawBlob({
-    z: 2,
-    cx: width / 2,
-    cy: height / 2,
-    rMin: vMin * 0.1,
-    rMax: vMin * 0.3,
-  });
+  for (let b = 0; b < BLOBS.length; b++) {
+    const blobParameters = BLOBS[b];
+    drawBlob(blobParameters);
+  }
 
   fill(PALETTE.white);
   text("Frontend", width / 2, height / 2);
   text("til frokost", width / 2, height / 2 + TEXT_SIZE);
 }
 
-function easeInOutCool(sharpness, x) {
-  // Best results with sharpness >= 2
+function easeInOutCool(x) {
   const mappedX = map(x, 0, 1, -1, 1);
-  return (1 + Math.tanh(sharpness * mappedX)) / 2;
+  return (1 + Math.tanh(BLOB_EASE_AMP * mappedX)) / 2;
 }
 
 function drawBlob({
@@ -176,6 +221,7 @@ function drawBlob({
   cy,
   rMin,
   rMax,
+  fillColor,
   aStart = 0,
   aEnd = TWO_PI,
   line = false,
@@ -183,6 +229,8 @@ function drawBlob({
   if (line) {
     stroke(PALETTE.darkish);
     noFill();
+  } else {
+    fill(fillColor);
   }
 
   const pointCount = (TWO_PI * rMax) / MAX_POINT_DIST;
@@ -190,16 +238,18 @@ function drawBlob({
 
   const rotation = frameCount * ROTATION_SPEED;
 
+  const amp = line ? BLOB_LINE_AMP : BLOB_AMP;
+
   /* Iterate through a full circle of angles to make a layer */
   beginShape();
   for (let a = aStart; a <= aEnd; a += deltaA / pointCount) {
     /* Get noise aEnd on x, y, and the "time" */
-    const xOff = map(cos(a + rotation), -1, 1, 0, BLOB_AMP);
-    const yOff = map(sin(a + rotation), -1, 1, 0, BLOB_AMP);
+    const xOff = map(cos(a + rotation), -1, 1, 0, amp);
+    const yOff = map(sin(a + rotation), -1, 1, 0, amp);
 
-    const noiseValue = noise(xOff, yOff, z + frameCount * BLOB_SPEED);
+    const noiseValue = noise(xOff, yOff, z + frameCount * BLOB_ANIMATION_SPEED);
 
-    const adjustedNoiseValue = easeInOutCool(4, noiseValue);
+    const adjustedNoiseValue = easeInOutCool(noiseValue);
     const mappedNoise = map(adjustedNoiseValue, 0, 1, rMin, rMax);
 
     /* Compute the final x and y and set a vertex there for the shape */
