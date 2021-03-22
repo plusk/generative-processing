@@ -4,28 +4,28 @@ let vMax, vMin, PALETTE, BEKK_PALETTE, BLOBS;
 const BLOB_AMP = 0.5;
 const BLOB_LINE_AMP = 0.75;
 
-// Best results with value >= 2
+// How steep the easing curve is, tends to push blobs to their rMin or rMax
 const BLOB_EASE_AMP = 3;
 
+// The speed at which blobs grow and shrink
 const BLOB_ANIMATION_SPEED = 0.002;
 
-const STROKE_WEIGHT = 2;
-
+// The speed at which the blob rotates in perlin noise space, made more noticable by more spiky blobs
 const ROTATION_SPEED = 0.002;
 
-/* The amount of points that make up each layer, lower means "pointier" */
-/* For example 3 points mean triangular layers, 4 means squares */
-/* Higher might not be noticable, but will make for smoother borders */
+// A rough representation of the number of vertices that make up a blob, lower value = more points
 const MAX_POINT_DIST = 10;
 
+// Intrinsically tied to the rMin of central blob
 const TEXT_SIZE = 48;
+
+// The thickness of lines
+const STROKE_WEIGHT = 2;
 
 const RANDOM_COLORS = false;
 
 /*
-
-  CONFIG END
-
+  Config end
 */
 
 function easeInOutCool(x) {
@@ -140,26 +140,26 @@ function setup() {
   };
 
   BEKK_PALETTE = {
-    sort: color("#0E0E0E"),
-    hvit: color("#FFFFFF"),
+    // sort: color("#0E0E0E"),
+    // hvit: color("#FFFFFF"),
     soloppgang: color("#FFB88D"),
-    soloppgang_kontrast: color("#FF8034"),
+    // soloppgang_kontrast: color("#FF8034"),
     regn: color("#BCCEDD"),
-    regn_kontrast: color("#7E9CB9"),
+    // regn_kontrast: color("#7E9CB9"),
     skyfritt: color("#B1E8FF"),
-    skyfritt_kontrast: color("#43CBFF"),
+    // skyfritt_kontrast: color("#43CBFF"),
     overskyet: color("#E7E7E7"),
-    overskyet_kontrast: color("#CECECE"),
+    // overskyet_kontrast: color("#CECECE"),
     solnedgang: color("#FF9999"),
-    solnedgang_kontrast: color("#FF5B5B"),
-    sol: color("#FFF2AD"),
-    sol_kontrast: color("#FFF02B"),
+    // solnedgang_kontrast: color("#FF5B5B"),
+    // sol: color("#FFF2AD"),
+    // sol_kontrast: color("#FFF02B"),
     kveld: color("#E5B1FF"),
-    kveld_kontrast: color("#8E24C9"),
+    // kveld_kontrast: color("#8E24C9"),
     grønn: color("#A1F5E3"),
-    grønn_kontrast: color("#16DBC4"),
+    // grønn_kontrast: color("#16DBC4"),
     natt: color("#6D7ABB"),
-    natt_kontrast: color("#16236"),
+    // natt_kontrast: color("#162365"),
   };
   PALETTE.darkish.setAlpha(0.75);
 
