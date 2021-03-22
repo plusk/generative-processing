@@ -1,11 +1,11 @@
-let vMax, vMin, PALETTE, BEKK_PALETTE, BLOBS;
+let vMax, vMin, PALETTE, BEKK_PALETTE, BLOBS, SPOTS;
 
 // How spiky the blobs are
 const BLOB_AMP = 0.5;
 const BLOB_LINE_AMP = 0.75;
 
 // How steep the easing curve is, tends to push blobs to their rMin or rMax
-const BLOB_EASE_AMP = 3;
+const BLOB_EASE_STEEPNESS = 3;
 
 // The speed at which blobs grow and shrink
 const BLOB_ANIMATION_SPEED = 0.002;
@@ -24,13 +24,21 @@ const STROKE_WEIGHT = 2;
 
 const RANDOM_COLORS = false;
 
+const SPOT_COUNT = 30;
+const SPOT_SPREAD = 6;
+const SPOT_SLANT = 5;
+const SLOT_APPEAR_NOISE = 0.005;
+
+const MOVE_SPEED = 0.1;
+const MOVE_RADIUS = 100;
+
 /*
   Config end
 */
 
-function easeInOutCool(x) {
+function easeInOutCool(steepness, x) {
   const mappedX = map(x, 0, 1, -1, 1);
-  return (1 + Math.tanh(BLOB_EASE_AMP * mappedX)) / 2;
+  return (1 + Math.tanh(steepness * mappedX)) / 2;
 }
 
 function randomColor() {
@@ -43,25 +51,56 @@ class Blob {
     z,
     cx,
     cy,
+    mrx = 0,
+    mry = 0,
+    mSpeed = 0,
+    mAngle = random(TWO_PI),
     rMin,
     rMax,
     fillColor,
     aStart = 0,
     aEnd = TWO_PI,
     line = false,
+    animationSpeed = BLOB_ANIMATION_SPEED,
+    steepness = BLOB_EASE_STEEPNESS,
+    disappearTime = 0,
   }) {
     this.z = z;
     this.cx = cx;
     this.cy = cy;
+    this.mrx = mrx;
+    this.mry = mry;
+    this.mSpeed = mSpeed;
+    this.mAngle = mAngle;
     this.rMin = rMin;
     this.rMax = rMax;
     this.fillColor = fillColor;
     this.aStart = aStart;
     this.aEnd = aEnd;
     this.line = line;
+    this.animationSpeed = animationSpeed;
+    this.steepness = steepness;
+    this.disappearTime = disappearTime;
+    this.visible = this.disappearTime === 0;
+    this.disappearTick =
+      noise(cx * SLOT_APPEAR_NOISE, cy * SLOT_APPEAR_NOISE) *
+      this.disappearTime *
+      (1 - cy / height);
   }
 
   draw() {
+    if (this.disappearTime !== 0) {
+      this.disappearTick++;
+      if (this.disappearTick >= this.disappearTime) {
+        this.visible = !this.visible;
+        this.disappearTick = 0;
+      }
+    }
+
+    if (!this.visible) {
+      return;
+    }
+
     if (this.line) {
       stroke(PALETTE.darkish);
       noFill();
@@ -70,11 +109,12 @@ class Blob {
     }
 
     // Might put all of this in the constructor
-    const pointCount = (TWO_PI * this.rMax) / MAX_POINT_DIST;
+    const pointCount = max((TWO_PI * this.rMax) / MAX_POINT_DIST, 30);
     const deltaA = this.aEnd - this.aStart;
     const amp = this.line ? BLOB_LINE_AMP : BLOB_AMP;
 
     const rotation = frameCount * ROTATION_SPEED;
+    this.mAngle = (this.mAngle + this.mSpeed) % TWO_PI;
 
     /* Iterate through a full circle of angles to draw a blob */
     beginShape();
@@ -86,16 +126,23 @@ class Blob {
       const noiseValue = noise(
         xOff,
         yOff,
-        this.z + frameCount * BLOB_ANIMATION_SPEED
+        this.z + frameCount * this.animationSpeed
       );
 
-      const adjustedNoiseValue = easeInOutCool(noiseValue);
+      const adjustedNoiseValue = easeInOutCool(this.steepness, noiseValue);
       const noisedRadius = map(adjustedNoiseValue, 0, 1, this.rMin, this.rMax);
 
       /* Compute the final x and y and set a vertex there for the shape */
       const x = noisedRadius * cos(a);
       const y = noisedRadius * sin(a);
-      vertex(this.cx + x, this.cy + y);
+
+      if (!this.line) {
+        const mx = this.mrx * cos(this.mAngle);
+        const my = this.mry * sin(this.mAngle);
+        vertex(this.cx + mx + x, this.cy + my + y);
+      } else {
+        vertex(this.cx + x, this.cy + y);
+      }
     }
 
     if (line) {
@@ -111,19 +158,18 @@ function windowResized() {
   vMax = max(width, height);
   vMin = min(width, height);
 
-  resizeCanvas(1080, 1080);
+  //resizeCanvas(1080, 1080);
   // resizeCanvas(1080, 1920);
   // resizeCanvas(windowWidth, round(windowWidth / 2.75));
 }
 
 function setup() {
   colorMode(HSL);
-  const cnv = createCanvas(1080, 1080);
-  // const cnv = createCanvas(1080, 1920);
-  // const cnv = createCanvas(windowWidth, round(windowWidth / 2.75));
+  createCanvas(1080, 1080);
+  //createCanvas(1080, 1920);
+  //createCanvas(windowWidth, round(windowWidth / 2.75));
 
   windowResized();
-  cnv.mouseClicked(clickOnSave);
 
   strokeWeight(STROKE_WEIGHT);
 
@@ -169,7 +215,7 @@ function setup() {
       cx: -width * 0.1,
       cy: height * 0.9,
       rMin: vMin * 0.1,
-      rMax: vMax * 0.3,
+      rMax: vMin * 0.3,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.yellow,
     }),
     new Blob({
@@ -259,6 +305,47 @@ function setup() {
     }),
   ];
 
+  LINES = [];
+
+  SPOTS = [];
+
+  const SPOT_RMAX = vMin * 0.02;
+
+  for (let i = 0; i < SPOT_COUNT; i++) {
+    SPOTS.push(
+      new Blob({
+        z: i,
+        cx:
+          width * 0.2 +
+          random(-SPOT_RMAX * SPOT_SPREAD, SPOT_RMAX * SPOT_SPREAD) -
+          i * SPOT_SLANT,
+        cy: (i * SPOT_RMAX) / 2,
+        rMin: vMin * 0.005,
+        rMax: SPOT_RMAX,
+        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.blue,
+        animationSpeed: 0,
+        steepness: 6,
+        disappearTime: 500,
+      })
+    );
+    SPOTS.push(
+      new Blob({
+        z: i + SPOT_COUNT,
+        cx:
+          width * 0.8 +
+          random(-SPOT_RMAX * SPOT_SPREAD, SPOT_RMAX * SPOT_SPREAD) +
+          i * SPOT_SLANT,
+        cy: height - (i * SPOT_RMAX) / 2,
+        rMin: vMin * 0.005,
+        rMax: SPOT_RMAX,
+        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.blue,
+        animationSpeed: 0,
+        steepness: 6,
+        disappearTime: 500,
+      })
+    );
+  }
+
   colorMode(HSL);
   BG = color(PALETTE.bg);
 
@@ -279,11 +366,12 @@ function draw() {
     blob.draw();
   }
 
+  for (let s = 0; s < SPOTS.length; s++) {
+    const spot = SPOTS[s];
+    spot.draw();
+  }
+
   fill(PALETTE.white);
   text("Frontend", width / 2, height / 2);
   text("til frokost", width / 2, height / 2 + TEXT_SIZE);
-}
-
-function clickOnSave() {
-  saveCanvas();
 }
