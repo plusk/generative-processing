@@ -51,7 +51,7 @@ function randomColor() {
   return BEKK_PALETTE[keys[(keys.length * Math.random()) << 0]];
 }
 
-class Blob {
+class Shape {
   constructor({
     z,
     cx,
@@ -161,9 +161,9 @@ class Blob {
   }
 }
 
-function setupBlobs () {
+function setupBlobs() {
   BLOBS = [
-    new Blob({
+    new Shape({
       z: 10,
       cx: width * -0.1,
       cy: height * 0.9,
@@ -171,7 +171,7 @@ function setupBlobs () {
       rMax: vMin * 0.3,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.yellow,
     }),
-    new Blob({
+    new Shape({
       z: 20,
       cx: width * -0.1,
       cy: height * 0.1,
@@ -179,7 +179,7 @@ function setupBlobs () {
       rMax: vMin * 0.45,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.pink,
     }),
-    new Blob({
+    new Shape({
       z: 30,
       cx: 0,
       cy: height * 0.5,
@@ -187,7 +187,7 @@ function setupBlobs () {
       rMax: vMin * 0.2,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.dark,
     }),
-    new Blob({
+    new Shape({
       z: 40,
       cx: width * 0.9,
       cy: height,
@@ -195,7 +195,7 @@ function setupBlobs () {
       rMax: vMin * 0.3,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.white,
     }),
-    new Blob({
+    new Shape({
       z: 50,
       cx: width * 1,
       cy: height * 0.75,
@@ -203,7 +203,7 @@ function setupBlobs () {
       rMax: vMin * 0.3,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.yellow,
     }),
-    new Blob({
+    new Shape({
       z: 60,
       cx: width * 1.2,
       cy: height * 0.5,
@@ -211,7 +211,7 @@ function setupBlobs () {
       rMax: vMin * 0.4,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.teal,
     }),
-    new Blob({
+    new Shape({
       z: 100,
       cx: 0,
       cy: 0,
@@ -220,9 +220,9 @@ function setupBlobs () {
       aEnd: PI,
       line: true,
       amp: LINE_AMP,
-      steepness: LINE_EASE_STEEPNESS
+      steepness: LINE_EASE_STEEPNESS,
     }),
-    new Blob({
+    new Shape({
       z: 200,
       cx: width,
       cy: height,
@@ -232,9 +232,9 @@ function setupBlobs () {
       aEnd: PI + HALF_PI,
       line: true,
       amp: LINE_AMP,
-      steepness: LINE_EASE_STEEPNESS
+      steepness: LINE_EASE_STEEPNESS,
     }),
-    new Blob({
+    new Shape({
       z: 300,
       cx: width,
       cy: height,
@@ -244,9 +244,9 @@ function setupBlobs () {
       aEnd: PI + HALF_PI,
       line: true,
       amp: LINE_AMP,
-      steepness: LINE_EASE_STEEPNESS
+      steepness: LINE_EASE_STEEPNESS,
     }),
-    new Blob({
+    new Shape({
       z: 1000,
       cx: width / 2,
       cy: height / 2,
@@ -254,7 +254,7 @@ function setupBlobs () {
       rMax: vMin * 0.3,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.white,
     }),
-    new Blob({
+    new Shape({
       z: 2000,
       cx: width / 2,
       cy: height / 2,
@@ -268,13 +268,13 @@ function setupBlobs () {
   const SPOT_RMAX = vMin * 0.015;
   for (let i = 0; i < SPOT_COUNT; i++) {
     SPOTS.push(
-      new Blob({
+      new Shape({
         z: i,
         cx:
           width * 0.2 +
           random(-SPOT_RMAX * SPOT_X_SPREAD, SPOT_RMAX * SPOT_X_SPREAD) -
           i * SPOT_SLANT,
-        cy: (i * SPOT_RMAX * SPOT_Y_SPREAD),
+        cy: i * SPOT_RMAX * SPOT_Y_SPREAD,
         rMin: vMin * 0.005,
         rMax: SPOT_RMAX,
         amp: SPOT_AMP,
@@ -285,13 +285,13 @@ function setupBlobs () {
       })
     );
     SPOTS.push(
-      new Blob({
+      new Shape({
         z: i + SPOT_COUNT,
         cx:
           width * 0.8 +
           random(-SPOT_RMAX * SPOT_X_SPREAD, SPOT_RMAX * SPOT_X_SPREAD) +
           i * SPOT_SLANT,
-        cy: height - (i * SPOT_RMAX * SPOT_Y_SPREAD),
+        cy: height - i * SPOT_RMAX * SPOT_Y_SPREAD,
         rMin: vMin * 0.005,
         rMax: SPOT_RMAX,
         amp: SPOT_AMP,
@@ -356,7 +356,7 @@ function setup() {
     // natt: color("#6D7ABB"),
     // natt_kontrast: color("#162365"),
   };
-  BG = color(PALETTE.bg);
+  BG = PALETTE.bg;
 
   windowResized();
   setupBlobs();
@@ -387,9 +387,9 @@ function draw() {
   text("Frontend", width / 2, height / 2);
   text("til frokost", width / 2, height / 2 + TEXT_SIZE);
 
-  if(EXPORT) {
-    saveCanvas();
-    if(FRAME_LIMIT < frameCount) {
+  if (EXPORT) {
+    saveCanvas(frameCount.toString().padStart(3, "0"), "png");
+    if (FRAME_LIMIT < frameCount) {
       noLoop();
     }
   }
