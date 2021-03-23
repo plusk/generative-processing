@@ -94,7 +94,7 @@ const frontpageTemplate = (entries) => `
     <main>
       ${entries
         .map(
-          (entry) => `
+          (entry) => !entry.ignore && `
         <a class="sketch-entrance" href="/${pathToHtmlPath(entry.path)}">
           <div>${entry.title}</div>
           <img src=${entry.img} alt=${entry.title} />

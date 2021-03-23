@@ -29,4 +29,14 @@ module.exports = [
     img:
       "https://res.cloudinary.com/plusk/image/upload/v1603995115/perlin-base_ysyw6i.png",
   },
+  {
+    title: "fagdag/instagram",
+    path: "fagdag/instagram.js",
+    ignore: true
+  },
+  {
+    title: "fagdag/web",
+    path: "fagdag/web.js",
+    ignore: true
+  },
 ];
