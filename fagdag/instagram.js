@@ -1,5 +1,8 @@
 let vMax, vMin, TEXT_SIZE, PALETTE, BEKK_PALETTE, BLOBS, SPOTS;
 
+const EXPORT = false;
+const FRAME_LIMIT = 15 * 30; // 15 seconds at 30 fps
+
 // How spiky the blobs are
 const BLOB_AMP = 0.5;
 const LINE_AMP = 0.75;
@@ -11,10 +14,10 @@ const SPOT_EASE_STEEPNESS = 5;
 const LINE_EASE_STEEPNESS = 2;
 
 // The speed at which blobs grow and shrink
-const BLOB_ANIMATION_SPEED = 0.002;
+const BLOB_ANIMATION_SPEED = 0.004;
 
 // The speed at which the blob rotates in perlin noise space, made more noticable by more spiky blobs
-const ROTATION_SPEED = 0.002;
+const ROTATION_SPEED = 0.004;
 
 // A rough representation of the number of vertices that make up a blob, lower value = more points
 const MAX_POINT_DIST = 15;
@@ -29,7 +32,7 @@ const SPOT_X_SPREAD = 7;
 const SPOT_Y_SPREAD = 0.5;
 const SPOT_SLANT = 3;
 const SPOT_APPEAR_NOISE = 0.005;
-const SPOT_DURATION = 500; // 0 means the spots will always be visible
+const SPOT_DURATION = EXPORT ? FRAME_LIMIT / 2 : 250; // 0 means the spots will always be visible
 
 const MOVE_SPEED = 0.1;
 const MOVE_RADIUS = 100;
@@ -317,6 +320,7 @@ function setup() {
   colorMode(HSL);
   createCanvas(1080, 1080);
   pixelDensity(1);
+  frameRate(EXPORT ? 4 : 30);
 
   PALETTE = {
     bg: color("#fff0ac"),
@@ -382,4 +386,11 @@ function draw() {
   fill(PALETTE.white);
   text("Frontend", width / 2, height / 2);
   text("til frokost", width / 2, height / 2 + TEXT_SIZE);
+
+  if(EXPORT) {
+    saveCanvas();
+    if(FRAME_LIMIT < frameCount) {
+      noLoop();
+    }
+  }
 }
