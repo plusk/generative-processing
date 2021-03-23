@@ -12,7 +12,7 @@ const template = (sketch) => `
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${sketch.title}</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-    ${!sketch.dynamic && `<link rel="stylesheet" href="scale.css" />`}
+    ${sketch.dynamic ? "" : `<link rel="stylesheet" href="scale.css" />`}
 
     <script src="/${sketch.path}"></script>
   </head>
@@ -63,19 +63,10 @@ const frontpageTemplate = (entries) => `
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <div class="empty"></div>
-      <div id="header-items">
-        <h1>Big text</h1>
-        <p>Slightly smaller text</p>
-      </div>
-      <div class="empty"></div>
-      <div class="empty"></div>
-    </header>
     <main>
       ${entries
         .map(
-          (entry) => !entry.ignore && `
+          (entry) => entry.ignore ? "" : `
         <a class="sketch-entrance" href="/${pathToHtmlPath(entry.path)}">
           <div>${entry.title}</div>
           <img src=${entry.img} alt=${entry.title} />

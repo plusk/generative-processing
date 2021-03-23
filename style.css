@@ -17,40 +17,6 @@ body {
   font-size: 1.5rem;
 }
 
-header {
-  position: relative;
-  width: 100%;
-  height: 75vh;
-
-  font-family: "Montserrat", sans-serif;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 3fr 1fr;
-  grid-gap: var(--line-width);
-  background: var(--text);
-  margin: var(--padding) 0;
-}
-
-header > div {
-  background: var(--background);
-}
-
-#header-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  grid-column: 2;
-  padding: var(--padding);
-}
-
-#header-items > * + * {
-  margin-top: 1rem;
-}
-
-h1 {
-  font-size: 5rem;
-}
-
 main {
   width: 100%;
   display: grid;
@@ -98,7 +64,7 @@ footer {
   display: flex;
   justify-content: center;
   margin-top: var(--padding);
-  border-top: var(--line-width) solid var(--text);
+  /* border-top: var(--line-width) solid var(--text); */
   padding-top: var(--padding);
 }
 
@@ -126,20 +92,6 @@ footer > * + * {
   body {
     padding: var(--padding);
     font-size: 1rem;
-  }
-
-  header {
-    height: unset;
-  }
-
-  .empty {
-    display: none;
-  }
-
-  #header-items {
-    grid-row: 1 / -1;
-    grid-column: 1 / -1;
-    padding: var(--padding) 0;
   }
 
   h1 {
