@@ -46,6 +46,7 @@ data.map((entry) => {
 console.log("Copying style files");
 fs.copyFileSync("reset.css", "dist/reset.css");
 fs.copyFileSync("style.css", "dist/style.css");
+fs.copyFileSync("scale.css", "dist/scale.css");
 
 const frontpageTemplate = (entries) => `
 <!DOCTYPE html>
