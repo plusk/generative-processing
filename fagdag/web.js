@@ -334,11 +334,11 @@ function setup() {
     // hvit: color("#FFFFFF"),
     soloppgang: color("#FFB88D"),
     // soloppgang_kontrast: color("#FF8034"),
-    regn: color("#BCCEDD"),
+    // regn: color("#BCCEDD"),
     // regn_kontrast: color("#7E9CB9"),
     skyfritt: color("#B1E8FF"),
     // skyfritt_kontrast: color("#43CBFF"),
-    overskyet: color("#E7E7E7"),
+    // overskyet: color("#E7E7E7"),
     // overskyet_kontrast: color("#CECECE"),
     solnedgang: color("#FF9999"),
     // solnedgang_kontrast: color("#FF5B5B"),
@@ -348,7 +348,7 @@ function setup() {
     // kveld_kontrast: color("#8E24C9"),
     grønn: color("#A1F5E3"),
     // grønn_kontrast: color("#16DBC4"),
-    natt: color("#6D7ABB"),
+    // natt: color("#6D7ABB"),
     // natt_kontrast: color("#162365"),
   };
   BG = color(PALETTE.bg);
