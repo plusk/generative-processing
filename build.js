@@ -12,8 +12,29 @@ const template = (sketch) => `
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${sketch.title}</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-    ${sketch.dynamic ? "" : `<link rel="stylesheet" href="scale.css" />`}
-
+    <style>
+      body {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        margin: 0;
+        background: black;
+      }
+      ${sketch.dynamic ? "" : `
+      @media (orientation: landscape) {
+        canvas {
+          width: initial !important;
+          height: 100vh !important;
+        }
+      }
+      @media (orientation: portrait) {
+        canvas {
+          width: 100vw !important;
+          height: initial !important;
+        }
+      }
+      `}
+    </style>
     <script src="/${sketch.path}"></script>
   </head>
   <body></body>
@@ -46,7 +67,6 @@ data.map((entry) => {
 console.log("Copying style files");
 fs.copyFileSync("reset.css", "dist/reset.css");
 fs.copyFileSync("style.css", "dist/style.css");
-fs.copyFileSync("scale.css", "dist/scale.css");
 
 const frontpageTemplate = (entries) => `
 <!DOCTYPE html>
@@ -59,7 +79,6 @@ const frontpageTemplate = (entries) => `
       href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="scale.css" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
