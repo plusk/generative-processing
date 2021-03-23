@@ -11,29 +11,9 @@ const template = (sketch) => `
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${sketch.title}</title>
-    <style>
-      body {
-        display: grid;
-        place-items: center;
-        height: 100vh;
-        margin: 0;
-      }
-
-      @media (orientation: landscape) {
-        canvas {
-          width: initial !important;
-          height: 100vh !important;
-        }
-      }
-
-      @media (orientation: portrait) {
-        canvas {
-          width: 100vw !important;
-          height: initial !important;
-        }
-      }
-    </style>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    ${!sketch.dynamic && `<link rel="stylesheet" href="scale.css" />`}
+
     <script src="/${sketch.path}"></script>
   </head>
   <body></body>
@@ -78,6 +58,7 @@ const frontpageTemplate = (entries) => `
       href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="scale.css" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>

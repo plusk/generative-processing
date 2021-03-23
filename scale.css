@@ -1,0 +1,21 @@
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  margin: 0;
+  background: black;
+}
+
+@media (orientation: landscape) {
+  canvas {
+    width: initial !important;
+    height: 100vh !important;
+  }
+}
+
+@media (orientation: portrait) {
+  canvas {
+    width: 100vw !important;
+    height: initial !important;
+  }
+}
