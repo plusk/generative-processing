@@ -1,4 +1,4 @@
-let vMax, vMin, TEXT_SIZE, PALETTE, BEKK_PALETTE, BLOBS, SPOTS;
+let vMax, vMin, TEXT_SIZE, PALETTE, BLOBS, SPOTS;
 
 // How spiky the blobs are
 const BLOB_AMP = 0.5;
@@ -44,8 +44,8 @@ function easeInOutCool(steepness, x) {
 }
 
 function randomColor() {
-  const keys = Object.keys(BEKK_PALETTE);
-  return BEKK_PALETTE[keys[(keys.length * Math.random()) << 0]];
+  const keys = Object.keys(PALETTE);
+  return PALETTE[keys[(keys.length * Math.random()) << 0]];
 }
 
 class Shape {
@@ -106,7 +106,7 @@ class Shape {
     }
 
     if (this.line) {
-      stroke(PALETTE.darkish);
+      stroke(PALETTE.new_dark_line);
       noFill();
     } else {
       fill(this.fillColor);
@@ -166,7 +166,7 @@ function setupBlobs() {
       cy: height * 0.9,
       rMin: vMin * 0.1,
       rMax: vMin * 0.4,
-      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.yellow,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.sol_kontrast,
     }),
     new Shape({
       z: 20,
@@ -174,7 +174,7 @@ function setupBlobs() {
       cy: height * 0.2,
       rMin: vMin * 0.25,
       rMax: vMin * 0.5,
-      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.pink,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.kveld,
     }),
     new Shape({
       z: 30,
@@ -182,7 +182,7 @@ function setupBlobs() {
       cy: height * 0.5,
       rMin: vMin * 0.1,
       rMax: vMin * 0.3,
-      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.dark,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.new_dark,
     }),
     new Shape({
       z: 40,
@@ -190,7 +190,7 @@ function setupBlobs() {
       cy: height,
       rMin: vMin * 0.1,
       rMax: vMin * 0.3,
-      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.white,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.hvit,
     }),
     new Shape({
       z: 50,
@@ -198,7 +198,7 @@ function setupBlobs() {
       cy: height * 0.75,
       rMin: vMin * 0.2,
       rMax: vMin * 0.4,
-      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.yellow,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.sol_kontrast,
     }),
     new Shape({
       z: 60,
@@ -206,7 +206,7 @@ function setupBlobs() {
       cy: height * 0.5,
       rMin: vMin * 0.2,
       rMax: vMin * 0.5,
-      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.teal,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.grønn_kontrast,
     }),
     new Shape({
       z: 100,
@@ -249,7 +249,7 @@ function setupBlobs() {
       cy: height / 2,
       rMin: vMin * 0.2,
       rMax: vMin * 0.4,
-      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.white,
+      fillColor: RANDOM_COLORS ? randomColor() : PALETTE.hvit,
     }),
     new Shape({
       z: 2000,
@@ -257,7 +257,7 @@ function setupBlobs() {
       cy: height / 2,
       rMin: vMin * 0.25,
       rMax: vMin * 0.45,
-      fillColor: PALETTE.dark,
+      fillColor: PALETTE.new_dark,
     }),
   ];
 
@@ -275,7 +275,7 @@ function setupBlobs() {
         rMin: vMin * 0.005,
         rMax: SPOT_RMAX,
         amp: SPOT_AMP,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.blue,
+        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.new_blue,
         animationSpeed: 0,
         steepness: SPOT_EASE_STEEPNESS,
         disappearTime: SPOT_DURATION,
@@ -292,7 +292,7 @@ function setupBlobs() {
         rMin: vMin * 0.005,
         rMax: SPOT_RMAX,
         amp: SPOT_AMP,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.blue,
+        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.new_blue,
         animationSpeed: 0,
         steepness: SPOT_EASE_STEEPNESS,
         disappearTime: SPOT_DURATION,
@@ -318,20 +318,11 @@ function setup() {
   createCanvas(windowWidth, round(windowWidth / 2.75));
 
   PALETTE = {
-    bg: color("#fff0ac"),
-    dark: color("#1c2c3c"),
-    darkish: color("#1c2c3c"),
-    white: color("#fff"),
-    pink: color("#efb2ff"),
-    yellow: color("#fff001"),
-    teal: color("#02dfc9"),
-    blue: color("#293895"),
-  };
-  PALETTE.darkish.setAlpha(0.75);
-
-  BEKK_PALETTE = {
+    new_dark: color("#1c2c3c"),
+    new_dark_line: color("#1c2c3c"),
+    new_blue: color("#293895"),
     // sort: color("#0E0E0E"),
-    // hvit: color("#FFFFFF"),
+    hvit: color("#FFFFFF"),
     soloppgang: color("#FFB88D"),
     // soloppgang_kontrast: color("#FF8034"),
     // regn: color("#BCCEDD"),
@@ -342,16 +333,17 @@ function setup() {
     // overskyet_kontrast: color("#CECECE"),
     solnedgang: color("#FF9999"),
     // solnedgang_kontrast: color("#FF5B5B"),
-    // sol: color("#FFF2AD"),
-    // sol_kontrast: color("#FFF02B"),
+    sol: color("#FFF2AD"),
+    sol_kontrast: color("#FFF02B"),
     kveld: color("#E5B1FF"),
     // kveld_kontrast: color("#8E24C9"),
-    grønn: color("#A1F5E3"),
-    // grønn_kontrast: color("#16DBC4"),
+    // grønn: color("#A1F5E3"),
+    grønn_kontrast: color("#16DBC4"),
     // natt: color("#6D7ABB"),
     // natt_kontrast: color("#162365"),
   };
-  BG = PALETTE.bg;
+  PALETTE.new_dark_line.setAlpha(0.75);
+  BG = PALETTE.sol;
 
   windowResized();
   setupBlobs();
@@ -378,7 +370,7 @@ function draw() {
     spot.draw();
   }
 
-  fill(PALETTE.white);
+  fill(PALETTE.hvit);
   text("Frontend", width / 2, height / 2);
   text("til frokost", width / 2, height / 2 + TEXT_SIZE);
 }
