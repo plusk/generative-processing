@@ -40,6 +40,11 @@ module.exports = [
     ignore: true,
   },
   {
+    title: "fagdag/story",
+    path: "fagdag/story.js",
+    ignore: true,
+  },
+  {
     title: "fagdag/web",
     path: "fagdag/web.js",
     ignore: true,

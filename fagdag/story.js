@@ -167,40 +167,40 @@ function setupBlobs() {
       z: 10,
       cx: width * -0.1,
       cy: height * 0.9,
-      rMin: vMin * 0.1,
-      rMax: vMin * 0.3,
+      rMin: vMin * 0.2,
+      rMax: vMin * 0.5,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.sol_kontrast,
     }),
     new Shape({
       z: 20,
-      cx: width * -0.1,
+      cx: width * 0,
       cy: height * 0.1,
-      rMin: vMin * 0.1,
+      rMin: vMin * 0.2,
       rMax: vMin * 0.45,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.kveld,
     }),
     new Shape({
       z: 30,
-      cx: 0,
+      cx: width * -0.2,
       cy: height * 0.5,
-      rMin: vMin * 0.1,
-      rMax: vMin * 0.2,
+      rMin: vMin * 0.2,
+      rMax: vMin * 0.5,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.new_dark,
     }),
     new Shape({
       z: 40,
-      cx: width * 0.9,
-      cy: height,
-      rMin: vMin * 0.1,
-      rMax: vMin * 0.3,
+      cx: width * 0.8,
+      cy: height * 0.9,
+      rMin: vMin * 0.2,
+      rMax: vMin * 0.4,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.hvit,
     }),
     new Shape({
       z: 50,
       cx: width * 1,
-      cy: height * 0.75,
-      rMin: vMin * 0.1,
-      rMax: vMin * 0.3,
+      cy: height * 0.7,
+      rMin: vMin * 0.2,
+      rMax: vMin * 0.5,
       fillColor: RANDOM_COLORS ? randomColor() : PALETTE.sol_kontrast,
     }),
     new Shape({
@@ -216,7 +216,7 @@ function setupBlobs() {
       cx: 0,
       cy: 0,
       rMin: vMin * 0.2,
-      rMax: vMin * 0.4,
+      rMax: vMin * 0.6,
       aEnd: PI,
       line: true,
       amp: LINE_AMP,
@@ -226,8 +226,8 @@ function setupBlobs() {
       z: 200,
       cx: width,
       cy: height,
-      rMin: vMin * 0.1,
-      rMax: vMin * 0.3,
+      rMin: vMin * 0.2,
+      rMax: vMin * 0.6,
       aStart: PI,
       aEnd: PI + HALF_PI,
       line: true,
@@ -239,7 +239,7 @@ function setupBlobs() {
       cx: width,
       cy: height,
       rMin: vMin * 0.15,
-      rMax: vMin * 0.35,
+      rMax: vMin * 0.55,
       aStart: PI,
       aEnd: PI + HALF_PI,
       line: true,
@@ -265,13 +265,13 @@ function setupBlobs() {
   ];
 
   SPOTS = [];
-  const SPOT_RMAX = vMin * 0.015;
+  const SPOT_RMAX = vMin * 0.02;
   for (let i = 0; i < SPOT_COUNT; i++) {
     SPOTS.push(
       new Shape({
         z: i,
         cx:
-          width * 0.2 +
+          width * 0.3 +
           random(-SPOT_RMAX * SPOT_X_SPREAD, SPOT_RMAX * SPOT_X_SPREAD) -
           i * SPOT_SLANT,
         cy: i * SPOT_RMAX * SPOT_Y_SPREAD,
@@ -288,7 +288,7 @@ function setupBlobs() {
       new Shape({
         z: i + SPOT_COUNT,
         cx:
-          width * 0.8 +
+          width * 0.7 +
           random(-SPOT_RMAX * SPOT_X_SPREAD, SPOT_RMAX * SPOT_X_SPREAD) +
           i * SPOT_SLANT,
         cy: height - i * SPOT_RMAX * SPOT_Y_SPREAD,
@@ -307,7 +307,7 @@ function setupBlobs() {
 function windowResized() {
   vMin = min(width, height);
   vMax = max(width, height);
-  resizeCanvas(1080, 1080);
+  resizeCanvas(1080, 1920);
 
   setupBlobs();
 
@@ -318,7 +318,7 @@ function windowResized() {
 
 function setup() {
   colorMode(HSL);
-  createCanvas(1080, 1080);
+  createCanvas(1080, 1920);
   pixelDensity(1);
   frameRate(EXPORT ? 4 : 30);
 
