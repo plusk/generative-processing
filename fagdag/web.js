@@ -1,5 +1,7 @@
 let vMax, vMin, TEXT_SIZE, PALETTE, BLOBS, SPOTS;
 
+const SHOW_TEXT = false;
+
 // How spiky the blobs are
 const BLOB_AMP = 0.5;
 const LINE_AMP = 0.75;
@@ -370,7 +372,9 @@ function draw() {
     spot.draw();
   }
 
-  fill(PALETTE.hvit);
-  text("Frontend", width / 2, height / 2);
-  text("til frokost", width / 2, height / 2 + TEXT_SIZE);
+  if(SHOW_TEXT) {
+    fill(PALETTE.hvit);
+    text("Frontend", width / 2, height / 2);
+    text("til frokost", width / 2, height / 2 + TEXT_SIZE);
+  }
 }
