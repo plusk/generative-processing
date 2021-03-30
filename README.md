@@ -1,6 +1,6 @@
 ### Project structure
 
-This repository serves as both a collection of generative artwork, and a website displaying some of that artwork. The majority of the work can be found in the `sketches/` directory. Some sketches have been posted on Instagram, others are still missing a certain _je ne sais quoi_, and some are just straight-up duds. The sketches I deem worthy are added to `data.js`, which will then be mapped out on the [website](https://plusk.no/), hosted on GitHub Pages.
+This repository serves as both a collection of generative artwork, and a website displaying some of that artwork. The majority of the work can be found in the `sketches/` directory. Some sketches have been posted on Instagram, others are still missing a certain _je ne sais quoi_, and some are just straight-up duds.
 
 `index.html` provides an entry point for the project, where the `script` tag at the bottom determines which sketch will be viewed.
 

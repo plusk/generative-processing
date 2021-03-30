@@ -7,8 +7,7 @@
     "browser-sync": "^2.26.14"
   },
   "scripts": {
-    "start": "browser-sync start --server -f -w",
-    "build": "node build.js"
+    "start": "browser-sync start --server -f -w"
   },
   "repository": {
     "type": "git",
