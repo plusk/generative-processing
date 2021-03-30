@@ -10,7 +10,6 @@ const Container = styled.main`
   padding: 10rem;
 
   h1 {
-    font-size: 4rem;
     margin-bottom: 3rem;
   }
 
