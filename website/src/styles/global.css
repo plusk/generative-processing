@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Serif&display=swap");
+
+:root {
+  --primary: #333;
+}
+
+body {
+  background: var(--primary);
+  color: antiquewhite;
+  font-family: "Noto Sans", sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Noto Serif", serif;
+  font-size: 3rem;
+  line-height: 1;
+}
