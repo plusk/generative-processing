@@ -1,29 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import drawSketch from "../sketches/seed.js";
 
 type SketchProps = {
   title: string;
   description: string;
 };
 
-const Container = styled.main`
-  padding: 10rem;
+const Page = styled.main`
+  display: flex;
+  justify-content: center;
+  padding: 5rem;
+  gap: 2rem;
+  height: 100vh;
+
+  canvas {
+    width: initial !important;
+    height: calc(100vh - 10rem) !important;
+  }
+`;
+
+const Info = styled.div`
+  max-width: 40rem;
 
   h1 {
     margin-bottom: 3rem;
   }
-
-  p {
-    max-width: 40rem;
-  }
 `;
 
 const Sketch = ({ title, description }: SketchProps) => {
+  useEffect(() => {
+    const container = document.querySelector("canvas");
+    container && container.remove();
+    drawSketch();
+  }, []);
+
   return (
-    <Container>
-      <h1>{title}</h1>
-      <p>{description}</p>
-    </Container>
+    <Page>
+      <Info>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </Info>
+    </Page>
   );
 };
 
