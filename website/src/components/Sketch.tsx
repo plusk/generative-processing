@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import drawSketch from "../sketches/seed.js";
+import drawSketch from "../sketches/blobs.js";
 
 type SketchProps = {
   title: string;

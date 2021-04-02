@@ -1,9 +1,11 @@
 import PALETTES from "./palettes.json";
 import p5 from "p5";
 
-export default (id) => {
+const drawSketch = (id) => {
   new p5(s, id);
 };
+
+export default drawSketch;
 
 const s = (p) => {
   let cnv;
