@@ -6,11 +6,11 @@ This repository serves as both a collection of generative artwork, and a website
 
 The `talk/` folder is part of a code walkthrough for a short talk I held for Bekk in September 2020. The talk can be found in Norwegian [here](https://oi.bekk.no/pangea/foredrag/9). The talk provides a rough introduction to generative art before transitioning to re-building one of my old sketches from scratch.
 
-The `workshop/` folder is part of a workshop I held for the student organization [Online](http://online.ntnu.no/) through Bekk in October 2020. Five sketches were made to show some generative art basics, with a focus on having many tweakable parameters. The students cloned the repository, tweaked the parameters to their preference, and had the option to print out the final images in an A2 paper format.
-
 The `article/` folder is part of an article I wrote for [bekk.christmas](http://bekk.christmas/), specifically the JavaScript advent calendar of 2020. The article is available to read in English [here](https://javascript.christmas/2020/16/). The concept of the article to make more of a fun "yay it's snowing in your browser" kind of thing step-by-step, as opposed to focusing on the art aspect of generative art.
 
 The `sketches/base.js` file provides a base template for new sketches and is iterated on continuously, but does nothing by itself.
+
+This repository also previously contained a `workshop/` folder, which was part of a workshop I held for the student organization [Online](http://online.ntnu.no/) through Bekk in October 2020. A second iteration of the workshop was made for the student organizations [TIHLDE](https://tihlde.org/) and [Hybrida](https://hybrida.no/) through Bekk in April 2021. Five sketches were made to show some generative art basics, with a focus on having many tweakable parameters. The students cloned the repository, tweaked the parameters to their preference, and had the option to print out the final images in an A2 paper format. The workshop has been moved to its own repository, which can be found [here](https://github.com/plusk/generative-workshop/).
 
 ### Setup
 
