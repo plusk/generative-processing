@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "retro"; // retro, warm, sydney, symmeblu, termos, vintage, pastella
+const PALETTE_NAME = "genesis"; // retro, warm, sydney, symmeblu, termos, vintage, pastella
 
 const STROKE_WEIGHT = 2;
 const RING_COUNT = 10;
@@ -74,11 +74,7 @@ function draw() {
     const HUE = hue(RING[0].color);
     const SATURATION = saturation(RING[0].color);
     const LIGHTNESS = lightness(RING[0].color);
-    stroke(
-      HUE,
-      (SATURATION / FRAME_LIMIT) * frameCount,
-      (LIGHTNESS / FRAME_LIMIT) * frameCount
-    );
+    stroke(HUE, (SATURATION / FRAME_LIMIT) * frameCount, (LIGHTNESS / FRAME_LIMIT) * frameCount);
     for (let l = 0; l < RING.length; l++) {
       const LINE = RING[l];
       drawLine(LINE);

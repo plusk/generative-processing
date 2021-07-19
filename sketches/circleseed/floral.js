@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "retro"; // retro
+const PALETTE_NAME = "genesis"; // retro
 
 const STROKE_WEIGHT = 2;
 const RING_COUNT = 50;
@@ -47,11 +47,7 @@ function setup() {
     const yCenter = random(RADIUS / 2, height);
     const coleur = color(COLORS[r % COLORS.length]);
     const raddy = random(RADIUS_MIN, RADIUS);
-    for (
-      let a = TWO_PI / (raddy * LINE_FACTOR);
-      a < TWO_PI;
-      a += TWO_PI / (raddy * LINE_FACTOR)
-    ) {
+    for (let a = TWO_PI / (raddy * LINE_FACTOR); a < TWO_PI; a += TWO_PI / (raddy * LINE_FACTOR)) {
       const x = xCenter + random(raddy / 4, raddy) * cos(a);
       const y = yCenter + random(raddy / 4, raddy) * sin(a);
       RING.push({
@@ -72,11 +68,7 @@ function draw() {
     const HUE = hue(RING[0].color);
     const SATURATION = saturation(RING[0].color);
     const LIGHTNESS = lightness(RING[0].color);
-    const coleur = color(
-      HUE,
-      (SATURATION / FRAME_LIMIT) * frameCount,
-      (LIGHTNESS / FRAME_LIMIT) * frameCount
-    );
+    const coleur = color(HUE, (SATURATION / FRAME_LIMIT) * frameCount, (LIGHTNESS / FRAME_LIMIT) * frameCount);
     stroke(coleur);
     //drawingContext.shadowColor = coleur;
 

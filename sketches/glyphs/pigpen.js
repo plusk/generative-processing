@@ -5,9 +5,47 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "monster";
+const PALETTE_NAME = "pastella";
 
 const STROKE_WEIGHT = 3;
+
+const CODE = {
+  A: { shape: "L", rotation: 0, hasDot: false },
+  B: { shape: "U", rotation: 0, hasDot: false },
+  C: { shape: "L", rotation: 90, hasDot: false },
+  D: { shape: "U", rotation: -90, hasDot: false },
+  E: { shape: "O", rotation: 0, hasDot: false },
+  F: { shape: "U", rotation: 90, hasDot: false },
+  G: { shape: "L", rotation: -90, hasDot: false },
+  H: { shape: "U", rotation: 180, hasDot: false },
+  I: { shape: "L", rotation: 180, hasDot: false },
+  J: { shape: "L", rotation: 0, hasDot: true },
+  K: { shape: "U", rotation: 0, hasDot: true },
+  L: { shape: "L", rotation: 90, hasDot: true },
+  M: { shape: "U", rotation: -90, hasDot: true },
+  N: { shape: "O", rotation: 0, hasDot: true },
+  O: { shape: "U", rotation: 90, hasDot: true },
+  P: { shape: "L", rotation: -90, hasDot: true },
+  Q: { shape: "U", rotation: 180, hasDot: true },
+  R: { shape: "L", rotation: 180, hasDot: true },
+  S: { shape: "V", rotation: 0, hasDot: false },
+  T: { shape: "V", rotation: -90, hasDot: false },
+  U: { shape: "V", rotation: 90, hasDot: false },
+  V: { shape: "V", rotation: 180, hasDot: false },
+  W: { shape: "V", rotation: 0, hasDot: true },
+  X: { shape: "V", rotation: -90, hasDot: true },
+  Y: { shape: "V", rotation: 90, hasDot: true },
+  Z: { shape: "V", rotation: 180, hasDot: true },
+  ",": { shape: "", rotation: 0, hasDot: true },
+  ".": { shape: "", rotation: 0, hasDot: true },
+  "'": { shape: "", rotation: 0, hasDot: true },
+  "-": { shape: "", rotation: 0, hasDot: true },
+  "(": { shape: "", rotation: 0, hasDot: true },
+  ")": { shape: "", rotation: 0, hasDot: true },
+  "?": { shape: "", rotation: 0, hasDot: true },
+  " ": { shape: "", rotation: 0, hasDot: false },
+  "": { shape: "", rotation: 0, hasDot: false },
+};
 
 let padding;
 
@@ -22,13 +60,10 @@ let PRECODED;
 
 let GRIDCOUNT;
 
-let CODE;
-
 let gapfactor = 0.35375 * 1;
 
 function preload() {
   palettes = loadJSON("palettes.json");
-  CODE = loadJSON("glyphs/code.json");
 }
 
 function setup() {
@@ -78,14 +113,7 @@ function draw() {
       const charobject = CODE[char];
       console.log(char);
       console.log(charobject);
-      drawShape(
-        x,
-        y,
-        jumpx * gapfactor,
-        charobject["shape"],
-        charobject["hasDot"],
-        charobject["rotation"]
-      );
+      drawShape(x, y, jumpx * gapfactor, charobject["shape"], charobject["hasDot"], charobject["rotation"]);
       count++;
     }
   }
@@ -119,7 +147,7 @@ function drawShape(x, y, radius, shape, hasDot, rotation) {
     vertex(sx, sy);
   }
   endShape();
-  if (hasDot === "Y") {
+  if (hasDot) {
     strokeWeight(STROKE_WEIGHT * 1.5);
     if (shape === "V") {
       point(0, (sin(-45) * radius) / 2);

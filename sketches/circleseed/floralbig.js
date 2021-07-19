@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "retro"; // retro
+const PALETTE_NAME = "genesis"; // retro
 
 const STROKE_WEIGHT = 2;
 const RING_COUNT = 5;
@@ -49,11 +49,7 @@ function setup() {
     const xCenter = width / 2;
     const yCenter = (PADDING * 3) / 4 + radsum;
     const coleur = color(random(COLORS));
-    for (
-      let a = TWO_PI / (raddy * LINE_FACTOR);
-      a < TWO_PI;
-      a += TWO_PI / (raddy * LINE_FACTOR)
-    ) {
+    for (let a = TWO_PI / (raddy * LINE_FACTOR); a < TWO_PI; a += TWO_PI / (raddy * LINE_FACTOR)) {
       const x = xCenter + raddy * cos(a);
       const y = yCenter + raddy * sin(a);
       RING.push({

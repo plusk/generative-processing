@@ -2,7 +2,7 @@ let PALETTES, COLORS, BG, STROKE;
 
 const EXPORT = false;
 
-const PALETTE_NAME = "retro";
+const PALETTE_NAME = "genesis";
 
 const STROKE_WEIGHT = 2;
 

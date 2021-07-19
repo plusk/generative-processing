@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "retro"; // retro
+const PALETTE_NAME = "genesis"; // retro
 
 const STROKE_WEIGHT = 1;
 
@@ -55,8 +55,7 @@ function draw() {
     stroke(
       hue(STROKE),
       saturation(STROKE),
-      (lightness(STROKE) / FRAME_LIMIT) *
-        (FRAME_LIMIT * (1 + MIN_LIGHTNESS) - frameCount),
+      (lightness(STROKE) / FRAME_LIMIT) * (FRAME_LIMIT * (1 + MIN_LIGHTNESS) - frameCount),
       OPACITY
     );
     const a = ANGLE * ticker;

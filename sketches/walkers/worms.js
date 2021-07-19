@@ -11,7 +11,7 @@ let colors_bg;
 // termos
 // vintage
 // monster
-const PALETTE_NAME = "retro";
+const PALETTE_NAME = "genesis";
 const SPEED = 5;
 const STROKE_WEIGHT = 10;
 const THREAD_COUNT = 200;
@@ -74,11 +74,7 @@ function draw() {
 }
 
 function updateThread(thread) {
-  let noisebois = noise(
-    thread.x * NOISE_GRANULARITY,
-    thread.y * NOISE_GRANULARITY,
-    noize
-  );
+  let noisebois = noise(thread.x * NOISE_GRANULARITY, thread.y * NOISE_GRANULARITY, noize);
   let xOld = thread.x;
   let yOld = thread.y;
   let xNew = xOld + cos(thread.angle * noisebois) * SPEED;

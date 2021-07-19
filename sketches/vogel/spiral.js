@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "retro"; // retro
+const PALETTE_NAME = "genesis"; // retro
 
 const STROKE_WEIGHT = 10;
 

@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "retro";
+const PALETTE_NAME = "genesis";
 
 const STROKE_WEIGHT = 2;
 const RING_COUNT = 1;

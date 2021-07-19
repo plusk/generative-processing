@@ -57,7 +57,6 @@ function draw() {
     anglestep = random(2);
     if (angle > 180 || angle < 0) anglesign *= -1;
     angle += anglestep * anglesign + noised * 2;
-    console.log(angle);
 
     x += cos(angle) * STEP;
     y += sin(angle) * STEP;
@@ -65,20 +64,10 @@ function draw() {
     for (let i = 0; i < symmetry; i++) {
       stroke(colors[i % colors.length]);
       rotate(symangle);
-      line(
-        startx - width / 2,
-        starty - height / 2,
-        x - width / 2,
-        y - height / 2
-      );
+      line(startx - width / 2, starty - height / 2, x - width / 2, y - height / 2);
       push();
       scale(1, -1);
-      line(
-        startx - width / 2,
-        starty - height / 2,
-        x - width / 2,
-        y - height / 2
-      );
+      line(startx - width / 2, starty - height / 2, x - width / 2, y - height / 2);
       pop();
     }
   }

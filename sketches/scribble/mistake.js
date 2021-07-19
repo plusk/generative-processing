@@ -1,3 +1,5 @@
+// ONLY WORKS WITH P5v1.0.0, THEY FIXED MY BUG :(
+
 let section;
 let gap;
 let z = 0;
@@ -19,10 +21,10 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "retro";
+const PALETTE_NAME = "genesis";
 
 function preload() {
-  palettes = loadJSON("../palettes.json");
+  palettes = loadJSON("palettes.json");
 }
 
 function setup() {
@@ -41,13 +43,7 @@ function setup() {
   for (let c = 0; c < scribblecount; c++) {
     const ang = random(TWO_PI);
     const rad = bigrad * sqrt(random());
-    coords.push([
-      rad * cos(ang),
-      rad * sin(ang),
-      random(maxr),
-      random(1),
-      random(colors),
-    ]);
+    coords.push([rad * cos(ang), rad * sin(ang), random(maxr), random(1), random(colors)]);
   }
   strokeWeight(3);
   bigcolor = random(colors);

@@ -5,10 +5,6 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-//redrange
-//yeblu
-//pastella
-//sydney
 const PALETTE_NAME = "redrange";
 
 let padding;
@@ -105,10 +101,7 @@ function consider(vert, nuvert, row) {
   const DECAY = ((jumpy / (POLYCOUNT - row + 1)) * random(row - 1)) / POLYCOUNT;
   const randy = 0.25 * (row - 1);
   if (random() < 0.5) {
-    strokeWeight(
-      STROKE_WEIGHT *
-        random(1 - (0.2 / POLYCOUNT) * row, 1 + (row - 1) / POLYCOUNT)
-    );
+    strokeWeight(STROKE_WEIGHT * random(1 - (0.2 / POLYCOUNT) * row, 1 + (row - 1) / POLYCOUNT));
     line(
       vert[0] + DECAY * random(-randy, randy),
       vert[1] + DECAY * random(-randy, randy),
@@ -116,14 +109,8 @@ function consider(vert, nuvert, row) {
       nuvert[1] + DECAY * random(-randy, randy)
     );
     strokeWeight(STROKE_WEIGHT * 3);
-    point(
-      vert[0] + DECAY * random(-randy, randy),
-      vert[1] + DECAY * random(-randy, randy)
-    );
-    point(
-      nuvert[0] + DECAY * random(-randy, randy),
-      nuvert[1] + DECAY * random(-randy, randy)
-    );
+    point(vert[0] + DECAY * random(-randy, randy), vert[1] + DECAY * random(-randy, randy));
+    point(nuvert[0] + DECAY * random(-randy, randy), nuvert[1] + DECAY * random(-randy, randy));
     strokeWeight(STROKE_WEIGHT);
   }
 }

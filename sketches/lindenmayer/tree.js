@@ -5,7 +5,7 @@ let COLORS;
 let BG;
 let STROKE;
 
-const PALETTE_NAME = "retro";
+const PALETTE_NAME = "genesis";
 
 const STROKE_WEIGHT = 5;
 const ANGLE_STEP = Math.PI / 8;

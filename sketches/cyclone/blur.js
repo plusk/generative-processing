@@ -7,7 +7,6 @@ let colors_bg;
 
 const PALETTE_NAME = "pastella";
 
-const FRAME_CYCLE = 10;
 const WALKER_COUNT = 100;
 const STROKE_WEIGHT = 2;
 const STEP = 50;
@@ -47,10 +46,6 @@ function setup() {
   }
 }
 
-let frame = 0;
-let x = 0;
-let y = 0;
-
 const TIGHTNESS = 100;
 const AMP = 50;
 
@@ -61,16 +56,8 @@ function draw() {
 
   for (let i = 0; i < WALKERS.length; i++) {
     const w = WALKERS[i];
-    w.color.setAlpha(
-      Math.exp(2 * ((((w.angle + ANGLE_OFFSET) % 360) - 180) / TIGHTNESS) ** 2)
-    );
-    strokeWeight(
-      STROKE_WEIGHT *
-        Math.exp(
-          -1 * ((((w.angle + ANGLE_OFFSET) % 360) - 180) / TIGHTNESS) ** 2
-        ) *
-        AMP
-    );
+    w.color.setAlpha(Math.exp(2 * ((((w.angle + ANGLE_OFFSET) % 360) - 180) / TIGHTNESS) ** 2));
+    strokeWeight(STROKE_WEIGHT * Math.exp(-1 * ((((w.angle + ANGLE_OFFSET) % 360) - 180) / TIGHTNESS) ** 2) * AMP);
     stroke(w.color);
     w.angle += ANGLE_STEP * noise(w.x * NOISE_FACTOR, w.y * NOISE_FACTOR);
     w.x += STEP * cos(w.angle);

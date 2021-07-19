@@ -11,7 +11,7 @@ const STROKE_WEIGHT = 7.5;
 const RING_COUNT = 10;
 const BALL_COUNT = 20;
 const RADIUS = 400;
-const SPEED = 1;
+const SPEED = 0.25;
 
 // const ANGLE_STEP = 1;
 

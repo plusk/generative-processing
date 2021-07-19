@@ -5,7 +5,7 @@ let colors;
 let colors_stroke;
 let colors_bg;
 
-const PALETTE_NAME = "retro";
+const PALETTE_NAME = "genesis";
 const STROKE_WEIGHT = 5;
 const THREAD_COUNT = 1000;
 const SPEED = 5;
@@ -65,11 +65,7 @@ function draw() {
 }
 
 function updateThread(thread) {
-  let noisebois = noise(
-    thread.x * NOISE_GRANULARITY,
-    thread.y * NOISE_GRANULARITY,
-    noize
-  );
+  let noisebois = noise(thread.x * NOISE_GRANULARITY, thread.y * NOISE_GRANULARITY, noize);
   let xOld = thread.x;
   let yOld = thread.y;
   let xNew = xOld + cos(thread.angle * noisebois) * SPEED;
