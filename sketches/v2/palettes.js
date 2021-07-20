@@ -65,6 +65,4 @@ const palettes = {
   },
 };
 
-export const paletteNames = Object.fromEntries(Object.keys(palettes).map((o) => [o, o]));
-
 export default palettes;

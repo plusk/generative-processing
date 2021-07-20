@@ -2,16 +2,12 @@ import palettes from "./palettes.js";
 import configBuilder from "./utils.js";
 
 new p5((p) => {
-  const { c, menu } = configBuilder(p, {
+  let bg, colors;
+
+  const c = configBuilder(p, {
     palette: "stronk",
     randomSeed: 1,
     strokeWeight: 10,
-  });
-
-  let bg, colors;
-
-  menu.on("change", (e) => {
-    p.setup();
   });
 
   p.setup = () => {

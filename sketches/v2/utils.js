@@ -1,30 +1,47 @@
-import { paletteNames } from "./palettes.js";
+import palettes from "./palettes.js";
 
 const configBuilder = (p, c) => {
-  const pane = new Tweakpane.Pane({
-    title: "Config",
-  });
+  // TODO: always include randomseed? some option for it
+  const config = {
+    ...c,
+    download: () => p.saveCanvas(),
+  };
 
-  Object.entries(c).forEach(([key, value]) => {
-    if (key === "palette") {
-      pane.addInput(c, key, { options: paletteNames });
+  // TODO: see what parameters can be used here
+  const gui = new dat.GUI({ width: 400 });
+
+  // TODO: use these controllers
+  const controllers = {};
+
+  // TODO: config should be a more elaborate structure, containing min, max, etc
+  Object.entries(config).forEach(([key, value]) => {
+    const name = key.charAt(0).toUpperCase() + key.slice(1);
+    if (key === "download") {
+      controllers[key] = gui.add(config, key).name(name);
+    } else if (key === "palette") {
+      controllers[key] = gui
+        .add(config, key, Object.keys(palettes))
+        .name(name)
+        .onChange(() => p.setup());
     } else if (key === "randomSeed") {
-      pane.addInput(c, key, { min: 1, step: 1 });
+      controllers[key] = gui
+        .add(config, key, 0, 100, 1)
+        .name(name)
+        .onChange(() => p.setup());
     } else if (Number.isInteger(value)) {
-      pane.addInput(c, key, { min: value / 10, max: value * 10 });
+      controllers[key] = gui
+        .add(config, key, value / 10, value * 10)
+        .name(name)
+        .onChange(() => p.setup());
     } else {
-      pane.addInput(c, key);
+      controllers[key] = gui
+        .add(config, key)
+        .name(name)
+        .onChange(() => p.setup());
     }
   });
 
-  pane.addButton({ title: "Download" }).on("click", () => {
-    p.saveCanvas();
-  });
-
-  return {
-    c,
-    menu: pane,
-  };
+  return config;
 };
 
 export default configBuilder;
