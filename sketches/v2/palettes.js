@@ -63,6 +63,14 @@ const palettes = {
     bg: "#FAEBD7",
     colors: ["#70c2ad", "#F3B562", "#F06060", "#97c87e"],
   },
+  sirkul: {
+    bg: "#FAEBD7",
+    colors: ["#162365", "#6D7ABB", "#FFB88D", "#FF5B5B"],
+  },
+  appfab: {
+    bg: "#FAEBD7",
+    colors: ["#FFB88D", "#16DBC4", "#A1F5E3", "#162365"],
+  },
 };
 
 export default palettes;

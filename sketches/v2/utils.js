@@ -1,14 +1,15 @@
 import palettes from "./palettes.js";
 
 const configBuilder = (p, c) => {
-  // TODO: always include randomseed? some option for it
   const config = {
+    palette: "onom",
+    seed: 0,
     ...c,
-    download: () => p.saveCanvas(),
+    download: () => p.saveCanvas(`s${config.seed}-f${p.frameCount}`),
   };
 
   // TODO: see what parameters can be used here
-  const gui = new dat.GUI({ width: 400 });
+  const gui = new dat.GUI({ closeOnTop: true });
 
   // TODO: use these controllers
   const controllers = {};
@@ -23,7 +24,7 @@ const configBuilder = (p, c) => {
         .add(config, key, Object.keys(palettes))
         .name(name)
         .onChange(() => p.setup());
-    } else if (key === "randomSeed") {
+    } else if (key === "seed") {
       controllers[key] = gui
         .add(config, key, 0, 100, 1)
         .name(name)
@@ -42,6 +43,13 @@ const configBuilder = (p, c) => {
   });
 
   return config;
+};
+
+export const baseSetup = (p, c) => {
+  p.createCanvas(1080, 1350);
+  p.pixelDensity(1);
+  p.randomSeed(c.randomSeed);
+  p.random(); // get rid of some pseudo-random nastiness
 };
 
 export default configBuilder;
