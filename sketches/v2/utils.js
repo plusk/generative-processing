@@ -9,7 +9,7 @@ const configBuilder = (p, c) => {
   };
 
   // TODO: see what parameters can be used here
-  const gui = new dat.GUI({ closeOnTop: true });
+  const gui = new dat.GUI({ closeOnTop: true, closed: true });
 
   // TODO: use these controllers
   const controllers = {};
@@ -31,7 +31,7 @@ const configBuilder = (p, c) => {
         .onChange(() => p.setup());
     } else if (Number.isInteger(value)) {
       controllers[key] = gui
-        .add(config, key, value / 10, value * 10)
+        .add(config, key, value / 10, value * 2)
         .name(name)
         .onChange(() => p.setup());
     } else {
@@ -50,6 +50,7 @@ export const baseSetup = (p, c) => {
   p.pixelDensity(1);
   p.randomSeed(c.randomSeed);
   p.random(); // get rid of some pseudo-random nastiness
+  p.colorMode(p.HSL);
 };
 
 export default configBuilder;
