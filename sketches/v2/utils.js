@@ -1,26 +1,16 @@
 import palettes from "./palettes.js";
 
 export class ConfigValue {
-  constructor ({value, min, max, step}) {
+  constructor ({value, min, max, step, show}) {
     this.value = value;
     this.min = min;
     this.max = max;
     this.step = step;
+    this.show = show;
   }
 }
 
-/*
-  p is a p5 instance, c is an extension of dat.gui configs:
-  
-  const c = {
-    size: {
-      value: 5,
-      min: 1,
-      max: 10,
-      step: 1
-    }
-  };
-*/
+// p is a p5 instance, c is an object of values or ConfigValues
 const configBuilder = (p, c) => {
   const config = {
     palette: "onom",
