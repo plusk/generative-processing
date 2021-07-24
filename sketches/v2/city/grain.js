@@ -11,6 +11,8 @@ new p5((p) => {
     max: 150,
     padding: 0.1,
     strokeWeight: 1,
+    smooth: false,
+    pointSpacing: 2,
   });
 
   p.setup = () => {
@@ -51,8 +53,12 @@ new p5((p) => {
       p.stroke(scale[i]);
 
       const chance = i / h;
-      for (let j = 0; j < w; j += c.strokeWeight * 2) {
-        if (p.random() > chance) p.point(x + j, y + i);
+      if(c.smooth) {
+        p.line(x, y + i, x + w, y + i);
+      } else {
+        for (let j = 0; j < w; j += c.strokeWeight * c.pointSpacing) {
+          if (p.random() > chance) p.point(x + j, y + i);
+        }
       }
     }
   };
