@@ -13,7 +13,8 @@ new p5((p) => {
     grainy: true,
     strokeWeight: new ConfigValue({ value: 1, min: 0.1, max: 5, step: 0.1}),
     pointSpacing: new ConfigValue({ value: 2, min: 1, max: 5, step: 0.1 }),
-    backgroundSpecks: new ConfigValue({ value: 10000, min: 0, max: 20000, step: 100 }),
+    specks: new ConfigValue({ value: 10000, min: 0, max: 20000, step: 100 }),
+    angleChance: new ConfigValue({ value: 0.25, min: 0, max: 1, step: 0.05 })
   });
 
   p.setup = () => {
@@ -50,16 +51,35 @@ new p5((p) => {
     const y = p.random(p.height * c.padding, p.height - p.height * c.padding);
     const h = p.height - y;
 
+    const isAngled = p.random() < c.angleChance;
+    const angleUpwards = p.random([true, false]);
+
     for (let i = 0; i < h; i++) {
       p.stroke(scale[i]);
 
       const chance = i / h;
       if(c.grainy) {
         for (let j = 0; j < w; j += c.strokeWeight * c.pointSpacing) {
-          if (p.random() > chance) p.point(x + j, y + i);
+          if (p.random() > chance) {
+            if(isAngled) {
+              if(angleUpwards && w - i < j) p.point(x + j, y + i);
+              if(!angleUpwards && i > j) p.point(x + j, y + i);
+            } else {
+              p.point(x + j, y + i);
+            }
+          }
         }
       } else {
-        p.line(x, y + i, x + w, y + i);
+        if(isAngled) {
+          if(i < w) {
+            if(angleUpwards) p.line(x + w - i, y + i, x + w, y + i);
+            if(!angleUpwards) p.line(x, y + i, x + i, y + i);
+          } else {
+            p.line(x, y + i, x + w, y + i);
+          }
+        } else {
+          p.line(x, y + i, x + w, y + i);
+        }
       }
     }
   };
@@ -67,7 +87,7 @@ new p5((p) => {
   const drawBackground = () => {
     p.background(bg);
 
-    for (let i = 0; i < c.backgroundSpecks; i++) {
+    for (let i = 0; i < c.specks; i++) {
       drawSpeck();
     }
   }
