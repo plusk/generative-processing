@@ -1,18 +1,18 @@
 import palettes from "../palettes.js";
-import configBuilder, { baseSetup } from "../utils.js";
+import configBuilder, { baseSetup, ConfigValue } from "../utils.js";
 
 new p5((p) => {
   let bg, colors, frame, scales;
 
   const c = configBuilder(p, {
     palette: "onom",
-    limit: 50,
-    min: 75,
-    max: 150,
-    padding: 0.1,
-    strokeWeight: 1,
+    limit: new ConfigValue({ value: 50, min: 1, max: 100, step: 1}),
+    min: new ConfigValue({ value: 75, min: 50, max: 100, step: 5}),
+    max: new ConfigValue({ value: 150, min: 100, max: 200, step: 5}),
+    padding: new ConfigValue({ value: 0.1, min: 0, max: 0.5, step: 0.05}),
+    strokeWeight: new ConfigValue({ value: 1, min: 0.1, max: 5, step: 0.1}),
+    pointSpacing: new ConfigValue({ value: 2, min: 1, max: 5, step: 0.1 }),
     smooth: false,
-    pointSpacing: 2,
   });
 
   p.setup = () => {
@@ -37,16 +37,16 @@ new p5((p) => {
     drawTower();
 
     frame++;
-    if (frame > c.limit) {
+    if (frame >= c.limit) {
       p.noLoop();
     }
   };
 
   const drawTower = () => {
     const scale = p.random(scales);
-    const x = p.random(p.width);
-    const y = p.random(p.height * c.padding, p.height - p.height * c.padding);
     const w = p.random(c.min, c.max);
+    const x = p.random(-w, p.width);
+    const y = p.random(p.height * c.padding, p.height - p.height * c.padding);
     const h = p.height - y;
 
     for (let i = 0; i < h; i++) {

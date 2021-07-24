@@ -1,5 +1,26 @@
 import palettes from "./palettes.js";
 
+export class ConfigValue {
+  constructor ({value, min, max, step}) {
+    this.value = value;
+    this.min = min;
+    this.max = max;
+    this.step = step;
+  }
+}
+
+/*
+  p is a p5 instance, c is an extension of dat.gui configs:
+  
+  const c = {
+    size: {
+      value: 5,
+      min: 1,
+      max: 10,
+      step: 1
+    }
+  };
+*/
 const configBuilder = (p, c) => {
   const config = {
     palette: "onom",
@@ -29,9 +50,10 @@ const configBuilder = (p, c) => {
         .add(config, key, 0, 100, 1)
         .name(name)
         .onChange(() => p.setup());
-    } else if (Number.isInteger(value)) {
+    } else if (value instanceof ConfigValue) {
+      config[key] = value.value;
       controllers[key] = gui
-        .add(config, key, value / 10, value * 2)
+        .add(config, key, value.min, value.max, value.step)
         .name(name)
         .onChange(() => p.setup());
     } else {
@@ -48,7 +70,7 @@ const configBuilder = (p, c) => {
 export const baseSetup = (p, c) => {
   p.createCanvas(1080, 1350);
   p.pixelDensity(1);
-  p.randomSeed(c.randomSeed);
+  p.randomSeed(c.seed);
   p.random(); // get rid of some pseudo-random nastiness
   p.colorMode(p.HSL);
 };
