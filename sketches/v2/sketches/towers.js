@@ -6,14 +6,14 @@ new p5((p) => {
 
   const c = configBuilder(p, {
     palette: "onom",
-    limit: new ConfigValue({ value: 50, min: 1, max: 100, step: 1}),
+    limit: new ConfigValue({ value: 100, min: 1, max: 100, step: 1}),
     minWidth: new ConfigValue({ value: 75, min: 50, max: 100, step: 5}),
     maxWidth: new ConfigValue({ value: 150, min: 100, max: 200, step: 5}),
-    padding: new ConfigValue({ value: 0.1, min: 0, max: 0.5, step: 0.05}),
+    padding: new ConfigValue({ value: 0, min: 0, max: 0.5, step: 0.05}),
     grainy: true,
     strokeWeight: new ConfigValue({ value: 1, min: 0.1, max: 5, step: 0.1}),
     pointSpacing: new ConfigValue({ value: 2, min: 1, max: 5, step: 0.1 }),
-    specks: new ConfigValue({ value: 10000, min: 0, max: 20000, step: 100 }),
+    specks: new ConfigValue({ value: 20000, min: 0, max: 20000, step: 100 }),
     angleChance: new ConfigValue({ value: 0.25, min: 0, max: 1, step: 0.05 })
   });
 
@@ -40,6 +40,7 @@ new p5((p) => {
 
     frame++;
     if (frame >= c.limit) {
+      drawSpecks(true);
       p.noLoop();
     }
   };
@@ -86,15 +87,17 @@ new p5((p) => {
 
   const drawBackground = () => {
     p.background(bg);
-
-    for (let i = 0; i < c.specks; i++) {
-      drawSpeck();
-    }
+    drawSpecks(false);
   }
 
-  const drawSpeck = () => {
-    const x = p.random(p.width);
-    const y = p.random(p.height);
-    p.point(x, y);
+  const drawSpecks = (contrast) => {
+    for (let i = 0; i < c.specks; i++) {
+      const scale = p.random(scales);
+      const collie = contrast ? bg : scale[p.round(i / c.specks)]
+      p.stroke(collie)
+      const x = p.random(p.width);
+      const y = p.random(p.height);
+      p.point(x, y);
+    }
   }
 });
