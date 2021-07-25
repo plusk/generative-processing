@@ -65,4 +65,11 @@ export const baseSetup = (p, c) => {
   p.colorMode(p.HSL);
 };
 
+export const webGLSetup = (p, c) => {
+  p.createCanvas(1080, 1350, p.WEBGL);
+  p.pixelDensity(1);
+  p.randomSeed(c.seed);
+  p.random(); // get rid of some pseudo-random nastiness
+};
+
 export default configBuilder;
