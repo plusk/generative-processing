@@ -1,7 +1,7 @@
 import palettes from "./palettes.js";
 
 export class ConfigValue {
-  constructor ({value, min, max, step, show}) {
+  constructor({ value, min, max, step, show }) {
     this.value = value;
     this.min = min;
     this.max = max;
@@ -16,7 +16,7 @@ const configBuilder = (p, c) => {
     palette: "onom",
     seed: 0,
     ...c,
-    download: () => p.saveCanvas(`s${config.seed}-f${p.frameCount}`),
+    download: () => p.saveCanvas(`s${config.seed}-f${p.frameCount}.png`),
   };
 
   // TODO: see what parameters can be used here
