@@ -11,7 +11,7 @@ new p5((p) => {
       max: 0.5,
       step: 0.05,
     }),
-    seed: 69,
+    seed: 852,
   });
 
   p.preload = () => {
@@ -42,7 +42,7 @@ new p5((p) => {
 
   p.draw = () => {
     shader.setUniform("u_resolution", [p.width, p.height]);
-    shader.setUniform("u_time", p.frameCount * 0.01);
+    shader.setUniform("u_time", p.frameCount * 0.001);
     shader.setUniform("u_pointA", pointA);
     shader.setUniform("u_pointB", pointB);
     shader.setUniform("u_pointC", pointC);
