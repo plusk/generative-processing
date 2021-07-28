@@ -1,8 +1,8 @@
-import palettes from "../palettes.js";
-import configBuilder, { webGLSetup, ConfigValue } from "../utils.js";
+import palettes from "../../palettes.js";
+import configBuilder, { webGLSetup, ConfigValue } from "../../utils.js";
 
 new p5((p) => {
-  let bg, colors, shader, pointA, pointB, pointC;
+  let bg, colors, shader, pointA, pointB, pointC, color1, color2;
 
   const c = configBuilder(p, {
     padding: new ConfigValue({
@@ -11,11 +11,11 @@ new p5((p) => {
       max: 0.5,
       step: 0.05,
     }),
-    seed: 852,
+    seed: 9372,
   });
 
   p.preload = () => {
-    shader = p.loadShader("/sketches/v2/sketches/basic.vert", "/sketches/v2/sketches/basic.frag");
+    shader = p.loadShader("/sketches/v2/sketches/reflect/basic.vert", "/sketches/v2/sketches/reflect/reflect.frag");
   };
 
   const randomWithPadding = (numnum) => {
@@ -33,6 +33,9 @@ new p5((p) => {
     pointB = [randomWithPadding(p.width), randomWithPadding(p.height)];
     pointC = [randomWithPadding(p.width), randomWithPadding(p.height)];
 
+    color1 = [p.random(255) / 255, p.random(255) / 255, p.random(255) / 255];
+    color2 = [p.random(255) / 255, p.random(255) / 255, p.random(255) / 255];
+
     /*
     pointA = [p.width * 0.25, p.height * 0.75];
     pointB = [p.width * 0.75, p.height * 0.5];
@@ -42,10 +45,12 @@ new p5((p) => {
 
   p.draw = () => {
     shader.setUniform("u_resolution", [p.width, p.height]);
-    shader.setUniform("u_time", p.frameCount * 0.001);
+    shader.setUniform("u_time", p.frameCount * 10);
     shader.setUniform("u_pointA", pointA);
     shader.setUniform("u_pointB", pointB);
     shader.setUniform("u_pointC", pointC);
+    shader.setUniform("u_color1", color1);
+    shader.setUniform("u_color2", color2);
     p.shader(shader);
     p.rect(0, 0, p.width, p.height);
   };
