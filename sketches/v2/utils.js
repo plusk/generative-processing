@@ -20,7 +20,7 @@ const configBuilder = (p, c) => {
   };
 
   // TODO: see what parameters can be used here
-  const gui = new dat.GUI({ closeOnTop: true, closed: true });
+  const gui = new dat.GUI({ closeOnTop: true, closed: false });
 
   // TODO: use these controllers
   const controllers = {};
