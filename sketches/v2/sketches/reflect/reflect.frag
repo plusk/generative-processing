@@ -12,7 +12,7 @@ uniform vec3 u_color1;
 uniform vec3 u_color2;
 
 bool withTime = false;
-float noiseStrength = 0.75;
+float noiseStrength = 0.65;
 float darkenStrength = 0.5;
 float distanceStrength = 0.25;
 
@@ -33,7 +33,7 @@ float getDistance(vec2 v, vec2 w, vec2 p) {
   float l2 = dot(l, l);  // i.e. |w-v|^2 -  avoid a sqrt
   if (l2 == 0.0) return distance(p, v);   // v == w case
   // Consider the line extending the segment, parameterized as v + t (w - v).
-  // We find projection of point p onto the line. 
+  // We find projection of point p onto the line.
   // It falls where t = [(p-v) . (w-v)] / |w-v|^2
   // We clamp t from [0,1] to handle points outside the segment vw.
   float t = clamp(dot(p - v, w - v) / l2, 0.0, 1.0);
@@ -54,17 +54,21 @@ void main() {
   vec2 pc = u_pointC.xy / u_resolution.xy;
 
   float d1 = getDistance(pa, pb, px);
-  float c1 = 1.0 - getDistance(pa, pb, px);
+  float c1 = 1.0 - d1;
   float d2 = getDistance(pa, pc, px);
-  float c2 = 1.0 - getDistance(pa, pc, px);
+  float c2 = 1.0 - d2;
 
-  bool isBeyondc1 = getPosition(pa, pb, px) > 0.0;
-  bool isBeyondc2 = getPosition(pa, pc, px) > 0.0;
+  // Determine inside/outside wedge independent of point winding order:
+  // a pixel is inside the wedge if it's on the same side of AB as C, and same side of AC as B
+  bool sideC = getPosition(pa, pb, pc) > 0.0;
+  bool sideB = getPosition(pa, pc, pb) > 0.0;
+  bool insideWedge = ((getPosition(pa, pb, px) > 0.0) == sideC) &&
+                     ((getPosition(pa, pc, px) > 0.0) == sideB);
 
   float noiseFactor = noiseStrength * rand(px) + 1.0 - noiseStrength;
-  float darkFactor = isBeyondc1 || !isBeyondc2 ? (1.0 - (darkenStrength * max(c1, c2))) : 1.0 / (d1 * d2);
+  float darkFactor = !insideWedge ? (1.0 - (darkenStrength * max(c1, c2))) : clamp(1.0 / (d1 * d2), 0.0, 4.0);
 
-  vec3 color = c1 * u_color1 + c2 * u_color2;
+  vec3 color = (c1 * u_color1 + c2 * u_color2) / max(c1 + c2, 1.0);
 
   gl_FragColor = vec4(color * darkFactor * noiseFactor, 1.0); // R,G,B,A
 }

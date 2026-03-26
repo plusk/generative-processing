@@ -1,0 +1,48 @@
+import p5 from "p5";
+import palettesData from "../palettes.json";
+import configBuilder, { baseSetup } from "./utils.js";
+
+new p5((p: p5) => {
+  let bg: any, colors: any, frame: any;
+
+  const c = configBuilder(p, {
+    palette: "monowild",
+    limit: 100,
+    min: 75,
+    max: 150,
+  });
+
+  p.setup = () => {
+    baseSetup(p, c);
+    bg = p.color((palettesData as any)[c.palette].bg);
+    colors = (palettesData as any)[c.palette].colors.map((collie: any) => p.color(collie));
+    p.background(bg);
+
+    frame = 0;
+    p.loop();
+  };
+
+  p.draw = () => {
+    drawTower();
+
+    frame++;
+    console.log(frame);
+    if (frame == c.limit) {
+      p.noLoop();
+    }
+  };
+
+  const drawTower = () => {
+    const color = p.random(colors);
+    const x = p.random(p.width);
+    const y = p.random(p.height * 0.1, p.height);
+    const w = p.random(c.min, c.max);
+    const h = p.height - y;
+
+    for (let i = y; i < p.height; i++) {
+      const stroke = p.lerpColor(color, bg, i / h);
+      p.stroke(stroke);
+      p.line(x, i, x + w, i);
+    }
+  };
+});
