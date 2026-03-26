@@ -68,7 +68,7 @@ const FRAME_LIMIT = 250;
 
 */
 
-let COLORS: any[], STROKE: any, BG: any;
+let COLORS: any[], BG: any;
 const ACTIVE_WALKERS: any[] = [];
 
 new p5((p: p5) => {
@@ -79,8 +79,7 @@ new p5((p: p5) => {
 
     /* Get colors from the palettes */
     const PALETTE_KEYS = Object.keys(palettesData);
-    const RANDOM_PALETTE_NAME =
-      PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
+    const RANDOM_PALETTE_NAME = PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
     const PALETTE = !RANDOM_PALETTE
       ? (palettesData as any)[PALETTE_NAME]
       : (palettesData as any)[RANDOM_PALETTE_NAME];
@@ -92,7 +91,6 @@ new p5((p: p5) => {
 
     /* Sketch-specific setup */
     p.strokeWeight(STROKE_WEIGHT);
-    STROKE = p.random(COLORS);
     p.background(BG);
 
     for (let c = 0; c < COLORS.length; c++) {
@@ -109,16 +107,17 @@ new p5((p: p5) => {
     /* Determines the amount of noise layers and their effect on the final field */
     p.noiseDetail(3, 0.75);
 
-    if (RANDOM_ANGLE_BIAS) ANGLE_BIAS = p.random([
-      p.QUARTER_PI * 1,
-      p.QUARTER_PI * 2,
-      p.QUARTER_PI * 3,
-      p.QUARTER_PI * 4,
-      p.QUARTER_PI * 5,
-      p.QUARTER_PI * 6,
-      p.QUARTER_PI * 7,
-      p.QUARTER_PI * 8,
-    ]);
+    if (RANDOM_ANGLE_BIAS)
+      ANGLE_BIAS = p.random([
+        p.QUARTER_PI * 1,
+        p.QUARTER_PI * 2,
+        p.QUARTER_PI * 3,
+        p.QUARTER_PI * 4,
+        p.QUARTER_PI * 5,
+        p.QUARTER_PI * 6,
+        p.QUARTER_PI * 7,
+        p.QUARTER_PI * 8,
+      ]);
 
     /* Intiialize all walkers into the ACTIVE_WALKER list */
     for (let i = 0; i < WALKER_COUNT; i++) {
@@ -184,7 +183,7 @@ new p5((p: p5) => {
     if (CLIP_CONTENT) drawClipCircle();
 
     /* End drawing after a set amount of frames */
-    if(p.frameCount > FRAME_LIMIT) {
+    if (p.frameCount > FRAME_LIMIT) {
       p.noLoop();
     }
   };

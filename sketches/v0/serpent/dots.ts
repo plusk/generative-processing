@@ -13,7 +13,7 @@ const MAX_ALPHA = 255;
 
 const STROKE_WEIGHT = 15;
 const UNIT = 1080 / 3;
-const MAGIC = 4.75;
+const _MAGIC = 4.75;
 const ANGELS = [Math.PI / 3.9, Math.PI / 4.5, Math.PI / 5.9, Math.PI / 11];
 const MAGIQUE = [15, 10, 6, 2];
 const ODD = [true, false, false, false];
@@ -64,8 +64,7 @@ new p5((p: p5) => {
         if (odd) x += UNIT * 0.5;
         for (let l = 0; l < LAYERS; l++) {
           const diameter = (UNIT * (LAYERS - l + 1)) / LAYERS;
-          const stepper =
-            (ANGELS[l] / (ODD[l] ? MAGIQUE[l] - 1 : MAGIQUE[l])) * 2;
+          const stepper = (ANGELS[l] / (ODD[l] ? MAGIQUE[l] - 1 : MAGIQUE[l])) * 2;
           const starter = ODD[l] ? 0 : stepper / 2;
           const LAYER: any[] = [];
           for (let a = starter; a <= ANGELS[l]; a += stepper) {
@@ -100,7 +99,16 @@ new p5((p: p5) => {
     }
   };
 
-  const drawDots = (x: any, y: any, l: any, diameter: any, dots: any, HIGHLIGHTED: any, xndex: any, yndex: any) => {
+  const drawDots = (
+    x: any,
+    y: any,
+    l: any,
+    diameter: any,
+    dots: any,
+    HIGHLIGHTED: any,
+    xndex: any,
+    yndex: any,
+  ) => {
     (p as any).drawingContext.shadowBlur = 0;
     p.stroke(BG);
     p.arc(x, y, diameter, diameter, p.PI, p.TWO_PI);
@@ -121,9 +129,7 @@ new p5((p: p5) => {
         const timedot = totallayerdots * timeFactor;
         const thispos = dotoffset + i + totallayerdots / 2;
         const yootaro = (2.5067 / 1) * p.sqrt(p.TWO_PI);
-        const eeek = Math.exp(
-          -((thispos - timedot * 2) ** 2) / (0.25 * timedot) ** 2
-        );
+        const eeek = Math.exp(-((thispos - timedot * 2) ** 2) / (0.25 * timedot) ** 2);
         (p as any).drawingContext.shadowColor = thisstroke;
         (p as any).drawingContext.shadowBlur = STROKE_WEIGHT;
         thisstroke.setAlpha(MIN_ALPHA + alphaRange * yootaro * eeek);

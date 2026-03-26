@@ -6,7 +6,6 @@ const EXPORT = false;
 const PALETTE_NAME = "onom";
 
 const STROKE_WEIGHT = 2;
-const OPACITY = 1;
 
 const COUNT = 10;
 const ANGLE_STEP = 0.005;
@@ -34,7 +33,7 @@ new p5((p: p5) => {
     p.background(BG);
 
     p.strokeWeight(STROKE_WEIGHT);
-    const FILL = p.random(BG);
+    const FILL = p.color(BG);
     FILL.setAlpha(0.05);
     p.fill(FILL);
 

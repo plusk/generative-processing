@@ -4,7 +4,7 @@ import palettesData from "../../../palettes.json";
 let cnv: any;
 let palette: any;
 let colors: any;
-let colors_stroke: any;
+
 let colors_bg: any;
 
 const PALETTE_NAME = "pastella";
@@ -50,9 +50,6 @@ const CODE: any = {
 };
 
 let padding: any;
-
-let areax: any;
-let areay: any;
 
 const PRECODES = [
   "The pigpen cipher (alternatively referred to as the masonic cipher, Freemason's cipher, Napoleon cipher, and tic-tac-toe cipher) is a geometric simple substitution cipher, which exchanges letters for symbols which are fragments of a grid. The example key shows one way the letters can be assigned to the grid. The use of symbols instead of letters is no impediment to cryptanalysis, and this system is identical to that of other simple monoalphabetic substitution schemes. Due to the simplicity of the cipher, it is often included in children's books on ciphers and secret writing.",
@@ -115,7 +112,14 @@ new p5((p: p5) => {
         const charobject = CODE[char];
         console.log(char);
         console.log(charobject);
-        drawShape(x, y, jumpx * gapfactor, charobject["shape"], charobject["hasDot"], charobject["rotation"]);
+        drawShape(
+          x,
+          y,
+          jumpx * gapfactor,
+          charobject["shape"],
+          charobject["hasDot"],
+          charobject["rotation"],
+        );
         count++;
       }
     }

@@ -73,7 +73,11 @@ new p5((p: p5) => {
       const HUE = p.hue(RING[0].color);
       const SATURATION = p.saturation(RING[0].color);
       const LIGHTNESS = p.lightness(RING[0].color);
-      p.stroke(HUE, (SATURATION / FRAME_LIMIT) * p.frameCount, (LIGHTNESS / FRAME_LIMIT) * p.frameCount);
+      p.stroke(
+        HUE,
+        (SATURATION / FRAME_LIMIT) * p.frameCount,
+        (LIGHTNESS / FRAME_LIMIT) * p.frameCount,
+      );
       for (let l = 0; l < RING.length; l++) {
         const LINE = RING[l];
         drawLine(LINE);

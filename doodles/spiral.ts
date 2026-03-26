@@ -86,8 +86,6 @@ new p5((p: p5) => {
     }
   };
 
-  const updateThread = (thread: any) => {};
-
   const clickOnSave = () => {
     //p.saveCanvas();
   };

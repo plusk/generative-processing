@@ -71,7 +71,7 @@ new p5((p: p5) => {
         HUE,
         (SATURATION / FRAME_LIMIT) * p.frameCount,
         (LIGHTNESS / FRAME_LIMIT) * p.frameCount,
-        (5 / FRAME_LIMIT) * p.frameCount
+        (5 / FRAME_LIMIT) * p.frameCount,
       );
       p.stroke(coleur);
       for (let l = 0; l < RING.length; l++) {

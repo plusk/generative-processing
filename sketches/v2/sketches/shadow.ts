@@ -30,8 +30,8 @@ new p5((p: p5) => {
   p.setup = () => {
     baseSetup(p, c);
 
-    bg = palettes[c.palette].bg;
-    colors = palettes[c.palette].colors;
+    bg = (palettes as any)[c.palette].bg;
+    colors = (palettes as any)[c.palette].colors;
     p.background(bg);
     p.strokeWeight(c.diameter);
     p.noFill();

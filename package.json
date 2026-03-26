@@ -2,27 +2,21 @@
   "name": "generative-processing",
   "version": "1.0.0",
   "description": "it is what it is and it ain't what it ain't",
-  "main": "base.js",
-  "devDependencies": {
-    "vite-plus": "latest"
-  },
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plusk/generative-processing.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/plusk/generative-processing/issues"
+  "dependencies": {
+    "p5": "^2.2.3",
+    "tweakpane": "^4.0.5"
   },
-  "homepage": "https://github.com/plusk/generative-processing#readme",
-  "packageManager": "npm@11.12.0",
+  "devDependencies": {
+    "vite-plus": "latest"
+  },
   "overrides": {
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
   },
-  "dependencies": {
-    "p5": "^2.2.3",
-    "tweakpane": "^4.0.5"
-  }
+  "packageManager": "npm@11.12.0"
 }

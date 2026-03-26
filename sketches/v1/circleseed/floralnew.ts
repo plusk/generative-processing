@@ -40,7 +40,7 @@ new p5((p: p5) => {
     p.strokeWeight(STROKE_WEIGHT);
 
     p.colorMode(p.HSL);
-    p.drawingContext.shadowBlur = STROKE_WEIGHT;
+    (p.drawingContext as CanvasRenderingContext2D).shadowBlur = STROKE_WEIGHT;
 
     const xCenter = p.width / 2;
     const yCenter = p.height / 2;
@@ -62,16 +62,8 @@ new p5((p: p5) => {
         const a1 = (edgeIndex / sides) * p.TWO_PI;
         const a2 = ((edgeIndex + 1) / sides) * p.TWO_PI;
 
-        const x = p.lerp(
-          xCenter + radius * p.cos(a1),
-          xCenter + radius * p.cos(a2),
-          edgeFrac,
-        );
-        const y = p.lerp(
-          yCenter + radius * p.sin(a1),
-          yCenter + radius * p.sin(a2),
-          edgeFrac,
-        );
+        const x = p.lerp(xCenter + radius * p.cos(a1), xCenter + radius * p.cos(a2), edgeFrac);
+        const y = p.lerp(yCenter + radius * p.sin(a1), yCenter + radius * p.sin(a2), edgeFrac);
         const a = p.lerp(a1, a2, edgeFrac);
 
         RING.push({

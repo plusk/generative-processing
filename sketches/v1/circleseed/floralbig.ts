@@ -37,7 +37,7 @@ new p5((p: p5) => {
     p.strokeWeight(STROKE_WEIGHT);
 
     p.colorMode(p.HSL);
-    p.drawingContext.shadowBlur = STROKE_WEIGHT;
+    (p.drawingContext as CanvasRenderingContext2D).shadowBlur = STROKE_WEIGHT;
 
     let radsum = 0;
 
@@ -48,7 +48,11 @@ new p5((p: p5) => {
       const xCenter = p.width / 2;
       const yCenter = (PADDING * 3) / 4 + radsum;
       const coleur = p.color(p.random(COLORS));
-      for (let a = p.TWO_PI / (raddy * LINE_FACTOR); a < p.TWO_PI; a += p.TWO_PI / (raddy * LINE_FACTOR)) {
+      for (
+        let a = p.TWO_PI / (raddy * LINE_FACTOR);
+        a < p.TWO_PI;
+        a += p.TWO_PI / (raddy * LINE_FACTOR)
+      ) {
         const x = xCenter + raddy * p.cos(a);
         const y = yCenter + raddy * p.sin(a);
         RING.push({
@@ -73,7 +77,7 @@ new p5((p: p5) => {
         HUE,
         (SATURATION / FRAME_LIMIT) * p.frameCount,
         (LIGHTNESS / FRAME_LIMIT) * p.frameCount,
-        (5 / FRAME_LIMIT) * p.frameCount
+        (5 / FRAME_LIMIT) * p.frameCount,
       );
       p.stroke(coleur);
       //p.drawingContext.shadowColor = coleur;

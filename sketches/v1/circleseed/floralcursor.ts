@@ -12,7 +12,6 @@ const MIN_PLANT_DIST = 20;
 
 const STEP = STROKE_WEIGHT;
 
-let cnv: any;
 let PALETTE: any;
 let COLORS: any[];
 let BG: any;
@@ -23,7 +22,7 @@ const SEEDS: any[] = [];
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1350);
+    p.createCanvas(1080, 1350);
     // cnv.mouseClicked(clickOnSave);
 
     PALETTE = (palettesData as any)[PALETTE_NAME];
@@ -34,7 +33,7 @@ new p5((p: p5) => {
     p.fill(BG);
     p.strokeWeight(STROKE_WEIGHT);
     p.colorMode(p.HSL);
-    p.drawingContext.shadowBlur = STROKE_WEIGHT;
+    (p.drawingContext as CanvasRenderingContext2D).shadowBlur = STROKE_WEIGHT;
   };
 
   p.draw = () => {
@@ -72,7 +71,11 @@ new p5((p: p5) => {
     lastPlantY = y;
 
     const noyzed = p.noise(x * NOISE_DETAIL, y * NOISE_DETAIL);
-    const idx = p.constrain(Math.floor(p.map(noyzed, 0.2, 0.8, 0, COLORS.length)), 0, COLORS.length - 1);
+    const idx = p.constrain(
+      Math.floor(p.map(noyzed, 0.2, 0.8, 0, COLORS.length)),
+      0,
+      COLORS.length - 1,
+    );
     const coleur = p.color(COLORS[idx]);
 
     for (let i = 0; i < SEEDS_PER_EVENT; i++) {
@@ -97,9 +100,5 @@ new p5((p: p5) => {
     LINE.x = x;
     LINE.y = y;
     LINE.a = angle;
-  };
-
-  const clickOnSave = () => {
-    p.saveCanvas();
   };
 });

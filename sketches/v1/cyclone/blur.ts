@@ -55,7 +55,11 @@ new p5((p: p5) => {
     for (let i = 0; i < WALKERS.length; i++) {
       const w = WALKERS[i];
       w.color.setAlpha(Math.exp(2 * ((((w.angle + ANGLE_OFFSET) % 360) - 180) / TIGHTNESS) ** 2));
-      p.strokeWeight(STROKE_WEIGHT * Math.exp(-1 * ((((w.angle + ANGLE_OFFSET) % 360) - 180) / TIGHTNESS) ** 2) * AMP);
+      p.strokeWeight(
+        STROKE_WEIGHT *
+          Math.exp(-1 * ((((w.angle + ANGLE_OFFSET) % 360) - 180) / TIGHTNESS) ** 2) *
+          AMP,
+      );
       p.stroke(w.color);
       w.angle += ANGLE_STEP * p.noise(w.x * NOISE_FACTOR, w.y * NOISE_FACTOR);
       w.x += STEP * p.cos(w.angle);

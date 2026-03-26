@@ -6,7 +6,6 @@ const EXPORT = false;
 const PALETTE_NAME = "onom";
 
 const STROKE_WEIGHT = 2;
-const OPACITY = 1;
 
 const COUNT = 20;
 const ANGLE_STEP = 0.005;

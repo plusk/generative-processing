@@ -68,7 +68,7 @@ const FRAME_LIMIT = 500;
 
 */
 
-let COLORS: any[], STROKE: any, BG: any;
+let COLORS: any[], BG: any;
 const ACTIVE_WALKERS: any[] = [];
 
 new p5((p: p5) => {
@@ -79,8 +79,7 @@ new p5((p: p5) => {
 
     /* Get colors from the palettes */
     const PALETTE_KEYS = Object.keys(palettesData);
-    const RANDOM_PALETTE_NAME =
-      PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
+    const RANDOM_PALETTE_NAME = PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
     const PALETTE = !RANDOM_PALETTE
       ? (palettesData as any)[PALETTE_NAME]
       : (palettesData as any)[RANDOM_PALETTE_NAME];
@@ -92,7 +91,6 @@ new p5((p: p5) => {
 
     /* Sketch-specific setup */
     p.strokeWeight(STROKE_WEIGHT);
-    STROKE = p.random(COLORS);
     p.background(BG);
 
     for (let c = 0; c < COLORS.length; c++) {
@@ -175,7 +173,7 @@ new p5((p: p5) => {
     if (CLIP_CONTENT) drawClipCircle();
 
     /* End drawing after a set amount of frames */
-    if(p.frameCount > FRAME_LIMIT) {
+    if (p.frameCount > FRAME_LIMIT) {
       console.log("Done");
       p.noLoop();
     }

@@ -7,8 +7,6 @@ const STROKE_WEIGHT = 10;
 
 const ANGLE = Math.PI * (3 - Math.sqrt(5));
 const SPREAD = 10;
-const MIN_LIGHTNESS = 0.15;
-const OPACITY = 1;
 
 let cnv: any;
 let PALETTE: any;

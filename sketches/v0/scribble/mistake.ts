@@ -20,7 +20,7 @@ let cnv: any;
 
 let palette: any;
 let colors: any;
-let colors_stroke: any;
+
 let colors_bg: any;
 
 const PALETTE_NAME = "genesis";
@@ -42,14 +42,20 @@ new p5((p: p5) => {
     for (let c = 0; c < scribblecount; c++) {
       const ang = p.random(p.TWO_PI);
       const rad = bigrad * p.sqrt(p.random());
-      coords.push([rad * p.cos(ang), rad * p.sin(ang), p.random(maxr), p.random(1), p.random(colors)]);
+      coords.push([
+        rad * p.cos(ang),
+        rad * p.sin(ang),
+        p.random(maxr),
+        p.random(1),
+        p.random(colors),
+      ]);
     }
     p.strokeWeight(3);
     bigcolor = p.random(colors);
   };
 
   const SPEED = 5; // higher = fewer circles
-  const OPACITY_STROKE = 1; // higher = harsher circles
+
   const OPACITY_FILL = 0.5; // higher = less visible background circles
 
   p.draw = () => {

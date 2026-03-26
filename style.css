@@ -1,0 +1,87 @@
+/* sketch view */
+body.sketch {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+body.sketch canvas {
+  width: initial !important;
+  height: 90vh !important;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.5);
+}
+
+.back-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  color: #fff;
+  font-family: monospace;
+  font-size: 0.8rem;
+  text-decoration: none;
+  opacity: 0.35;
+  z-index: 100;
+  transition: opacity 0.15s;
+}
+
+.back-link:hover {
+  opacity: 1;
+}
+
+/* picker view */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2.5rem 3rem;
+  background: #faebd7;
+  color: #000;
+  font-family: ui-monospace, "Cascadia Code", "Fira Mono", monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #333;
+  font-size: 0.75rem;
+  margin: 0 0 3rem;
+  font-weight: normal;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.group {
+  margin-bottom: 2rem;
+}
+
+.group-label {
+  color: #333;
+  margin-bottom: 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.group-label span {
+  color: #444;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  padding: 0.1rem 0.6rem 0.1rem 0;
+}
+
+a:hover {
+  text-decoration: underline;
+}

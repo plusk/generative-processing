@@ -19,7 +19,7 @@ let palette: any;
 let colors: any[];
 let colors_bg: any;
 
-let timer = 0;
+let _timer = 0;
 
 new p5((p: p5) => {
   p.setup = () => {
@@ -35,7 +35,7 @@ new p5((p: p5) => {
     p.strokeWeight(STROKE_WEIGHT);
     p.fill(colors_bg);
 
-    const angRandy = p.random(p.TWO_PI);
+    const _angRandy = p.random(p.TWO_PI);
     const squirtle = p.sqrt(THREAD_COUNT);
     for (let t = 0; t < THREAD_COUNT; t++) {
       const collie = p.color(p.random(colors));

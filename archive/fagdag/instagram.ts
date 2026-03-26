@@ -1,8 +1,13 @@
 import p5 from "p5";
-import palettesData from "../../palettes.json";
 
 new p5((p: p5) => {
-  let vMax: any, vMin: any, TEXT_SIZE: any, PALETTE: any, BEKK_PALETTE: any, BLOBS: any, SPOTS: any;
+  let _vMax: any,
+    vMin: any,
+    TEXT_SIZE: any,
+    PALETTE: any,
+    BEKK_PALETTE: any,
+    BLOBS: any,
+    SPOTS: any;
   let BG: any;
 
   const EXPORT = false;
@@ -39,8 +44,8 @@ new p5((p: p5) => {
   const SPOT_APPEAR_NOISE = 0.005;
   const SPOT_DURATION = EXPORT ? FRAME_LIMIT / 2 : 250; // 0 means the spots will always be visible
 
-  const MOVE_SPEED = 0.1;
-  const MOVE_RADIUS = 100;
+  const _MOVE_SPEED = 0.1;
+  const _MOVE_RADIUS = 100;
 
   /*
     Config end
@@ -57,10 +62,25 @@ new p5((p: p5) => {
   };
 
   class Shape {
-    z: any; cx: any; cy: any; mrx: any; mry: any; mSpeed: any; mAngle: any;
-    rMin: any; rMax: any; amp: any; fillColor: any; aStart: any; aEnd: any;
-    line: any; animationSpeed: any; steepness: any; disappearTime: any;
-    visible: any; disappearTick: any;
+    z: any;
+    cx: any;
+    cy: any;
+    mrx: any;
+    mry: any;
+    mSpeed: any;
+    mAngle: any;
+    rMin: any;
+    rMax: any;
+    amp: any;
+    fillColor: any;
+    aStart: any;
+    aEnd: any;
+    line: any;
+    animationSpeed: any;
+    steepness: any;
+    disappearTime: any;
+    visible: any;
+    disappearTick: any;
 
     constructor({
       z,
@@ -140,11 +160,7 @@ new p5((p: p5) => {
         const xOff = p.map(p.cos(a + rotation), -1, 1, 0, amp);
         const yOff = p.map(p.sin(a + rotation), -1, 1, 0, amp);
 
-        const noiseValue = p.noise(
-          xOff,
-          yOff,
-          this.z + p.frameCount * this.animationSpeed
-        );
+        const noiseValue = p.noise(xOff, yOff, this.z + p.frameCount * this.animationSpeed);
 
         const adjustedNoiseValue = easeInOutCool(this.steepness, noiseValue);
         const noisedRadius = p.map(adjustedNoiseValue, 0, 1, this.rMin, this.rMax);
@@ -292,7 +308,7 @@ new p5((p: p5) => {
           animationSpeed: 0,
           steepness: SPOT_EASE_STEEPNESS,
           disappearTime: SPOT_DURATION,
-        })
+        }),
       );
       SPOTS.push(
         new Shape({
@@ -309,14 +325,14 @@ new p5((p: p5) => {
           animationSpeed: 0,
           steepness: SPOT_EASE_STEEPNESS,
           disappearTime: SPOT_DURATION,
-        })
+        }),
       );
     }
   };
 
   const windowResized = () => {
     vMin = p.min(p.width, p.height);
-    vMax = p.max(p.width, p.height);
+    _vMax = p.max(p.width, p.height);
     (p as any).resizeCanvas(1080, 1080);
 
     setupBlobs();

@@ -4,15 +4,12 @@ import palettesData from "../../../palettes.json";
 const PALETTE_NAME = "symmeblu";
 
 const STROKE_WEIGHT = 4;
-const MAX_DEPTH = 4;
 const PADDING = 200;
 
 let cnv: any;
 let palette: any;
 let colors: any[];
 let colors_bg: any;
-
-let frame = 0;
 
 new p5((p: p5) => {
   p.setup = () => {
@@ -33,7 +30,6 @@ new p5((p: p5) => {
   };
 
   p.draw = () => {
-    frame++;
     p.background(colors_bg);
     p.translate(p.width / 2, p.height / 2);
     p.beginShape();
@@ -52,14 +48,10 @@ new p5((p: p5) => {
     }
     const uhhh = [2, 2, 2, 4];
     if (radius > STROKE_WEIGHT * 4) {
-      if (p.random() > 0.25)
-        drawSquare(x - radius / 4, y - radius / 4, radius / p.random(uhhh));
-      if (p.random() > 0.25)
-        drawSquare(x + radius / 4, y - radius / 4, radius / p.random(uhhh));
-      if (p.random() > 0.25)
-        drawSquare(x - radius / 4, y + radius / 4, radius / p.random(uhhh));
-      if (p.random() > 0.25)
-        drawSquare(x + radius / 4, y + radius / 4, radius / p.random(uhhh));
+      if (p.random() > 0.25) drawSquare(x - radius / 4, y - radius / 4, radius / p.random(uhhh));
+      if (p.random() > 0.25) drawSquare(x + radius / 4, y - radius / 4, radius / p.random(uhhh));
+      if (p.random() > 0.25) drawSquare(x - radius / 4, y + radius / 4, radius / p.random(uhhh));
+      if (p.random() > 0.25) drawSquare(x + radius / 4, y + radius / 4, radius / p.random(uhhh));
     }
   };
 

@@ -66,7 +66,7 @@ new p5((p: p5) => {
       p.stroke(
         p.hue(coleur),
         p.saturation(coleur),
-        (p.lightness(coleur) / FRAME_LIMIT) * p.frameCount
+        (p.lightness(coleur) / FRAME_LIMIT) * p.frameCount,
       );
       const xdiff = p.abs(x0 - x1);
       const ydiff = p.abs(y0 - y1);

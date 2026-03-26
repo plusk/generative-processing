@@ -4,7 +4,6 @@ import palettesData from "../../../palettes.json";
 const PALETTE_NAME = "termos";
 const STROKE_WEIGHT = 2;
 const COUNT = 100;
-const ANGLE_STEP = 0.2; // frequency, wack around PI etc
 const AMP = 100; // variance at center
 const EDGE_AMP = 0.15;
 const TIGHTNESS = 150;

@@ -4,7 +4,6 @@ import palettesData from "../../../palettes.json";
 const PALETTE_NAME = "speis";
 
 const STROKE_WEIGHT = 1;
-const OPACITY = 1;
 const COUNT = 5000;
 const SPAWN_RADIUS = 500;
 const PLANET_RADIUS = 250;
@@ -99,7 +98,7 @@ new p5((p: p5) => {
       const coleur = p.color(
         p.hue(randy),
         p.saturation(randy),
-        p.lightness(randy)
+        p.lightness(randy),
         //1 - speedness
       );
       p.stroke(coleur);

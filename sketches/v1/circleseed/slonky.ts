@@ -7,7 +7,6 @@ const STROKE_WEIGHT = 2;
 const RING_COUNT = 10;
 const LINE_COUNT = 1000;
 const STEP = 5;
-const ANGLE_STEP = 0.1;
 const RADIUS = 100;
 const NOISE_DETAIL = 0.005;
 

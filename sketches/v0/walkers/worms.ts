@@ -25,7 +25,7 @@ let palette: any;
 let colors: any[];
 let colors_bg: any;
 
-let timer = 0;
+let _timer = 0;
 
 new p5((p: p5) => {
   p.setup = () => {
@@ -33,7 +33,7 @@ new p5((p: p5) => {
     cnv.mouseClicked(clickOnSave);
 
     palette = (palettesData as any)[PALETTE_NAME];
-    const keys = Object.keys(palettesData);
+    //const keys = Object.keys(palettesData);
     //palette = (palettesData as any)[keys[(keys.length * Math.random()) << 0]];
     colors = palette["colors"];
     colors_bg = p.color(palette["bg"]);
@@ -68,7 +68,7 @@ new p5((p: p5) => {
       p.stroke(thread.color);
       updateThread(thread);
     }
-    timer++;
+    _timer++;
   };
 
   const updateThread = (thread: any) => {

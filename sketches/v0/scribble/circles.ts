@@ -43,7 +43,7 @@ new p5((p: p5) => {
   };
 
   const SPEED = 5; // higher = fewer circles
-  const OPACITY_STROKE = 1; // higher = harsher circles
+
   const OPACITY_FILL = 0.5; // higher = less visible background circles
 
   p.draw = () => {

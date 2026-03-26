@@ -9,7 +9,6 @@ const OPACITY = 0.5;
 const COUNT = 10000;
 const VERTICES = 10;
 const SPAWN_RADIUS = 1080 / 2;
-const CENTER_RADIUS = 250;
 const MAX_VELOCITY = 7.5;
 const ACCELERATION = 0.2;
 const TIMEWALK = 0.02;
@@ -78,10 +77,7 @@ new p5((p: p5) => {
     vertices.push(p.createVector(0, p.height / 2));
     for (let i = 0; i < VERTICES; i++) {
       vertices.push(
-        p.createVector(
-          p.random(-p.width / 5, p.width / 5),
-          p.random(-p.height / 5, p.height / 5)
-        )
+        p.createVector(p.random(-p.width / 5, p.width / 5), p.random(-p.height / 5, p.height / 5)),
       );
     }
     vertices.push(p.createVector(0, 0));

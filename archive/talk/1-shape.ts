@@ -1,5 +1,4 @@
 import p5 from "p5";
-import palettesData from "../../palettes.json";
 
 new p5((p: p5) => {
   p.setup = () => {

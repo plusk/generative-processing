@@ -60,8 +60,7 @@ new p5((p: p5) => {
 
     /* Get colors from the palettes */
     const PALETTE_KEYS = Object.keys(palettesData);
-    const RANDOM_PALETTE_NAME =
-      PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
+    const RANDOM_PALETTE_NAME = PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
     const PALETTE = !RANDOM_PALETTE
       ? (palettesData as any)[PALETTE_NAME]
       : (palettesData as any)[RANDOM_PALETTE_NAME];
@@ -78,7 +77,7 @@ new p5((p: p5) => {
     p.stroke(STROKE);
     p.background(BG);
 
-    RANDOM_BIASED_ANGLE && (BIASED_ANGLE = p.random(p.TWO_PI));
+    if (RANDOM_BIASED_ANGLE) BIASED_ANGLE = p.random(p.TWO_PI);
     p.noiseDetail(4, NOISE_RANDOMNESS);
   };
 
@@ -96,10 +95,8 @@ new p5((p: p5) => {
         a1 = p.random(p.TWO_PI);
         a2 = p.random(p.TWO_PI);
       } else if (IS_SYMMETRICAL) {
-        a1 =
-          p.TWO_PI * p.noise(0, p.frameCount * NOISE_SPEED) + (i * p.TWO_PI) / LINE_COUNT;
-        a2 =
-          p.TWO_PI * p.noise(1, p.frameCount * NOISE_SPEED) + (i * p.TWO_PI) / LINE_COUNT;
+        a1 = p.TWO_PI * p.noise(0, p.frameCount * NOISE_SPEED) + (i * p.TWO_PI) / LINE_COUNT;
+        a2 = p.TWO_PI * p.noise(1, p.frameCount * NOISE_SPEED) + (i * p.TWO_PI) / LINE_COUNT;
       } else {
         a1 = p.TWO_PI * p.noise(i, p.frameCount * NOISE_SPEED);
         a2 = p.TWO_PI * p.noise(i + LINE_COUNT, p.frameCount * NOISE_SPEED);

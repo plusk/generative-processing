@@ -4,7 +4,7 @@ import palettesData from "../../../palettes.json";
 let cnv: any;
 let palette: any;
 let colors: any;
-let colors_stroke: any;
+
 let colors_bg: any;
 
 const PALETTE_NAME = "onom";

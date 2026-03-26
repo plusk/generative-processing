@@ -7,7 +7,6 @@ let palette: any;
 let colors: any;
 let bg: any;
 
-const SPEED = 5; // higher = fewer circles
 const OPACITY_STROKE = 0.75; // higher = harsher circles
 const OPACITY_FILL = 0.1; // higher = less visible background circles
 

@@ -9,21 +9,21 @@ new p5((p: p5) => {
 
   const c = configBuilder(p, {
     palette: "onom",
-    limit: new ConfigValue({ value: 100, min: 1, max: 100, step: 1}),
-    minWidth: new ConfigValue({ value: 75, min: 50, max: 100, step: 5}),
-    maxWidth: new ConfigValue({ value: 150, min: 100, max: 200, step: 5}),
-    padding: new ConfigValue({ value: 0, min: 0, max: 0.5, step: 0.05}),
+    limit: new ConfigValue({ value: 100, min: 1, max: 100, step: 1 }),
+    minWidth: new ConfigValue({ value: 75, min: 50, max: 100, step: 5 }),
+    maxWidth: new ConfigValue({ value: 150, min: 100, max: 200, step: 5 }),
+    padding: new ConfigValue({ value: 0, min: 0, max: 0.5, step: 0.05 }),
     grainy: true,
-    strokeWeight: new ConfigValue({ value: 1, min: 0.1, max: 5, step: 0.1}),
+    strokeWeight: new ConfigValue({ value: 1, min: 0.1, max: 5, step: 0.1 }),
     pointSpacing: new ConfigValue({ value: 2, min: 1, max: 5, step: 0.1 }),
     specks: new ConfigValue({ value: 20000, min: 0, max: 20000, step: 100 }),
-    angleChance: new ConfigValue({ value: 0.25, min: 0, max: 1, step: 0.05 })
+    angleChance: new ConfigValue({ value: 0.25, min: 0, max: 1, step: 0.05 }),
   });
 
   p.setup = () => {
     baseSetup(p, c);
-    bg = palettes[c.palette].bg;
-    colors = palettes[c.palette].colors;
+    bg = (palettes as any)[c.palette].bg;
+    colors = (palettes as any)[c.palette].colors;
     p.strokeWeight(c.strokeWeight);
 
     scales = [];
@@ -62,22 +62,22 @@ new p5((p: p5) => {
       p.stroke(scale[i]);
 
       const chance = i / h;
-      if(c.grainy) {
+      if (c.grainy) {
         for (let j = 0; j < w; j += c.strokeWeight * c.pointSpacing) {
           if (p.random() > chance) {
-            if(isAngled) {
-              if(angleUpwards && w - i < j) p.point(x + j, y + i);
-              if(!angleUpwards && i > j) p.point(x + j, y + i);
+            if (isAngled) {
+              if (angleUpwards && w - i < j) p.point(x + j, y + i);
+              if (!angleUpwards && i > j) p.point(x + j, y + i);
             } else {
               p.point(x + j, y + i);
             }
           }
         }
       } else {
-        if(isAngled) {
-          if(i < w) {
-            if(angleUpwards) p.line(x + w - i, y + i, x + w, y + i);
-            if(!angleUpwards) p.line(x, y + i, x + i, y + i);
+        if (isAngled) {
+          if (i < w) {
+            if (angleUpwards) p.line(x + w - i, y + i, x + w, y + i);
+            if (!angleUpwards) p.line(x, y + i, x + i, y + i);
           } else {
             p.line(x, y + i, x + w, y + i);
           }

@@ -46,25 +46,20 @@ new p5((p: p5) => {
 
   p.draw = () => {
     p.translate(p.width / 2, p.height / 2);
-    const angie = p.frameCount * p.TWO_PI / - 50000;
-    p.rotate(angie)
-    p.background(BG)
-    p.fill("white")
+    const angie = (p.frameCount * p.TWO_PI) / -50000;
+    p.rotate(angie);
+    p.background(BG);
+    p.fill("white");
     p.rect(0, 0, 80);
 
-    const collie = p.color(
-      p.hue(BG),
-      p.saturation(BG),
-      p.lightness(BG),
-      0.001
-    )
-    p.fill(collie)
+    const collie = p.color(p.hue(BG), p.saturation(BG), p.lightness(BG), 0.001);
+    p.fill(collie);
     p.rect(0, 0, 100);
 
     for (let i = 1; i < COUNT; i++) {
       const a = p.TWO_PI / COUNT;
-      p.rotate(a + angie)
-      p.rect(0, 0, 100 + (p.height*1.5) / COUNT * i);
+      p.rotate(a + angie);
+      p.rect(0, 0, 100 + ((p.height * 1.5) / COUNT) * i);
     }
 
     // p.beginShape(); POINTS, LINES, TRIANGLES, TRIANGLE_FAN, TRIANGLE_STRIP, QUADS, QUAD_STRIP

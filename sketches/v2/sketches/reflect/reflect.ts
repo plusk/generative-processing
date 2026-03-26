@@ -1,11 +1,8 @@
 import p5 from "p5";
-import palettes from "../../palettes";
 import configBuilder, { webGLSetup, ConfigValue } from "../../utils";
 
 new p5((p: p5) => {
-  let bg: string,
-    colors: string[],
-    shay: p5.Shader,
+  let shay: p5.Shader,
     pointA: number[],
     pointB: number[],
     pointC: number[],
@@ -33,9 +30,6 @@ new p5((p: p5) => {
       "/sketches/v2/sketches/reflect/basic.vert",
       "/sketches/v2/sketches/reflect/reflect.frag",
     );
-
-    bg = palettes[c.palette].bg;
-    colors = palettes[c.palette].colors;
 
     pointA = [randomWithPadding(p.width), randomWithPadding(p.height)];
     pointB = [randomWithPadding(p.width), randomWithPadding(p.height)];

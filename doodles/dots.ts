@@ -2,7 +2,7 @@ import p5 from "p5";
 import palettesData from "../palettes.json";
 
 new p5((p: p5) => {
-  let COLORS: any, STROKE: any, BG: any;
+  let COLORS: any, BG: any;
 
   const EXPORT = false;
 
@@ -10,7 +10,6 @@ new p5((p: p5) => {
   const PALETTE_NAME = "termos";
 
   const STROKE_WEIGHT = 5;
-  const OPACITY = 1;
 
   const ROWS = 15;
   const COLS = 40;
@@ -46,7 +45,6 @@ new p5((p: p5) => {
   };
 
   p.draw = () => {
-
     p.background(BG);
 
     const ul = p.color(p.random(360), 100, 75);
@@ -56,21 +54,20 @@ new p5((p: p5) => {
 
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
-
         p.stroke(p.random(COLORS));
-        const x = PAD + c / (COLS - 1) * (p.width - PAD * 2);
-        const y = PAD + r / (ROWS - 1) * (p.height - PAD * 2);
+        const x = PAD + (c / (COLS - 1)) * (p.width - PAD * 2);
+        const y = PAD + (r / (ROWS - 1)) * (p.height - PAD * 2);
 
         const randy = 8 * p.noise(x * ZOOM, y * ZOOM);
 
-        if(GRADIENT) {
+        if (GRADIENT) {
           const u = p.lerpColor(ul, ur, x / (p.width - PAD * 2));
           const l = p.lerpColor(ll, lr, x / (p.width - PAD * 2));
           p.stroke(p.lerpColor(u, l, y / (p.height - PAD * 2)));
         }
 
-        if(LINE) {
-          p.line(x, y, x, y - randy * STROKE_WEIGHT * 1.5)
+        if (LINE) {
+          p.line(x, y, x, y - randy * STROKE_WEIGHT * 1.5);
         } else {
           for (let z = 0; z < randy; z++) {
             const realy = y - z * (STROKE_WEIGHT * 1.5);

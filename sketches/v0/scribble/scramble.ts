@@ -1,7 +1,7 @@
 import p5 from "p5";
 import palettesData from "../../../palettes.json";
 
-let section: any;
+let _section: any;
 let gap: any;
 let z = 0;
 let xoff = 0;
@@ -25,7 +25,7 @@ new p5((p: p5) => {
   p.setup = () => {
     cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
-    section = p.width / 8;
+    _section = p.width / 8;
     gap = p.width / 16;
     p.colorMode(p.HSL);
 

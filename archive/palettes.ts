@@ -3,8 +3,8 @@ import palettesData from "../palettes.json";
 
 new p5((p: p5) => {
   let PALETTE: any;
-  let BACKGROUNDS: any;
-  let COLORS: any;
+  let _BACKGROUNDS: any;
+  let _COLORS: any;
 
   p.setup = () => {
     const cnv = p.createCanvas(1080, 2000); // 1080, 1350
@@ -13,13 +13,13 @@ new p5((p: p5) => {
     p.colorMode(p.HSL);
     const PALETTE_KEYS = Object.keys(palettesData);
     PALETTE = (palettesData as any)[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
-    COLORS = PALETTE["colors"];
-    BACKGROUNDS = PALETTE["bg"];
+    _COLORS = PALETTE["colors"];
+    _BACKGROUNDS = PALETTE["bg"];
     p.noStroke();
 
     const entries = Object.entries(palettesData);
     let index = 0;
-    for (const [name, palette] of entries) {
+    for (const [_name, palette] of entries) {
       p.fill((palette as any).bg);
       const ydiff = p.height / entries.length;
       const y = index * ydiff;

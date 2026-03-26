@@ -1,5 +1,4 @@
 import p5 from "p5";
-import palettesData from "../../palettes.json";
 
 new p5((p: p5) => {
   // Tweakable parameters
@@ -63,7 +62,7 @@ new p5((p: p5) => {
         SKY_ZOOM,
         SKY_COLOR,
         SUN_COLOR,
-        SKY_LAYER_OFFSET
+        SKY_LAYER_OFFSET,
       );
     }
 
@@ -82,7 +81,7 @@ new p5((p: p5) => {
         RIDGE_ZOOM,
         RIDGE_TOP_COLOR,
         RIDGE_BOT_COLOR,
-        0
+        0,
       );
 
       // Draw each snowflake
@@ -104,7 +103,15 @@ new p5((p: p5) => {
   };
 
   // Compute and draw a ridge
-  const drawRidge = (l: number, y: number, amp: number, zoom: number, c1: any, c2: any, coff: number) => {
+  const drawRidge = (
+    l: number,
+    y: number,
+    amp: number,
+    zoom: number,
+    c1: any,
+    c2: any,
+    coff: number,
+  ) => {
     // Choose a color for the ridge based on its height
     const FILL = p.lerpColor(p.color(c1), p.color(c2), l / (LAYER_COUNT - 1 + coff));
     p.fill(FILL);
@@ -128,9 +135,7 @@ new p5((p: p5) => {
     else snowflake.y += GRAVITY * snowflake.l * snowflake.mass;
 
     // Get the wind speed at the given layer and area of the page
-    const wind =
-      p.noise(snowflake.l, snowflake.y * WIND_CHANGE, p.frameCount * WIND_CHANGE) -
-      0.5;
+    const wind = p.noise(snowflake.l, snowflake.y * WIND_CHANGE, p.frameCount * WIND_CHANGE) - 0.5;
     if (snowflake.x > p.width + diameter) snowflake.x = -diameter;
     else if (snowflake.x < -diameter) snowflake.x = p.width + diameter;
     else snowflake.x += wind * WIND_SPEED * snowflake.l;

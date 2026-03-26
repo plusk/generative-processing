@@ -34,7 +34,7 @@ new p5((p: p5) => {
     p.strokeWeight(STROKE_WEIGHT);
     p.fill(colors_bg);
     p.stroke(p.random(colors));
-    p.drawingContext.shadowBlur = STROKE_WEIGHT;
+    (p.drawingContext as CanvasRenderingContext2D).shadowBlur = STROKE_WEIGHT;
 
     //const randy = p.random(p.TWO_PI);
     const randy = p.TWO_PI;
@@ -63,15 +63,13 @@ new p5((p: p5) => {
 
   const updateBead = (bead: any) => {
     const yoyo = Math.exp(EDGE_AMP * ((bead.y - p.height / 2) / TIGHTNESS) ** 2);
-    const yoyangle = Math.exp(
-      EDGE_AMP * ((bead.y - p.height / 2) / TIGHTNESS) ** 2
-    );
+    const yoyangle = Math.exp(EDGE_AMP * ((bead.y - p.height / 2) / TIGHTNESS) ** 2);
     bead.angle += ANGLE_STEP * yoyangle; // changes everything
     bead.x = p.sin(bead.angle) * AMP * yoyo;
 
     bead.color.setAlpha(OPACITY_CENTER / yoyo);
     p.stroke(bead.color);
-    p.drawingContext.shadowColor = bead.color;
+    (p.drawingContext as CanvasRenderingContext2D).shadowColor = bead.color;
     p.strokeWeight(STROKE_WEIGHT + p.random(STROKE_WEIGHT, STROKE_WEIGHT * 2) * yoyo);
     p.point(bead.x, bead.y);
     //p.circle(bead.x, bead.y, 100);

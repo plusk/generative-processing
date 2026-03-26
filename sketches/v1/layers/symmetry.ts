@@ -64,8 +64,7 @@ new p5((p: p5) => {
 
     /* Get colors from the palettes */
     const PALETTE_KEYS = Object.keys(palettesData);
-    const RANDOM_PALETTE_NAME =
-      PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
+    const RANDOM_PALETTE_NAME = PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
     const PALETTE = !RANDOM_PALETTE
       ? (palettesData as any)[PALETTE_NAME]
       : (palettesData as any)[RANDOM_PALETTE_NAME];
@@ -78,7 +77,8 @@ new p5((p: p5) => {
     /* Sketch-specific setup */
     p.strokeWeight(STROKE_WEIGHT);
     FILL = p.random(COLORS);
-    HAS_STROKE ? p.stroke(FILL) : p.noStroke();
+    if (HAS_STROKE) p.stroke(FILL);
+    else p.noStroke();
   };
 
   p.draw = () => {
@@ -96,25 +96,24 @@ new p5((p: p5) => {
 
   const drawBackground = () => {
     if (INVERTED_GRADIENT) {
-      CAP_LIGHTNESS ? p.background(FILL) : p.background(255);
+      if (CAP_LIGHTNESS) p.background(FILL);
+      else p.background(255);
     } else {
       p.background(0);
     }
-    USE_FILL_AS_BACKGROUND && p.background(FILL);
-    USE_PALETTE_BACKGROUND && p.background(BG);
+    if (USE_FILL_AS_BACKGROUND) p.background(FILL);
+    if (USE_PALETTE_BACKGROUND) p.background(BG);
   };
 
   const drawLayer = (r: any, i: any) => {
     /* A number from 0 to 1, where the middle layer would have 0.5 */
-    const layerColorFactor = INVERTED_GRADIENT
-      ? i / LAYER_COUNT
-      : 1 - i / LAYER_COUNT;
+    const layerColorFactor = INVERTED_GRADIENT ? i / LAYER_COUNT : 1 - i / LAYER_COUNT;
 
     /* Adjust saturation and lightness based on the layer factor */
     const fillColor = p.color(
       p.hue(FILL),
       layerColorFactor * p.saturation(FILL),
-      layerColorFactor * (CAP_LIGHTNESS ? p.lightness(FILL) : 100)
+      layerColorFactor * (CAP_LIGHTNESS ? p.lightness(FILL) : 100),
     );
     p.fill(fillColor);
 

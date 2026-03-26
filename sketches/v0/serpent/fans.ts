@@ -12,7 +12,7 @@ const PALETTE_NAME = "onom";
 const STROKE_WEIGHT = 10;
 const UNIT = 1080 / 3;
 
-const MAGIC = 4.75;
+const _MAGIC = 4.75;
 
 let scroll = 0;
 
@@ -56,14 +56,14 @@ new p5((p: p5) => {
             x,
             (x - UNIT / 2 - x) / p.PI + x,
             x - UNIT / 2,
-            MAGIQUE[m]
+            MAGIQUE[m],
           );
           let ybez = (p as any).bezierPoint(
             y - (UNIT / 8) * 5,
             y - (UNIT / 8) * 5,
             y - (UNIT / 8) * 7,
             y - (UNIT / 8) * 7,
-            MAGIQUE[m]
+            MAGIQUE[m],
           );
           p.point(xbez, ybez);
           const xdiff = x - xbez;
@@ -82,11 +82,7 @@ new p5((p: p5) => {
           const aCut = ANGELS[l] * 0.5;
           const aStart = p.PI + aCut;
           const aEnd = p.TWO_PI - aCut;
-          for (
-            let a = aStart;
-            a <= aEnd;
-            a += 2 * p.atan(STROKE_WEIGHT / (diameter / 2))
-          ) {
+          for (let a = aStart; a <= aEnd; a += 2 * p.atan(STROKE_WEIGHT / (diameter / 2))) {
             const xDot = x + (diameter * p.cos(a)) / 2;
             const yDot = y + (diameter * p.sin(a)) / 2;
             p.vertex(xDot, yDot);

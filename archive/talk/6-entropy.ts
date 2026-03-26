@@ -1,5 +1,4 @@
 import p5 from "p5";
-import palettesData from "../../palettes.json";
 
 new p5((p: p5) => {
   let cnv: any;
@@ -91,7 +90,7 @@ new p5((p: p5) => {
         v1.x + p.random(-randy, randy),
         v1.y + p.random(-randy, randy),
         v2.x + p.random(-randy, randy),
-        v2.y + p.random(-randy, randy)
+        v2.y + p.random(-randy, randy),
       );
       p.strokeWeight(STROKE_WEIGHT * 3);
       p.point(v1.x + p.random(-randy, randy), v1.y + p.random(-randy, randy));

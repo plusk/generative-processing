@@ -66,7 +66,7 @@ new p5((p: p5) => {
     p.stroke(STROKE);
     p.strokeWeight(STROKE_WEIGHT);
 
-    //p.drawingContext.shadowBlur = STROKE_WEIGHT;
+    //(p.drawingContext as CanvasRenderingContext2D).shadowBlur = STROKE_WEIGHT;
     //p.drawingContext.shadowColor = STROKE;
 
     for (let i = 0; i < COUNT; i++) {
@@ -83,7 +83,7 @@ new p5((p: p5) => {
     p.translate(p.width / 2, p.height / 2);
     drawCenter();
     p.strokeWeight(STROKE_WEIGHT);
-    p.drawingContext.shadowBlur = 0;
+    (p.drawingContext as CanvasRenderingContext2D).shadowBlur = 0;
     p.stroke(0, 0, 100, OPACITY);
     for (let i = 0; i < particles.length; i++) {
       const particle = particles[i];

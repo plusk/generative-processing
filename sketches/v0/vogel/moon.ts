@@ -55,7 +55,7 @@ new p5((p: p5) => {
         p.hue(STROKE),
         p.saturation(STROKE),
         (p.lightness(STROKE) / FRAME_LIMIT) * (FRAME_LIMIT * (1 + MIN_LIGHTNESS) - p.frameCount),
-        OPACITY
+        OPACITY,
       );
       const a = ANGLE * ticker;
       p.rotate(a);

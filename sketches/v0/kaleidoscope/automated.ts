@@ -11,7 +11,7 @@ let x: any, y: any;
 let cnv: any;
 let palette: any;
 let colors: any;
-let colors_stroke: any;
+let _colors_stroke: any;
 let colors_bg: any;
 
 const PALETTE_NAME = "pastella";
@@ -33,7 +33,7 @@ new p5((p: p5) => {
 
     colors = palette["colors"];
     colors_bg = palette["bg"];
-    colors_stroke = palette["stroke"];
+    _colors_stroke = palette["stroke"];
 
     p.background(colors_bg);
     p.angleMode(p.DEGREES);

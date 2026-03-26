@@ -45,7 +45,7 @@ const WEIGHTED_SHAPES: string[] = [];
 
 */
 
-let COLORS: any[], STROKE: any, BG: any;
+let COLORS: any[], BG: any;
 
 new p5((p: p5) => {
   p.setup = () => {
@@ -56,8 +56,7 @@ new p5((p: p5) => {
 
     /* Get colors from the palettes */
     const PALETTE_KEYS = Object.keys(palettesData);
-    const RANDOM_PALETTE_NAME =
-      PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
+    const RANDOM_PALETTE_NAME = PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
     const PALETTE = !RANDOM_PALETTE
       ? (palettesData as any)[PALETTE_NAME]
       : (palettesData as any)[RANDOM_PALETTE_NAME];
@@ -69,9 +68,9 @@ new p5((p: p5) => {
 
     /* Sketch-specific setup */
     p.strokeWeight(STROKE_WEIGHT);
-    STROKE = p.random(COLORS);
     (p as any).strokeJoin((p as any).BEVEL);
-    HAS_STROKE ? p.stroke(BG) : p.noStroke();
+    if (HAS_STROKE) p.stroke(BG);
+    else p.noStroke();
 
     p.background(BG);
     (p as any).rectMode(p.CENTER);
@@ -86,7 +85,7 @@ new p5((p: p5) => {
   };
 
   p.draw = () => {
-    CLEAR_EACH_FRAME && p.background(BG);
+    if (CLEAR_EACH_FRAME) p.background(BG);
 
     /* Start the recursion field */
     /* More fields can be placed by duplicating this line and changing positions */
@@ -96,10 +95,7 @@ new p5((p: p5) => {
   const step = (currentDepth: number, x: number, y: number, r: number) => {
     /* Based on chance to spawn shape, stop recursion for the tile */
     /* If the max depth has been met, all tiles will draw a shape */
-    if (
-      currentDepth != 0 &&
-      (p.random() < SHAPE_CHANCE || r <= STROKE_WEIGHT * 8)
-    ) {
+    if (currentDepth != 0 && (p.random() < SHAPE_CHANCE || r <= STROKE_WEIGHT * 8)) {
       drawRandomShape(x, y, r);
       return;
     }

@@ -4,7 +4,7 @@ import palettesData from "../palettes.json";
 new p5((p: p5) => {
   let cnv: any;
   let palette: any;
-  let colors: any;
+  let _colors: any;
   let colors_bg: any;
 
   const PALETTE_NAME = "pastella";
@@ -26,7 +26,7 @@ new p5((p: p5) => {
     palette = (palettesData as any)[PALETTE_NAME];
     // const keys = Object.keys(palettesData);
     // palette = (palettesData as any)[keys[(keys.length * Math.random()) << 0]];
-    colors = palette["colors"];
+    _colors = palette["colors"];
     colors_bg = palette["bg"];
 
     p.background(colors_bg);

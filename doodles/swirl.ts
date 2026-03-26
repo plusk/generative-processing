@@ -11,7 +11,7 @@ new p5((p: p5) => {
   const PALETTE_NAME = "pastella"; // symmeblu, termos, vintage, pastella
 
   const STROKE_WEIGHT = 2;
-  const OPACITY = 1;
+
   const COUNT = 7;
   const LOOPS = 1;
   const ANGLE_STEP = Math.PI / 100;
@@ -40,7 +40,6 @@ new p5((p: p5) => {
         y: (-0 * (p.height * ANGLE_STEP)) / p.TWO_PI / LOOPS,
         a: 0,
         step: p.random(ANGLE_STEP * 0.75, ANGLE_STEP),
-        color: COLORS[p.round(p.random(COLORS.length - 1))],
         color: COLORS[(offset + i) % COLORS.length],
       });
     }

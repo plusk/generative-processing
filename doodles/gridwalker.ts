@@ -105,12 +105,13 @@ new p5((p: p5) => {
             const coleur = p.color(
               p.hue(p.lerpColor(BG, c.color, 1)),
               p.saturation(p.lerpColor(BG, c.color, fillAmt)),
-              p.lightness(p.lerpColor(BG, c.color, fillAmt))
+              p.lightness(p.lerpColor(BG, c.color, fillAmt)),
             );
 
             p.fill(coleur);
 
-            CIRCULAR ? p.circle(c.x, c.y, SIZE) : p.rect(c.x, c.y, SIZE);
+            if (CIRCULAR) p.circle(c.x, c.y, SIZE);
+            else p.rect(c.x, c.y, SIZE);
           }
         }
       }
@@ -165,7 +166,7 @@ new p5((p: p5) => {
       PADDING,
       p.width - PADDING,
       p.height - PADDING,
-      RANDOM_COLORS ? COLORS : [p.random(COLORS)]
+      RANDOM_COLORS ? COLORS : [p.random(COLORS)],
     );
 
     for (let i = 0; i < WALKER_COUNT; i++) {
@@ -178,8 +179,8 @@ new p5((p: p5) => {
     //p.drawingContext.shadowColor = STROKE;
   };
 
-  let x = 0;
-  let y = 0;
+  let _x = 0;
+  let _y = 0;
 
   p.draw = () => {
     g.draw();

@@ -39,8 +39,8 @@ new p5((p: p5) => {
     p.strokeWeight(STROKE_WEIGHT);
     p.fill(colors_bg);
 
-    p.drawingContext.shadowBlur = SHADOW_BLUR;
-    p.drawingContext.shadowColor = "#0000007f";
+    (p.drawingContext as CanvasRenderingContext2D).shadowBlur = SHADOW_BLUR;
+    (p.drawingContext as CanvasRenderingContext2D).shadowColor = "#0000007f";
 
     const angRandy = p.random(p.PI);
     const squirtle = p.sqrt(THREAD_COUNT);
@@ -82,11 +82,7 @@ new p5((p: p5) => {
   };
 
   const updateThread = (thread: any) => {
-    let noisebois = p.noise(
-      thread.x * NOISE_GRANULARITY,
-      thread.y * NOISE_GRANULARITY,
-      noize
-    );
+    let noisebois = p.noise(thread.x * NOISE_GRANULARITY, thread.y * NOISE_GRANULARITY, noize);
     let xOld = thread.x;
     let yOld = thread.y;
     let xNew = xOld + p.cos(thread.angle * noisebois) * SPEED;

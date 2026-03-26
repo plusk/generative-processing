@@ -35,7 +35,7 @@ new p5((p: p5) => {
     cnv.mouseClicked(clickOnSave);
 
     palette = (palettesData as any)[PALETTE_NAME];
-    const keys = Object.keys(palettesData);
+    //const keys = Object.keys(palettesData);
     //palette = (palettesData as any)[keys[(keys.length * Math.random()) << 0]];
     colors = palette["colors"];
     colors_bg = p.color(palette["bg"]);
@@ -82,11 +82,7 @@ new p5((p: p5) => {
   };
 
   const updateThread = (thread: any) => {
-    let noisebois = p.noise(
-      thread.x * NOISE_GRANULARITY,
-      thread.y * NOISE_GRANULARITY,
-      noize
-    );
+    let noisebois = p.noise(thread.x * NOISE_GRANULARITY, thread.y * NOISE_GRANULARITY, noize);
     let xOld = thread.x;
     let yOld = thread.y;
     let xNew = xOld + p.cos(thread.angle * noisebois) * SPEED;

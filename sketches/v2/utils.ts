@@ -9,7 +9,19 @@ export class ConfigValue {
   step: number;
   show?: boolean;
 
-  constructor({ value, min, max, step, show }: { value: number; min: number; max: number; step: number; show?: boolean }) {
+  constructor({
+    value,
+    min,
+    max,
+    step,
+    show,
+  }: {
+    value: number;
+    min: number;
+    max: number;
+    step: number;
+    show?: boolean;
+  }) {
     this.value = value;
     this.min = min;
     this.max = max;
@@ -27,7 +39,7 @@ const configBuilder = (p: p5, c: Record<string, any>) => {
     download: () => p.saveCanvas(`s${config.seed}-f${p.frameCount}.png`),
   };
 
-  const pane = new Pane();
+  const pane = new Pane() as any;
 
   const controllers: Record<string, any> = {};
 
@@ -37,7 +49,9 @@ const configBuilder = (p: p5, c: Record<string, any>) => {
       controllers[key] = pane.addButton({ title: label }).on("click", config[key]);
     } else if (key === "palette") {
       const options: Record<string, string> = {};
-      Object.keys(palettes).forEach((name) => { options[name] = name; });
+      Object.keys(palettes).forEach((name) => {
+        options[name] = name;
+      });
       controllers[key] = pane
         .addBinding(config, key, { options, label })
         .on("change", () => p.setup());
@@ -51,9 +65,7 @@ const configBuilder = (p: p5, c: Record<string, any>) => {
         .addBinding(config, key, { min: value.min, max: value.max, step: value.step, label })
         .on("change", () => p.setup());
     } else {
-      controllers[key] = pane
-        .addBinding(config, key, { label })
-        .on("change", () => p.setup());
+      controllers[key] = pane.addBinding(config, key, { label }).on("change", () => p.setup());
     }
   });
 

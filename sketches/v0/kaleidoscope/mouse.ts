@@ -15,12 +15,12 @@ new p5((p: p5) => {
   };
 
   // Clear Screen function
-  const clearScreen = () => {
-    p.background();
+  const _clearScreen = () => {
+    p.background(0);
   };
 
   // Full Screen Function
-  const screenFull = () => {
+  const _screenFull = () => {
     let fs = (p as any).fullscreen();
     (p as any).fullscreen(!fs);
   };

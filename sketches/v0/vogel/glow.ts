@@ -5,7 +5,6 @@ let cnv: any;
 let PALETTE: any;
 let COLORS: any;
 let BG: any;
-let STROKE: any;
 
 const PALETTE_NAME = "speis"; // mono, sydney, pastella, speis
 
@@ -14,8 +13,6 @@ let STROKE_WEIGHT = STROKE_WEIGHT_START;
 
 const ANGLE = Math.PI * (3 - Math.sqrt(5));
 let SPREAD = 20;
-const MIN_LIGHTNESS = 0.15;
-const OPACITY = 1;
 const AMOUNT = 5;
 
 let x0 = 0;
@@ -52,7 +49,7 @@ new p5((p: p5) => {
     for (let i = 0; i < TICK_RATE; i++) {
       STROKE_WEIGHT = p.random(
         STROKE_WEIGHT_START - STROKE_WEIGHT_START * FRAME_FACTOR,
-        STROKE_WEIGHT_START + 5 * STROKE_WEIGHT_START * FRAME_FACTOR
+        STROKE_WEIGHT_START + 5 * STROKE_WEIGHT_START * FRAME_FACTOR,
       );
       TICK_RATE += 0.01;
       SPREAD += 0.1;
@@ -106,10 +103,7 @@ new p5((p: p5) => {
     var p1 = p5.Vector.add(p5.Vector.add(inline, rotated), p.createVector(x1, y1));
     //p.line(x1, y1, p1.x, p1.y); //show control line
     rotated.mult(-1);
-    var p2 = p5.Vector.add(
-      p5.Vector.add(inline, rotated).mult(-1),
-      p.createVector(x2, y2)
-    );
+    var p2 = p5.Vector.add(p5.Vector.add(inline, rotated).mult(-1), p.createVector(x2, y2));
     //p.line(x2, y2, p2.x, p2.y); //show control line
     p.bezier(x1, y1, p1.x, p1.y, p2.x, p2.y, x2, y2);
   };

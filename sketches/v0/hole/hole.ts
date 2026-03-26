@@ -43,8 +43,6 @@ new p5((p: p5) => {
     p.translate(p.width / 2, p.height / 2);
     for (let a = 0; a < p.TWO_PI; a += p.TWO_PI / COUNT) {
       const randy = p.random(MIN_RADIUS, MAX_RADIUS);
-      const x = randy * p.cos(a);
-      const y = randy * p.sin(a);
       POINTS_ARR.push({
         radius: randy,
         angle: a,

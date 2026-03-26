@@ -98,11 +98,7 @@ new p5((p: p5) => {
 
   const drawLine = (LINE: any) => {
     const noyze =
-      p.noise(
-        LINE.x * NOISE_DETAIL,
-        LINE.y * NOISE_DETAIL,
-        p.frameCount * NOISE_EVO
-      ) - 0.5;
+      p.noise(LINE.x * NOISE_DETAIL, LINE.y * NOISE_DETAIL, p.frameCount * NOISE_EVO) - 0.5;
     const x = LINE.x + STEP * p.cos(LINE.angle + p.TWO_PI * noyze);
     const y = LINE.y + STEP * p.sin(LINE.angle + p.TWO_PI * noyze);
     //p.line(LINE.x, LINE.y, x, y);

@@ -4,15 +4,12 @@ import palettesData from "../../../palettes.json";
 let cnv: any;
 let palette: any;
 let colors: any;
-let colors_stroke: any;
+
 let colors_bg: any;
 
 const PALETTE_NAME = "redrange";
 
 let padding: any;
-
-let areax: any;
-let areay: any;
 
 const MAXPOLY = 8;
 const POLYCOUNT = MAXPOLY - 1;
@@ -102,16 +99,21 @@ new p5((p: p5) => {
     const DECAY = ((jumpy / (POLYCOUNT - row + 1)) * p.random(row - 1)) / POLYCOUNT;
     const randy = 0.25 * (row - 1);
     if (p.random() < 0.5) {
-      p.strokeWeight(STROKE_WEIGHT * p.random(1 - (0.2 / POLYCOUNT) * row, 1 + (row - 1) / POLYCOUNT));
+      p.strokeWeight(
+        STROKE_WEIGHT * p.random(1 - (0.2 / POLYCOUNT) * row, 1 + (row - 1) / POLYCOUNT),
+      );
       p.line(
         vert[0] + DECAY * p.random(-randy, randy),
         vert[1] + DECAY * p.random(-randy, randy),
         nuvert[0] + DECAY * p.random(-randy, randy),
-        nuvert[1] + DECAY * p.random(-randy, randy)
+        nuvert[1] + DECAY * p.random(-randy, randy),
       );
       p.strokeWeight(STROKE_WEIGHT * 3);
       p.point(vert[0] + DECAY * p.random(-randy, randy), vert[1] + DECAY * p.random(-randy, randy));
-      p.point(nuvert[0] + DECAY * p.random(-randy, randy), nuvert[1] + DECAY * p.random(-randy, randy));
+      p.point(
+        nuvert[0] + DECAY * p.random(-randy, randy),
+        nuvert[1] + DECAY * p.random(-randy, randy),
+      );
       p.strokeWeight(STROKE_WEIGHT);
     }
   };

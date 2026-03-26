@@ -1,6 +1,6 @@
 import p5 from "p5";
 import palettesData from "../palettes.json";
-import configBuilder, { baseSetup } from "./utils.js";
+import configBuilder, { baseSetup } from "../sketches/v2/utils";
 
 new p5((p: p5) => {
   let bg: any, colors: any, frame: any;
@@ -33,7 +33,7 @@ new p5((p: p5) => {
   };
 
   const drawTower = () => {
-    const color = p.random(colors);
+    const color = p.random(colors as p5.Color[]);
     const x = p.random(p.width);
     const y = p.random(p.height * 0.1, p.height);
     const w = p.random(c.min, c.max);
