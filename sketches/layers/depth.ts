@@ -4,8 +4,7 @@ import { palettes } from "../../palettes";
 /* Enable to make a canvas suitable for A2 paper */
 const PRINT_MODE = false;
 
-/* Get a random palette or choose a specific one from palettes */
-const RANDOM_PALETTE = false;
+/* Set a palette */
 const PALETTE_NAME = "stronk";
 
 const LAYER_COUNT = 50;
@@ -53,7 +52,7 @@ const ROTATION_SPEED = 0;
 
 */
 
-let COLORS: any[], FILL: any, BG: any;
+let COLORS: p5.Color[], FILL: any, BG: p5.Color;
 
 new p5((p: p5) => {
   p.setup = () => {
@@ -61,14 +60,10 @@ new p5((p: p5) => {
     cnv.mouseClicked(clickOnSave);
     p.pixelDensity(1);
 
-    /* Get colors from the palettes */
-    const PALETTE_KEYS = Object.keys(palettes);
-    const RANDOM_PALETTE_NAME = PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0];
-    const PALETTE = !RANDOM_PALETTE ? palettes[PALETTE_NAME] : palettes[RANDOM_PALETTE_NAME];
-    console.log("Palette name: ", RANDOM_PALETTE_NAME);
+    const PALETTE = palettes[PALETTE_NAME];
 
     p.colorMode(p.HSL);
-    COLORS = PALETTE["colors"].map((col: string) => p.color(col));
+    COLORS = PALETTE.colors.map((col: string) => p.color(col));
     BG = p.color(PALETTE.bg);
 
     /* Sketch-specific setup */

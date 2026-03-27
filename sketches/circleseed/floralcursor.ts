@@ -13,8 +13,8 @@ const MIN_PLANT_DIST = 20;
 const STEP = STROKE_WEIGHT;
 
 let PALETTE: any;
-let COLORS: any[];
-let BG: any;
+let COLORS: p5.Color[];
+let BG: p5.Color;
 
 let lastPlantX = -9999;
 let lastPlantY = -9999;
@@ -26,8 +26,8 @@ new p5((p: p5) => {
     // cnv.mouseClicked(clickOnSave);
 
     PALETTE = palettes[PALETTE_NAME];
-    COLORS = PALETTE["colors"];
-    BG = p.color(PALETTE["bg"]);
+    COLORS = PALETTE.colors;
+    BG = p.color(PALETTE.bg);
 
     p.background(BG);
     p.fill(BG);

@@ -1,9 +1,9 @@
 import p5 from "p5";
 import { palettes } from "../palettes";
-import configBuilder, { baseSetup } from "../sketches/v2/utils";
+import configBuilder, { baseSetup } from "../utils";
 
 new p5((p: p5) => {
-  let bg: any, colors: any, frame: any;
+  let bg: p5.Color, colors: any, frame: any;
 
   const c = configBuilder(p, {
     palette: "monowild",

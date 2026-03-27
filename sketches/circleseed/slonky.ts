@@ -12,24 +12,23 @@ const NOISE_DETAIL = 0.005;
 
 const OPACITY = 63;
 
-let cnv: any;
 let PALETTE: any;
-let COLORS: any[];
-let BG: any;
+let COLORS: p5.Color[];
+let BG: p5.Color;
 let STROKE: any;
 
 const RINGS: any[] = [];
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080); // 1080, 1350
+    const cnv = p.createCanvas(1080, 1080); // 1080, 1350
     cnv.mouseClicked(clickOnSave);
 
     PALETTE = palettes[PALETTE_NAME];
     // const PALETTE_KEYS = Object.keys(palettes);
     // PALETTE = (palettes)[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
-    COLORS = PALETTE["colors"];
-    BG = p.color(PALETTE["bg"]);
+    COLORS = PALETTE.colors;
+    BG = p.color(PALETTE.bg);
     STROKE = p.color(p.random(COLORS));
 
     p.background(BG);

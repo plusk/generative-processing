@@ -2,7 +2,7 @@ import p5 from "p5";
 
 new p5((p: p5) => {
   let _vMax: any, vMin: any, TEXT_SIZE: any, PALETTE: any, BLOBS: any, SPOTS: any;
-  let BG: any;
+  let BG: p5.Color;
 
   const SHOW_TEXT = false;
 

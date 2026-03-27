@@ -16,7 +16,6 @@ let maxr = 7.5;
 let bigrad = 0;
 
 let bigcolor: any;
-let cnv: any;
 
 let palette: any;
 let colors: any;
@@ -27,12 +26,12 @@ const PALETTE_NAME = "genesis";
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080);
+    const cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
 
     palette = palettes[PALETTE_NAME];
-    colors = palette["colors"];
-    colors_bg = palette["bg"];
+    colors = palette.COLORS;
+    colors_bg = palette.bg;
 
     p.background(colors_bg);
 

@@ -1,3 +1,23 @@
+export type PALETTE_NAME =
+  | "mono"
+  | "monomild"
+  | "monowild"
+  | "onom"
+  | "genesis"
+  | "sydney"
+  | "redrange"
+  | "redcent"
+  | "symmeblu"
+  | "termos"
+  | "vintage"
+  | "pastella"
+  | "speis"
+  | "mello"
+  | "online"
+  | "stronk"
+  | "sirkul"
+  | "appfab";
+
 export const palettes = {
   mono: {
     bg: "#000000",
@@ -71,4 +91,4 @@ export const palettes = {
     bg: "#FAEBD7",
     colors: ["#FFB88D", "#16DBC4", "#A1F5E3", "#162365"],
   },
-} as const;
+} as const satisfies Record<PALETTE_NAME, { bg: string; colors: string[] }>;

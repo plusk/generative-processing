@@ -1,7 +1,6 @@
 import p5 from "p5";
 import { palettes } from "../../palettes";
 
-let cnv: any;
 let palette: any;
 
 const PALETTE_NAME = "onom";
@@ -16,14 +15,14 @@ let COLOR_STROKE: any;
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080); // 1080, 1350
+    const cnv = p.createCanvas(1080, 1080); // 1080, 1350
     cnv.mouseClicked(clickOnSave);
 
     palette = palettes[PALETTE_NAME];
     // const keys = Object.keys(palettes);
     // palette = palettes[keys[(keys.length * Math.random()) << 0]];
-    COLOR_PALETTE = palette["colors"];
-    COLOR_BG = p.color(palette["bg"]);
+    COLOR_PALETTE = palette.colors;
+    COLOR_BG = p.color(palette.bg);
     COLOR_STROKE = p.color(p.random(COLOR_PALETTE));
 
     p.background(COLOR_BG);

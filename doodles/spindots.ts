@@ -2,7 +2,6 @@ import p5 from "p5";
 import { palettes } from "../palettes";
 
 new p5((p: p5) => {
-  let cnv: any;
   let palette: any;
   let _colors: any;
   let colors_bg: any;
@@ -20,14 +19,14 @@ new p5((p: p5) => {
   let ticker = 0;
 
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080); // 1080, 1350
+    const cnv = p.createCanvas(1080, 1080); // 1080, 1350
     cnv.mouseClicked(clickOnSave);
 
     palette = palettes[PALETTE_NAME];
     // const keys = Object.keys(palettes);
     // palette = (palettes)[keys[(keys.length * Math.random()) << 0]];
-    _colors = palette["colors"];
-    colors_bg = palette["bg"];
+    _colors = palette.colors;
+    colors_bg = palette.bg;
 
     p.background(colors_bg);
     p.noFill();

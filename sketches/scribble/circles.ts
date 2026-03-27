@@ -15,22 +15,21 @@ let bigrad = 0;
 
 let palette: any;
 let bigcolor: any;
-let cnv: any;
 let colors: any;
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080);
+    const cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
 
     palette = palettes["symmeblu"];
 
-    colors = palette["colors"];
+    colors = palette.COLORS;
 
     section = p.width / 8;
     gap = p.width / 16;
     p.colorMode(p.HSL);
-    p.background(palette["bg"]);
+    p.background(palette.bg);
     bigrad = p.width > p.height ? (p.height - section) / 2 : (p.width - section) / 2;
     for (let c = 0; c < scribblecount; c++) {
       const ang = p.random(p.TWO_PI);
@@ -58,7 +57,7 @@ new p5((p: p5) => {
       const r = coord[2];
       const nooice = p.noise(0.005 * x, 0.005 * y, 0.5 * z);
       p.stroke(coord[3]);
-      const filler = p.color(palette["bg"]);
+      const filler = p.color(palette.bg);
       filler.setAlpha(OPACITY_FILL * 255);
       p.fill(filler);
       xoff = p.random(-gap / 4, gap / 4);

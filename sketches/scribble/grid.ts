@@ -5,8 +5,7 @@ let section: any;
 let gap: any;
 let xoff = 0;
 let yoff = 0;
-let cnv: any;
-let bg: any;
+let bg: p5.Color;
 let palette: any;
 let colors: any;
 
@@ -16,14 +15,14 @@ const OPACITY_FILL = 0.5; // higher = less visible background circles
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080);
+    const cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
 
     p.colorMode(p.HSL);
 
     palette = palettes["onom"];
-    colors = palette["colors"];
-    bg = p.color(palette["bg"]);
+    colors = palette.colors;
+    bg = p.color(palette.bg);
     p.background(bg);
 
     bg.setAlpha(OPACITY_FILL * 255);

@@ -2,24 +2,23 @@ import p5 from "p5";
 import { palettes } from "../../palettes";
 
 let section: any;
-let cnv: any;
 let palette: any;
 let colors: any;
-let bg: any;
+let bg: p5.Color;
 
 const OPACITY_STROKE = 0.75; // higher = harsher circles
 const OPACITY_FILL = 0.1; // higher = less visible background circles
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080);
+    const cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
 
     p.colorMode(p.HSL);
 
     palette = palettes["onom"];
-    colors = palette["colors"];
-    bg = p.color(palette["bg"]);
+    colors = palette.COLORS;
+    bg = p.color(palette.bg);
     p.background(bg);
 
     bg.setAlpha(OPACITY_FILL * 255);

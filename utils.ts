@@ -1,6 +1,6 @@
 import p5 from "p5";
 import { Pane } from "tweakpane";
-import { palettes } from "../palettes";
+import { PALETTE_NAME, palettes } from "./palettes";
 
 export class ConfigValue {
   value: number;
@@ -32,7 +32,7 @@ export class ConfigValue {
 
 // p is a p5 instance, c is an object of values or ConfigValues
 const configBuilder = (p: p5, c: Record<string, any>) => {
-  const config: Record<string, any> = {
+  const config: { palette: PALETTE_NAME } & Record<string, any> = {
     palette: "onom",
     seed: 0,
     ...c,

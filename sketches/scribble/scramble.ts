@@ -11,10 +11,8 @@ let scribblecount = 64;
 let coords: any[] = [];
 let maxr = 7.5;
 
-let cnv: any;
-
 let palette: any;
-let bg: any;
+let bg: p5.Color;
 let colors: any;
 
 const SPEED = 5; // higher = fewer circles
@@ -23,15 +21,15 @@ const OPACITY_FILL = 0.5; // higher = less visible background circles
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080);
+    const cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
     _section = p.width / 8;
     gap = p.width / 16;
     p.colorMode(p.HSL);
 
     palette = palettes["onom"];
-    colors = palette["colors"];
-    bg = p.color(palette["bg"]);
+    colors = palette.COLORS;
+    bg = p.color(palette.bg);
     p.background(bg);
 
     bg.setAlpha(OPACITY_FILL * 255);

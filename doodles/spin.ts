@@ -2,11 +2,10 @@ import p5 from "p5";
 import { palettes } from "../palettes";
 
 new p5((p: p5) => {
-  let COLORS: any, STROKE: any, BG: any;
+  let COLORS: any, STROKE: any, BG: p5.Color;
 
   const EXPORT = false;
 
-  const RANDOM_PALETTE = false;
   const PALETTE_NAME = "termos";
 
   const STROKE_WEIGHT = 1;
@@ -20,14 +19,10 @@ new p5((p: p5) => {
     if (EXPORT) p.pixelDensity(1);
     if (EXPORT) p.frameRate(4);
 
-    /* Get colors from the palettes */
-    const PALETTE_KEYS = Object.keys(palettes);
-    const PALETTE = !RANDOM_PALETTE
-      ? palettes[PALETTE_NAME]
-      : palettes[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+    const PALETTE = palettes[PALETTE_NAME];
 
     p.colorMode(p.HSL);
-    COLORS = PALETTE["colors"].map((col: any) => p.color(col));
+    COLORS = PALETTE.colors.map((col: any) => p.color(col));
     BG = p.color(PALETTE.bg);
 
     /* Sketch-specific setup */

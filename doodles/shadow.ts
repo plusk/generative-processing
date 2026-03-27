@@ -1,6 +1,6 @@
 import p5 from "p5";
 import { palettes } from "../palettes";
-import configBuilder, { baseSetup, ConfigValue } from "../sketches/utils";
+import configBuilder, { baseSetup, ConfigValue } from "../utils";
 
 new p5((p: p5) => {
   let bg: string, colors: string[];

@@ -11,21 +11,20 @@ const OPACITY = 255;
 
 const THREADS: any[] = [];
 
-let cnv: any;
 let palette: any;
 let colors: any[];
 let colors_bg: any;
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080); // 1080, 1350
+    const cnv = p.createCanvas(1080, 1080); // 1080, 1350
     cnv.mouseClicked(clickOnSave);
 
     palette = palettes[PALETTE_NAME];
     //const keys = Object.keys(palettes);
     //palette = (palettes)[keys[(keys.length * Math.random()) << 0]];
-    colors = palette["colors"];
-    colors_bg = palette["bg"];
+    colors = palette.COLORS;
+    colors_bg = palette.bg;
 
     p.background(colors_bg);
     p.strokeWeight(STROKE_WEIGHT);

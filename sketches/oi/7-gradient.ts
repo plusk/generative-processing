@@ -1,7 +1,6 @@
 import p5 from "p5";
 
 new p5((p: p5) => {
-  let cnv: any;
   let COLORS: any;
 
   const STROKE_WEIGHT = 3;
@@ -23,10 +22,10 @@ new p5((p: p5) => {
   };
 
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1350);
+    const cnv = p.createCanvas(1080, 1350);
     cnv.mouseClicked(clickOnSave);
 
-    COLORS = PALETTE["colors"];
+    COLORS = PALETTE.colors;
 
     (p as any).angleMode((p as any).DEGREES);
     p.frameRate(1);

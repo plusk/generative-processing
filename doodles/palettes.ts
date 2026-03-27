@@ -2,19 +2,11 @@ import p5 from "p5";
 import { palettes } from "../palettes";
 
 new p5((p: p5) => {
-  let PALETTE: any;
-  let _BACKGROUNDS: any;
-  let _COLORS: any;
-
   p.setup = () => {
     const cnv = p.createCanvas(1080, 2000); // 1080, 1350
     cnv.mouseClicked(clickOnSave);
 
     p.colorMode(p.HSL);
-    const PALETTE_KEYS = Object.keys(palettes);
-    PALETTE = palettes[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
-    _COLORS = PALETTE["colors"];
-    _BACKGROUNDS = PALETTE["bg"];
     p.noStroke();
 
     const entries = Object.entries(palettes);

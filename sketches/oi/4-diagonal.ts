@@ -1,14 +1,12 @@
 import p5 from "p5";
 
 new p5((p: p5) => {
-  let cnv: any;
-
   const STROKE_WEIGHT = 3;
   const PADDING = 216;
   const SHAPE_COUNT = 7;
 
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1350);
+    const cnv = p.createCanvas(1080, 1350);
     cnv.mouseClicked(clickOnSave);
 
     (p as any).angleMode((p as any).DEGREES);

@@ -16,7 +16,7 @@ let RINGS: any[] = [];
 const FRAME_START = 0;
 const FRAME_END = (Math.PI / ANGLE_STEP) * 2;
 
-let COLORS: any[], BG: any, STROKE: any;
+let COLORS: p5.Color[], BG: p5.Color, STROKE: any;
 
 new p5((p: p5) => {
   p.setup = () => {
@@ -30,7 +30,7 @@ new p5((p: p5) => {
     const PALETTE = palettes[PALETTE_NAME];
     // const PALETTE_KEYS = Object.keys(palettes);
     // PALETTE = (palettes)[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
-    COLORS = PALETTE["colors"].map((col: string) => p.color(col));
+    COLORS = PALETTE.colors.map((col: string) => p.color(col));
     BG = p.color(PALETTE.bg);
     STROKE = p.random(COLORS);
 
@@ -48,7 +48,7 @@ new p5((p: p5) => {
   };
 
   p.draw = () => {
-    p.background(BG[0]);
+    p.background(BG);
     p.translate(p.width / 2, p.height / 2);
     p.rotate(-p.HALF_PI);
     p.beginShape();

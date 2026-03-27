@@ -8,7 +8,6 @@ let symangle = 360 / symmetry;
 let frame = 0;
 let x: any, y: any;
 
-let cnv: any;
 let palette: any;
 let colors: any;
 let _colors_stroke: any;
@@ -24,15 +23,15 @@ let anglesign = 1;
 
 new p5((p: p5) => {
   p.setup = () => {
-    cnv = p.createCanvas(1080, 1080);
+    const cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
 
     palette = palettes[PALETTE_NAME];
     // const keys = Object.keys(palettes);
     // palette = palettes[keys[(keys.length * Math.random()) << 0]];
 
-    colors = palette["colors"];
-    colors_bg = palette["bg"];
+    colors = palette.COLORS;
+    colors_bg = palette.bg;
     _colors_stroke = palette["stroke"];
 
     p.background(colors_bg);
