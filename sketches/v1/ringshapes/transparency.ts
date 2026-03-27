@@ -34,7 +34,7 @@ new p5((p: p5) => {
 
     p.strokeWeight(STROKE_WEIGHT);
     const FILL = p.color(BG);
-    FILL.setAlpha(0.05);
+    FILL.setAlpha(0.05 * 255);
     p.fill(FILL);
 
     //p.drawingContext.shadowBlur = STROKE_WEIGHT;

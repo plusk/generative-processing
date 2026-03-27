@@ -92,7 +92,7 @@ new p5((p: p5) => {
     p.background(BG);
 
     for (let c = 0; c < COLORS.length; c++) {
-      COLORS[c].setAlpha(OPACITY);
+      COLORS[c].setAlpha(OPACITY * 255);
     }
 
     /* Randomize the order of the colors so they equate to different angles each run */

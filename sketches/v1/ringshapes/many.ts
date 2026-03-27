@@ -38,7 +38,7 @@ new p5((p: p5) => {
 
     p.stroke(STROKE);
     p.background(BG);
-    BG.setAlpha(OPACITY);
+    BG.setAlpha(OPACITY * 255);
 
     p.fill(BG);
 

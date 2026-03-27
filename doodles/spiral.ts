@@ -78,7 +78,7 @@ new p5((p: p5) => {
       thread["opacity"] = opacity;
 
       const cololo = p.color(thread["color"]);
-      cololo.setAlpha(opacity);
+      cololo.setAlpha(opacity * 255);
       thread["color"] = cololo;
       p.stroke(cololo);
       p.line(prevX, prevY, x, y);

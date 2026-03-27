@@ -34,11 +34,11 @@ new p5((p: p5) => {
     bg = p.color(palette["bg"]);
     p.background(bg);
 
-    bg.setAlpha(OPACITY_FILL);
+    bg.setAlpha(OPACITY_FILL * 255);
     p.fill(bg);
 
     const strokey = p.color(p.random(colors));
-    strokey.setAlpha(OPACITY_STROKE);
+    strokey.setAlpha(OPACITY_STROKE * 255);
     p.stroke(strokey);
 
     for (let c = 0; c < scribblecount; c++) {

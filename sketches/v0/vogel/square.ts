@@ -46,7 +46,7 @@ new p5((p: p5) => {
 
     for (let c = 0; c < COLORS.length; c++) {
       const coleur = p.color(COLORS[c]);
-      coleur.setAlpha(OPACITY);
+      coleur.setAlpha(OPACITY * 255);
       NUCOLOR.push(coleur);
     }
   };

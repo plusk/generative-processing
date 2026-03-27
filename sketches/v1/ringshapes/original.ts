@@ -56,10 +56,10 @@ new p5((p: p5) => {
       const ring = RINGS[i];
       const x = ring.r * p.cos(ring.a);
       const y = ring.r * p.sin(ring.a);
-      STROKE.setAlpha(0.2);
+      STROKE.setAlpha(0.2 * 255);
       p.stroke(STROKE);
       p.circle(0, 0, ring.r * 2);
-      STROKE.setAlpha(1);
+      STROKE.setAlpha(255);
       p.stroke(STROKE);
       p.vertex(x, y);
       p.strokeWeight(STROKE_WEIGHT * 5);

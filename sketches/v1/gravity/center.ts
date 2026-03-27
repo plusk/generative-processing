@@ -69,8 +69,8 @@ new p5((p: p5) => {
 
     p.background(BG);
     p.fill(BG);
-    BG.setAlpha(0.75);
-    STROKE.setAlpha(OPACITY);
+    BG.setAlpha(0.75 * 255);
+    STROKE.setAlpha(OPACITY * 255);
     p.stroke(STROKE);
     p.strokeWeight(STROKE_WEIGHT);
 

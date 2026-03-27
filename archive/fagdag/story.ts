@@ -360,7 +360,7 @@ new p5((p: p5) => {
       // natt: p.color("#6D7ABB"),
       // natt_kontrast: p.color("#162365"),
     };
-    PALETTE.new_dark_line.setAlpha(0.75);
+    PALETTE.new_dark_line.setAlpha(0.75 * 255);
     BG = PALETTE.sol;
 
     windowResized();

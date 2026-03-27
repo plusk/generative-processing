@@ -36,7 +36,7 @@ new p5((p: p5) => {
       const ang = p.random(p.TWO_PI);
       const rad = bigrad * p.sqrt(p.random());
       const col = p.color(p.random(colors));
-      col.setAlpha(p.random() + p.random() + p.random());
+      col.setAlpha((p.random() + p.random() + p.random()) * 255);
       coords.push([rad * p.cos(ang), rad * p.sin(ang), p.random(maxr), col]);
     }
     bigcolor = p.random(colors);
@@ -59,7 +59,7 @@ new p5((p: p5) => {
       const nooice = p.noise(0.005 * x, 0.005 * y, 0.5 * z);
       p.stroke(coord[3]);
       const filler = p.color(palette["bg"]);
-      filler.setAlpha(OPACITY_FILL * 1);
+      filler.setAlpha(OPACITY_FILL * 255);
       p.fill(filler);
       xoff = p.random(-gap / 4, gap / 4);
       yoff = p.random(-gap / 4, gap / 4);

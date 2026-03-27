@@ -71,7 +71,7 @@ new p5((p: p5) => {
     /* Sketch-specific setup */
     p.strokeWeight(STROKE_WEIGHT);
     STROKE = p.random(COLORS);
-    STROKE.setAlpha(OPACITY);
+    STROKE.setAlpha(OPACITY * 255);
     p.stroke(STROKE);
     p.background(BG);
 
@@ -109,11 +109,11 @@ new p5((p: p5) => {
       /* If random, choose a new color for each line */
       if (RANDOM_STROKE) {
         const randomColor = p.random(COLORS);
-        randomColor.setAlpha(OPACITY);
+        randomColor.setAlpha(OPACITY * 255);
         p.stroke(randomColor);
       } else if (PALETTED_STROKE) {
         const palettedColor = COLORS[i % COLORS.length];
-        palettedColor.setAlpha(OPACITY);
+        palettedColor.setAlpha(OPACITY * 255);
         p.stroke(palettedColor);
       }
 

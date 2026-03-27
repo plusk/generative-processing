@@ -31,7 +31,7 @@ new p5((p: p5) => {
     /* Sketch-specific setup */
     p.strokeWeight(STROKE_WEIGHT);
     STROKE = p.random(COLORS);
-    STROKE.setAlpha(OPACITY);
+    STROKE.setAlpha(OPACITY * 255);
     p.stroke(STROKE);
     p.background(BG);
 
