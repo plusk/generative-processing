@@ -1,6 +1,6 @@
 import p5 from "p5";
 import { Pane } from "tweakpane";
-import palettes from "./palettes";
+import { palettes } from "../../palettes";
 
 export class ConfigValue {
   value: number;

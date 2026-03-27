@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../../../palettes.json";
+import { palettes } from "../../../palettes";
 
 let cnv: any;
 let PALETTE: any;
@@ -25,9 +25,9 @@ new p5((p: p5) => {
     cnv = p.createCanvas(1080, 1080); // 1080, 1350
     cnv.mouseClicked(clickOnSave);
 
-    PALETTE = palettesData[PALETTE_NAME];
-    // const PALETTE_KEYS = Object.keys(palettesData);
-    // PALETTE = palettesData[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+    PALETTE = palettes[PALETTE_NAME];
+    // const PALETTE_KEYS = Object.keys(palettes);
+    // PALETTE = palettes[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
     COLORS = PALETTE["colors"];
     BG = p.color(PALETTE["bg"]);
     STROKE = p.color(p.random(COLORS));

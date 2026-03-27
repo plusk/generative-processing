@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../../../palettes.json";
+import { palettes } from "../../../palettes";
 
 const PALETTE_NAME = "redcent"; // retro
 
@@ -32,9 +32,9 @@ new p5((p: p5) => {
     p.frameRate(30);
 
     p.colorMode(p.HSL);
-    PALETTE = (palettesData as any)[PALETTE_NAME];
-    // const PALETTE_KEYS = Object.keys(palettesData);
-    // PALETTE = (palettesData as any)[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+    PALETTE = palettes[PALETTE_NAME];
+    // const PALETTE_KEYS = Object.keys(palettes);
+    // PALETTE = (palettes)[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
     COLORS = PALETTE["colors"];
     BG = p.color(PALETTE["bg"]);
 

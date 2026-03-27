@@ -1,11 +1,9 @@
 import p5 from "p5";
-import palettes from "../palettes";
+import { palettes } from "../../../palettes";
 import configBuilder, { baseSetup, ConfigValue } from "../utils";
 
-declare const chroma: any;
-
 new p5((p: p5) => {
-  let bg: string, colors: string[], frame: number, scales: string[][];
+  let bg: string, colors: string[], frame: number, scales: p5.Color[][];
 
   const c = configBuilder(p, {
     palette: "onom",
@@ -22,14 +20,18 @@ new p5((p: p5) => {
 
   p.setup = () => {
     baseSetup(p, c);
-    bg = (palettes as any)[c.palette].bg;
-    colors = (palettes as any)[c.palette].colors;
+    bg = palettes[c.palette].bg;
+    colors = palettes[c.palette].colors;
     p.strokeWeight(c.strokeWeight);
 
     scales = [];
     for (let i = 0; i < colors.length; i++) {
       const color = colors[i];
-      scales.push(chroma.scale([color, bg]).colors(p.height));
+      const li = [];
+      for (let l = 0; l < p.height; l++) {
+        li.push(p.lerpColor(p.color(color), p.color(bg), l / p.height));
+      }
+      scales.push(li);
     }
 
     drawBackground();
@@ -96,7 +98,7 @@ new p5((p: p5) => {
   const drawSpecks = (contrast: boolean) => {
     for (let i = 0; i < c.specks; i++) {
       const scale = p.random(scales);
-      const collie = contrast ? bg : scale[p.round(i / c.specks)];
+      const collie = contrast ? p.color(bg) : scale[p.round(i / c.specks)];
       p.stroke(collie);
       const x = p.random(p.width);
       const y = p.random(p.height);

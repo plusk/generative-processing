@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../../../palettes.json";
+import { palettes } from "../../../palettes";
 
 let _section: any;
 let gap: any;
@@ -29,7 +29,7 @@ new p5((p: p5) => {
     gap = p.width / 16;
     p.colorMode(p.HSL);
 
-    palette = palettesData["onom"];
+    palette = palettes["onom"];
     colors = palette["colors"];
     bg = p.color(palette["bg"]);
     p.background(bg);

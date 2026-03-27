@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettes from "./palettes";
+import { palettes } from "../../palettes";
 import configBuilder, { baseSetup } from "./utils";
 
 new p5((p: p5) => {
@@ -13,8 +13,8 @@ new p5((p: p5) => {
   p.setup = () => {
     baseSetup(p, c);
 
-    bg = (palettes as any)[c.palette].bg;
-    colors = (palettes as any)[c.palette].colors;
+    bg = palettes[c.palette].bg;
+    colors = palettes[c.palette].colors;
     p.background(bg);
     p.strokeWeight(c.strokeWeight);
   };

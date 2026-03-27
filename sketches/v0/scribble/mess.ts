@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../../../palettes.json";
+import { palettes } from "../../../palettes";
 
 let section: any;
 let cnv: any;
@@ -17,7 +17,7 @@ new p5((p: p5) => {
 
     p.colorMode(p.HSL);
 
-    palette = palettesData["onom"];
+    palette = palettes["onom"];
     colors = palette["colors"];
     bg = p.color(palette["bg"]);
     p.background(bg);

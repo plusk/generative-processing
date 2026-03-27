@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../palettes.json";
+import { palettes } from "../palettes";
 
 new p5((p: p5) => {
   let cnv: any;
@@ -22,7 +22,7 @@ new p5((p: p5) => {
     cnv.mouseClicked(clickOnSave);
 
     p.colorMode(p.HSL);
-    PALETTE = (palettesData as any)[PALETTE_NAME];
+    PALETTE = palettes[PALETTE_NAME];
     COLORS = PALETTE["colors"];
     BG = p.color(PALETTE["bg"]);
     STROKE = p.color(p.random(COLORS));

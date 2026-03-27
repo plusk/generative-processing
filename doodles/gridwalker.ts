@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../palettes.json";
+import { palettes } from "../palettes";
 
 new p5((p: p5) => {
   let COLORS: any, STROKE: any, BG: any;
@@ -145,10 +145,10 @@ new p5((p: p5) => {
     if (EXPORT) p.frameRate(4);
 
     /* Get colors from the palettes */
-    const PALETTE_KEYS = Object.keys(palettesData);
+    const PALETTE_KEYS = Object.keys(palettes);
     const PALETTE = !RANDOM_PALETTE
-      ? (palettesData as any)[PALETTE_NAME]
-      : (palettesData as any)[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+      ? palettes[PALETTE_NAME]
+      : palettes[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
 
     p.colorMode(p.HSL);
     COLORS = PALETTE["colors"].map((col: any) => p.color(col));

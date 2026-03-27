@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../../../palettes.json";
+import { palettes } from "../../../palettes";
 
 // ONLY WORKS WITH P5v1.0.0, THEY FIXED MY BUG :(
 
@@ -30,7 +30,7 @@ new p5((p: p5) => {
     cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
 
-    palette = palettesData[PALETTE_NAME];
+    palette = palettes[PALETTE_NAME];
     colors = palette["colors"];
     colors_bg = palette["bg"];
 

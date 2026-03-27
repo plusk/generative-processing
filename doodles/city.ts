@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../palettes.json";
+import { palettes } from "../palettes";
 import configBuilder, { baseSetup } from "../sketches/v2/utils";
 
 new p5((p: p5) => {
@@ -14,8 +14,8 @@ new p5((p: p5) => {
 
   p.setup = () => {
     baseSetup(p, c);
-    bg = p.color((palettesData as any)[c.palette].bg);
-    colors = (palettesData as any)[c.palette].colors.map((collie: any) => p.color(collie));
+    bg = p.color(palettes[c.palette].bg);
+    colors = palettes[c.palette].colors.map((collie: any) => p.color(collie));
     p.background(bg);
 
     frame = 0;

@@ -1,13 +1,7 @@
 import p5 from "p5";
 
 new p5((p: p5) => {
-  let _vMax: any,
-    vMin: any,
-    TEXT_SIZE: any,
-    PALETTE: any,
-    BEKK_PALETTE: any,
-    BLOBS: any,
-    SPOTS: any;
+  let _vMax: any, vMin: any, TEXT_SIZE: any, PALETTE: any, BLOBS: any, SPOTS: any;
   let BG: any;
 
   const EXPORT = false;
@@ -35,8 +29,6 @@ new p5((p: p5) => {
   // The thickness of lines
   const STROKE_WEIGHT = 2;
 
-  const RANDOM_COLORS = false;
-
   const SPOT_COUNT = 40;
   const SPOT_X_SPREAD = 7;
   const SPOT_Y_SPREAD = 0.5;
@@ -54,11 +46,6 @@ new p5((p: p5) => {
   const easeInOutCool = (steepness: number, x: number) => {
     const mappedX = p.map(x, 0, 1, -1, 1);
     return (1 + Math.tanh(steepness * mappedX)) / 2;
-  };
-
-  const randomColor = () => {
-    const keys = Object.keys(BEKK_PALETTE);
-    return BEKK_PALETTE[keys[(keys.length * Math.random()) << 0]];
   };
 
   class Shape {
@@ -195,7 +182,7 @@ new p5((p: p5) => {
         cy: p.height * 0.9,
         rMin: vMin * 0.2,
         rMax: vMin * 0.5,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.sol_kontrast,
+        fillColor: PALETTE.sol_kontrast,
       }),
       new Shape({
         z: 20,
@@ -203,7 +190,7 @@ new p5((p: p5) => {
         cy: p.height * 0.1,
         rMin: vMin * 0.2,
         rMax: vMin * 0.45,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.kveld,
+        fillColor: PALETTE.kveld,
       }),
       new Shape({
         z: 30,
@@ -211,7 +198,7 @@ new p5((p: p5) => {
         cy: p.height * 0.5,
         rMin: vMin * 0.2,
         rMax: vMin * 0.5,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.new_dark,
+        fillColor: PALETTE.new_dark,
       }),
       new Shape({
         z: 40,
@@ -219,7 +206,7 @@ new p5((p: p5) => {
         cy: p.height * 0.9,
         rMin: vMin * 0.2,
         rMax: vMin * 0.4,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.hvit,
+        fillColor: PALETTE.hvit,
       }),
       new Shape({
         z: 50,
@@ -227,7 +214,7 @@ new p5((p: p5) => {
         cy: p.height * 0.7,
         rMin: vMin * 0.2,
         rMax: vMin * 0.5,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.sol_kontrast,
+        fillColor: PALETTE.sol_kontrast,
       }),
       new Shape({
         z: 60,
@@ -235,7 +222,7 @@ new p5((p: p5) => {
         cy: p.height * 0.5,
         rMin: vMin * 0.2,
         rMax: vMin * 0.4,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.grønn_kontrast,
+        fillColor: PALETTE.grønn_kontrast,
       }),
       new Shape({
         z: 100,
@@ -278,7 +265,7 @@ new p5((p: p5) => {
         cy: p.height / 2,
         rMin: vMin * 0.15,
         rMax: vMin * 0.3,
-        fillColor: RANDOM_COLORS ? randomColor() : PALETTE.hvit,
+        fillColor: PALETTE.hvit,
       }),
       new Shape({
         z: 2000,
@@ -304,7 +291,7 @@ new p5((p: p5) => {
           rMin: vMin * 0.005,
           rMax: SPOT_RMAX,
           amp: SPOT_AMP,
-          fillColor: RANDOM_COLORS ? randomColor() : PALETTE.new_blue,
+          fillColor: PALETTE.new_blue,
           animationSpeed: 0,
           steepness: SPOT_EASE_STEEPNESS,
           disappearTime: SPOT_DURATION,
@@ -321,7 +308,7 @@ new p5((p: p5) => {
           rMin: vMin * 0.005,
           rMax: SPOT_RMAX,
           amp: SPOT_AMP,
-          fillColor: RANDOM_COLORS ? randomColor() : PALETTE.new_blue,
+          fillColor: PALETTE.new_blue,
           animationSpeed: 0,
           steepness: SPOT_EASE_STEEPNESS,
           disappearTime: SPOT_DURATION,

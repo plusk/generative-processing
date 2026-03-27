@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../palettes.json";
+import { palettes } from "../palettes";
 
 new p5((p: p5) => {
   let PALETTE: any;
@@ -11,13 +11,13 @@ new p5((p: p5) => {
     cnv.mouseClicked(clickOnSave);
 
     p.colorMode(p.HSL);
-    const PALETTE_KEYS = Object.keys(palettesData);
-    PALETTE = (palettesData as any)[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
+    const PALETTE_KEYS = Object.keys(palettes);
+    PALETTE = palettes[PALETTE_KEYS[(PALETTE_KEYS.length * Math.random()) << 0]];
     _COLORS = PALETTE["colors"];
     _BACKGROUNDS = PALETTE["bg"];
     p.noStroke();
 
-    const entries = Object.entries(palettesData);
+    const entries = Object.entries(palettes);
     let index = 0;
     for (const [_name, palette] of entries) {
       p.fill((palette as any).bg);

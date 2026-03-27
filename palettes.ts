@@ -1,4 +1,4 @@
-const palettes = {
+export const palettes: Record<string, { bg: string; colors: string[] }> = {
   mono: {
     bg: "#000000",
     colors: ["#ffffff"],
@@ -72,5 +72,3 @@ const palettes = {
     colors: ["#FFB88D", "#16DBC4", "#A1F5E3", "#162365"],
   },
 };
-
-export default palettes;

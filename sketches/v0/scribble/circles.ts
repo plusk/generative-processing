@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../../../palettes.json";
+import { palettes } from "../../../palettes";
 
 let section: any;
 let gap: any;
@@ -23,7 +23,7 @@ new p5((p: p5) => {
     cnv = p.createCanvas(1080, 1080);
     cnv.mouseClicked(clickOnSave);
 
-    palette = palettesData["symmeblu"];
+    palette = palettes["symmeblu"];
 
     colors = palette["colors"];
 

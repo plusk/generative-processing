@@ -1,5 +1,5 @@
 import p5 from "p5";
-import palettesData from "../../../palettes.json";
+import { palettes } from "../../../palettes";
 
 const PALETTE_NAME = "genesis";
 
@@ -25,7 +25,7 @@ new p5((p: p5) => {
     p.createCanvas(1080, 1350);
     // cnv.mouseClicked(clickOnSave);
 
-    PALETTE = (palettesData as any)[PALETTE_NAME];
+    PALETTE = palettes[PALETTE_NAME];
     COLORS = PALETTE["colors"];
     BG = p.color(PALETTE["bg"]);
 
