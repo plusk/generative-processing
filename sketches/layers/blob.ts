@@ -11,11 +11,11 @@ const PALETTE_NAME = "stronk";
 const LAYER_COUNT = 10;
 
 /* The average radius of the full shape */
-const MEAN_RADIUS = 500;
+const MEAN_RADIUS = 540;
 
 /* Enable strokes on the border of each layer, specify weight if enabled */
 const HAS_STROKE = false;
-const STROKE_WEIGHT = 4;
+const STROKE_WEIGHT = 1;
 
 /* Layers are light to dark (from the center), enable to reverse it */
 const INVERTED_GRADIENT = true;
@@ -25,10 +25,10 @@ const CAP_LIGHTNESS = true;
 
 /* The degree to which noise affects the layers */
 /* Low values are blobby, high values are spikey */
-const NOISE_MULTIPLIER = 0.15;
+const NOISE_MULTIPLIER = 0.2;
 
 /* The speed at which the layers */
-const NOISE_SPEED = 0.002;
+const NOISE_SPEED = 0.0025;
 
 /* Mirror the layers on either axis */
 const SYMMETRICAL_X = false;
@@ -42,11 +42,10 @@ const USE_PALETTE_BACKGROUND = true;
 /* The amount of points that make up each layer, lower means "pointier" */
 /* For example 3 points mean triangular layers, 4 means squares */
 /* Higher might not be noticable, but will make for smoother borders */
-const POINT_COUNT = 1000;
+const POINT_COUNT = 500;
 
 /* Mild rotation, negative speed rotates counter-clockwise */
-//const ROTATION_SPEED = 0.001;
-const ROTATION_SPEED = 0;
+const ROTATION_SPEED = 0.001;
 
 /*
 
@@ -103,7 +102,7 @@ new p5((p: p5) => {
     if (USE_PALETTE_BACKGROUND) p.background(BG);
   };
 
-  const drawLayer = (r: number, i: number) => {
+  const drawLayer = (r: any, i: any) => {
     /* A number from 0 to 1, where the middle layer would have 0.5 */
     const layerColorFactor = INVERTED_GRADIENT ? i / LAYER_COUNT : 1 - i / LAYER_COUNT;
 

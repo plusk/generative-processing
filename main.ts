@@ -4,13 +4,9 @@ export {};
 
 type SketchLoader = () => Promise<unknown>;
 
-const allModules = import.meta.glob<SketchLoader>([
-  "./sketches/**/*.ts",
-  "./doodles/**/*.ts",
-  "./archive/**/*.ts",
-]);
+const allModules = import.meta.glob<SketchLoader>(["./sketches/**/*.ts", "./doodles/**/*.ts"]);
 
-const EXCLUDE = new Set(["palettes", "utils", "base", "template"]);
+const EXCLUDE = new Set(["utils"]);
 
 const sketches = Object.fromEntries(
   Object.entries(allModules)
