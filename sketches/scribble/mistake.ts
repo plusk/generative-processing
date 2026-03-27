@@ -30,7 +30,7 @@ new p5((p: p5) => {
     cnv.mouseClicked(clickOnSave);
 
     palette = palettes[PALETTE_NAME];
-    colors = palette.COLORS;
+    colors = palette.colors;
     colors_bg = palette.bg;
 
     p.background(colors_bg);

@@ -30,7 +30,7 @@ new p5((p: p5) => {
     // const keys = Object.keys(palettes);
     // palette = palettes[keys[(keys.length * Math.random()) << 0]];
 
-    colors = palette.COLORS;
+    colors = palette.colors;
     colors_bg = palette.bg;
     _colors_stroke = palette["stroke"];
 

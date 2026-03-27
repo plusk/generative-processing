@@ -26,10 +26,7 @@ new p5((p: p5) => {
 
   p.setup = async () => {
     webGLSetup(p, c);
-    shay = await p.loadShader(
-      "/sketches/v2/sketches/reflect/basic.vert",
-      "/sketches/v2/sketches/reflect/reflect.frag",
-    );
+    shay = await p.loadShader("/sketches/reflect/basic.vert", "/sketches/reflect/reflect.frag");
 
     pointA = [randomWithPadding(p.width), randomWithPadding(p.height)];
     pointB = [randomWithPadding(p.width), randomWithPadding(p.height)];

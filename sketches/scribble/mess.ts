@@ -17,7 +17,7 @@ new p5((p: p5) => {
     p.colorMode(p.HSL);
 
     palette = palettes["onom"];
-    colors = palette.COLORS;
+    colors = palette.colors;
     bg = p.color(palette.bg);
     p.background(bg);
 

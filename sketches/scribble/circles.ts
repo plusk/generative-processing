@@ -24,7 +24,7 @@ new p5((p: p5) => {
 
     palette = palettes["symmeblu"];
 
-    colors = palette.COLORS;
+    colors = palette.colors;
 
     section = p.width / 8;
     gap = p.width / 16;
