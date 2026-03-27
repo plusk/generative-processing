@@ -6,7 +6,6 @@ const PALETTE_NAME = "pastella"; //mono retro redcent symmeblu pastella termos v
 const STROKE_WEIGHT_START = 100;
 const STROKE_WEIGHT = 5;
 const STROKE_WEIGHT_DIFF = (STROKE_WEIGHT_START - STROKE_WEIGHT) / FRAME_LIMIT;
-const SHADOW_BLUR = 5;
 const THREAD_COUNT = 144;
 const SPEED = 10;
 const NOISE_GRANULARITY = 0.005; //0.005
@@ -36,11 +35,9 @@ new p5((p: p5) => {
     colors = palette["colors"];
     colors_bg = p.color(palette["bg"]);
     p.background(colors_bg);
+
     p.strokeWeight(STROKE_WEIGHT);
     p.fill(colors_bg);
-
-    (p.drawingContext as CanvasRenderingContext2D).shadowBlur = SHADOW_BLUR;
-    (p.drawingContext as CanvasRenderingContext2D).shadowColor = "#0000007f";
 
     const angRandy = p.random(p.PI);
     const squirtle = p.sqrt(THREAD_COUNT);

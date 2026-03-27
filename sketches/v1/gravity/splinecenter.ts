@@ -90,8 +90,8 @@ new p5((p: p5) => {
       const c = vertices[i + 2];
       const d = vertices[i + 3];
       for (let bla = 0; bla < 1; bla += 1 * TIMEWALK) {
-        const x = (p as any).curvePoint(a.x, b.x, c.x, d.x, bla);
-        const y = (p as any).curvePoint(a.y, b.y, c.y, d.y, bla);
+        const x = p.splinePoint(a.x, b.x, c.x, d.x, bla);
+        const y = p.splinePoint(a.y, b.y, c.y, d.y, bla);
         path.push(p.createVector(x, y));
       }
     }
